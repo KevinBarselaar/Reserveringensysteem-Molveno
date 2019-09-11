@@ -6,14 +6,28 @@ import java.util.List;
 public class Reservering {
 
     private int id;
-    private Date beginDatum;
-    private Date eindDatum;
     private List<Kamer> kamers;
 
-    public Reservering(int id, Date beginDatum, Date eindDatum, List<Kamer> kamers) {
+    public Reservering(int id, List<Kamer> kamers) {
         this.id = id;
-        this.beginDatum = beginDatum;
-        this.eindDatum = eindDatum;
+        this.kamers = kamers;
+    }
+
+    //Getters for class variables
+    public int getId() {
+        return id;
+    }
+
+    public List<Kamer> getKamers() {
+        return kamers;
+    }
+
+    //Setters for class variables
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setKamers(List<Kamer> kamers) {
         this.kamers = kamers;
     }
 }
