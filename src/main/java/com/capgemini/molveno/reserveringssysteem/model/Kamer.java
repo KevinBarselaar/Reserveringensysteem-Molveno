@@ -1,11 +1,21 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Kamer {
+
+    @Id
     private int id;
     private KamerType type;
     private int volwassenenCapaciteit;
     private int kinderenCapaciteit;
+
+    @OrderColumn
+    @ElementCollection(targetClass = BedType.class)
+    @Enumerated(EnumType.STRING)
     private BedType[] bedTypes;
+
     private boolean invalideVriendelijk;
     private int verdieping;
 
