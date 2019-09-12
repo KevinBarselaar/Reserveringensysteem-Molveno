@@ -19,6 +19,10 @@ public class Kamer {
     private boolean invalideVriendelijk;
     private int verdieping;
 
+    public Kamer() {
+
+    }
+
     public Kamer(int id, KamerType type, int volwassenenCapaciteit, int kinderenCapaciteit, boolean invalideVriendelijk, int verdieping, BedType... bedTypes) {
         this.id = id;
         this.type = type;

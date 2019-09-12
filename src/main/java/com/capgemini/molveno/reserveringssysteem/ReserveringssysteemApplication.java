@@ -2,6 +2,7 @@ package com.capgemini.molveno.reserveringssysteem;
 
 import com.capgemini.molveno.reserveringssysteem.io.KamerExcelDeserializer;
 import com.capgemini.molveno.reserveringssysteem.model.Kamer;
+import com.capgemini.molveno.reserveringssysteem.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,10 +17,12 @@ import java.util.List;
 public class ReserveringssysteemApplication {
 
     private final KamerExcelDeserializer excelDeserializer;
+    private final RoomRepository roomRepository;
 
     @Autowired
-    public ReserveringssysteemApplication(KamerExcelDeserializer excelDeserializer) {
+    public ReserveringssysteemApplication(KamerExcelDeserializer excelDeserializer, RoomRepository roomRepository) {
         this.excelDeserializer = excelDeserializer;
+        this.roomRepository = roomRepository;
     }
 
     @EventListener(ApplicationReadyEvent.class)
@@ -28,9 +31,7 @@ public class ReserveringssysteemApplication {
 
         List<Kamer> kamersFromExcelsheet = this.excelDeserializer.deserialize(excelFile);
 
-        System.out.println(kamersFromExcelsheet.size());
-
-        //TODO insert the extracted kamers to the db with the kamer repository
+        this.roomRepository.saveAll(kamersFromExcelsheet);
     }
 
     public static void main(String[] args) {
