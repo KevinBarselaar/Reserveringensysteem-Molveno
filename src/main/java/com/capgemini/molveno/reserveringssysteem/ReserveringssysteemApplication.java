@@ -28,9 +28,7 @@ public class ReserveringssysteemApplication {
 
         List<Kamer> kamersFromExcelsheet = this.excelDeserializer.deserialize(excelFile);
 
-        Kamer kamer = kamersFromExcelsheet.get(0);
-        Kamer kamer1 = kamersFromExcelsheet.get(1);
-
+        System.out.println(kamersFromExcelsheet.size());
 
         //TODO insert the extracted kamers to the db with the kamer repository
     }

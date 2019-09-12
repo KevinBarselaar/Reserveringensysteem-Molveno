@@ -71,7 +71,7 @@ public class KamerExcelDeserializer {
         String[] bedOptions = bedTypes.split(",");
 
         for (String option : bedOptions) {
-            option = option.replace(" ", "").replace("BED", "").replace("x", "").toUpperCase();
+            option = option.toUpperCase().replace(" ", "").replace("BED", "").replace("x", "");
             BedType bedType;
 
             Matcher numberInStringRegex = Pattern.compile("\\d[0-9]{0,}").matcher(option);
