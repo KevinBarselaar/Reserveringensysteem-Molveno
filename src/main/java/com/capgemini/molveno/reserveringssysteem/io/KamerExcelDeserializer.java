@@ -62,7 +62,7 @@ public class KamerExcelDeserializer {
         return kamers;
     }
 
-    private BedType[] getBedTypesFromString(String bedTypes) {
+    public BedType[] getBedTypesFromString(String bedTypes) {
         List<BedType> types = new ArrayList<>();
         String[] bedOptions = bedTypes.split(",");
 
