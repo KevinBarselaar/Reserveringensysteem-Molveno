@@ -1,15 +1,31 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import javax.persistence.*;
+
+@Entity(name = "room")
 public class Kamer {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private KamerType type;
     private int volwassenenCapaciteit;
     private int kinderenCapaciteit;
+
+    @OrderColumn
+    @ElementCollection(targetClass = BedType.class)
+    @Enumerated(EnumType.STRING)
     private BedType[] bedTypes;
+
     private boolean invalideVriendelijk;
     private int verdieping;
 
-    public Kamer(int id, KamerType type, int volwassenenCapaciteit, int kinderenCapaciteit, boolean invalideVriendelijk, int verdieping, BedType... bedTypes) {
+    public Kamer() {
+
+    }
+
+    public Kamer(Long id, KamerType type, int volwassenenCapaciteit, int kinderenCapaciteit, BedType[] bedTypes, boolean invalideVriendelijk, int verdieping) {
         this.id = id;
         this.type = type;
         this.volwassenenCapaciteit = volwassenenCapaciteit;
@@ -19,11 +35,11 @@ public class Kamer {
         this.verdieping = verdieping;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

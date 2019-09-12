@@ -1,7 +1,7 @@
 package com.capgemini.molveno.reserveringssysteem.controller;
 
 import com.capgemini.molveno.reserveringssysteem.model.Reservering;
-import com.capgemini.molveno.reserveringssysteem.repository.ReserveringsRepository;
+import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,20 +14,20 @@ import java.util.List;
 @RequestMapping("/api/reserveringen")
 public class ReserveringsController {
 
-    private final ReserveringsRepository reservationRepository;
+    private final BookingRepository bookingRepository;
 
     @Autowired
-    public ReserveringsController(ReserveringsRepository reserveringsRepository) {
-        this.reservationRepository = reserveringsRepository;
+    public ReserveringsController(BookingRepository bookingRepository) {
+        this.bookingRepository = bookingRepository;
     }
 
     @GetMapping("/overzicht")
     public List<Reservering> getAllReserverations() {
-        return this.reservationRepository.getReserveringen();
+        return this.bookingRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Reservering getReservering(@PathVariable int id) {
-        return this.reservationRepository.findReservering(id - 1);
+    public Reservering getReservering(@PathVariable Long id) {
+        return this.bookingRepository.findById(id).get();
     }
 }
