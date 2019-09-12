@@ -1,6 +1,5 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
-import java.util.Date;
 import java.util.List;
 
 public class Reservering {
@@ -13,21 +12,18 @@ public class Reservering {
         this.kamers = kamers;
     }
 
-    //Getters for class variables
+    //Getter for id (Reservation id should not be able to manually change)
     public int getId() {
         return id;
     }
 
+    //Getter and setter for list of rooms
     public List<Kamer> getKamers() {
         return kamers;
-    }
-
-    //Setters for class variables
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setKamers(List<Kamer> kamers) {
         this.kamers = kamers;
     }
+
 }
