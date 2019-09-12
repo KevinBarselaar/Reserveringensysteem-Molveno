@@ -47,7 +47,7 @@ public class KamerExcelDeserializer {
                                 (int) Double.parseDouble(volwassenenCapaciteit),
                                 (int) Double.parseDouble(kinderenCapaciteit),
                                 invalideVriendelijk,
-                                sheetIndex,
+                                sheetIndex + 1,
                                 this.getBedTypesFromString(bedType));
 
                         kamers.add(kamerFromRow);

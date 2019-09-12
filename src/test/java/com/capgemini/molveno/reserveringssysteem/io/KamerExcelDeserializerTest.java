@@ -1,6 +1,10 @@
 package com.capgemini.molveno.reserveringssysteem.io;
 
 import com.capgemini.molveno.reserveringssysteem.model.BedType;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -60,15 +64,35 @@ public class KamerExcelDeserializerTest {
     @Test
     void getBedTypesFromString_emptyString_returnsNull() {
         String inputString = "";
-        BedType[] expctedBedTypes = null;
+        BedType[] expectedBedTypes = null;
 
         BedType[] actualBedTypes = this.excelDeserializer.getBedTypesFromString(inputString);
 
-        assertThat(actualBedTypes, is(expctedBedTypes));
+        assertThat(actualBedTypes, is(expectedBedTypes));
     }
 
-    private void excelStub() {
+    @Test
+    void deserialize_mockedExcelFile_returnsKamerList() {
+//        createMockedExcelFile();
+    }
+
+    private void createMockedExcelFile() {
         XSSFWorkbook workbook = new XSSFWorkbook();
+
+        for (int sheetIndex = 0; sheetIndex < 4; sheetIndex++) {
+            workbook.createSheet("Sheet " + (sheetIndex + 1));
+            XSSFSheet sheet = workbook.getSheetAt(sheetIndex);
+
+            for (int rowIndex = 0; rowIndex < 3; rowIndex++) {
+                XSSFRow row = sheet.createRow(rowIndex);
+
+                for (int cellIndex = 0; cellIndex < 3; cellIndex++) {
+                    XSSFCell cell = row.createCell(0, CellType.STRING);
+//                    cell.setCellValue();
+                }
+//                sheet.row
+            } //TODO create mock excel file and use threading (callable)
+        }
     }
 
 }
