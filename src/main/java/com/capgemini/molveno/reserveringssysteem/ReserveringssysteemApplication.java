@@ -41,7 +41,7 @@ public class ReserveringssysteemApplication {
         this.roomRepository.saveAll(kamersFromExcelsheet);
 
         Reservering testReservering = new Reservering(Long.valueOf(1), new ArrayList<>(Arrays.asList(kamersFromExcelsheet.get(0), kamersFromExcelsheet.get(1))));
-        this.bookingRepository.saveAndFlush(testReservering);
+        this.bookingRepository.saveAndFlush(testReservering); //TODO this is test code, replace with a POST request!
     }
 
     public static void main(String[] args) {
