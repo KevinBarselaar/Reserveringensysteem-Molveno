@@ -16,10 +16,10 @@ public class KamerRepository { //TODO make this a Jpa repository
     public KamerRepository() {
         this.nepKamers = new ArrayList<>(); //TODO delete, this is test data
 
-        nepKamers.add(new Kamer(1, KamerType.SINGLE, 1, 0, false, 1, BedType.SINGLE));
-        nepKamers.add(new Kamer(2, KamerType.DOUBLE, 2, 0, false, 2, BedType.DOUBLE));
-        nepKamers.add(new Kamer(3, KamerType.TWO_DOUBLE, 4, 2, true, 1, BedType.DOUBLE, BedType.BABY, BedType.BABY));
-        nepKamers.add(new Kamer(4, KamerType.PENTHOUSE, 3, 1, false, 1, BedType.DOUBLE, BedType.BABY));
+//        nepKamers.add(new Kamer(1L, KamerType.SINGLE, 1, 0, false, 1, BedType.SINGLE));
+//        nepKamers.add(new Kamer(2L, KamerType.DOUBLE, 2, 0, false, 2, BedType.DOUBLE));
+//        nepKamers.add(new Kamer(3L, KamerType.TWO_DOUBLE, 4, 2, true, 1, BedType.DOUBLE, BedType.BABY, BedType.BABY));
+//        nepKamers.add(new Kamer(4L, KamerType.PENTHOUSE, 3, 1, false, 1, BedType.DOUBLE, BedType.BABY));
     }
 
     public List<Kamer> all() {

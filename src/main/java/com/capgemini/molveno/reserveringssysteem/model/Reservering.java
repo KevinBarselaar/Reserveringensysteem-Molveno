@@ -1,20 +1,33 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity(name = "reservering")
 public class Reservering {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Kamer> kamers;
 
-    public Reservering(int id, List<Kamer> kamers) {
+    public Reservering() {
+
+    }
+
+    public Reservering(Long id, List<Kamer> kamers) {
         this.id = id;
         this.kamers = kamers;
     }
 
-    //Getter for id (Reservation id should not be able to manually change)
-    public int getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     //Getter and setter for list of rooms

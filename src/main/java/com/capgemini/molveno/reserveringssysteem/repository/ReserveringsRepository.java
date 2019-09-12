@@ -24,11 +24,11 @@ public class ReserveringsRepository {
         //Fill with all kamers
         kamers = kamerRepository.all();
 
-        Reservering reservering2 = new Reservering(2, new ArrayList<>(Arrays.asList(kamers.get(3))));
-
-        //Add to reserveringen
-        reserveringen.add(new Reservering(1, new ArrayList<>(Arrays.asList(kamers.get(0), kamers.get(2)))));
-        reserveringen.add(reservering2);
+//        Reservering reservering2 = new Reservering(2, new ArrayList<>(Arrays.asList(kamers.get(3))));
+//
+//        //Add to reserveringen
+//        reserveringen.add(new Reservering(1, new ArrayList<>(Arrays.asList(kamers.get(0), kamers.get(2)))));
+//        reserveringen.add(reservering2);
     }
 
     public List<Reservering> getReserveringen() {

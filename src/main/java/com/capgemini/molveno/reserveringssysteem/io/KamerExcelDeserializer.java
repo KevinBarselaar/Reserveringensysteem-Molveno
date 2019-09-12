@@ -22,7 +22,7 @@ public class KamerExcelDeserializer {
 
     public List<Kamer> deserialize(File excelFile) {
         List<Kamer> kamers = new ArrayList<>();
-        int kamerId = 1;
+        long kamerId = 1;
 
         try (FileInputStream excelInputStream = new FileInputStream(excelFile);
              XSSFWorkbook excelWorkbook = new XSSFWorkbook(excelInputStream)) {
@@ -46,9 +46,9 @@ public class KamerExcelDeserializer {
                         Kamer kamerFromRow = new Kamer(kamerId, roomType,
                                 (int) Double.parseDouble(volwassenenCapaciteit),
                                 (int) Double.parseDouble(kinderenCapaciteit),
+                                this.getBedTypesFromString(bedType),
                                 invalideVriendelijk,
-                                sheetIndex + 1,
-                                this.getBedTypesFromString(bedType));
+                                sheetIndex + 1);
 
                         kamers.add(kamerFromRow);
                         kamerId += 1;
