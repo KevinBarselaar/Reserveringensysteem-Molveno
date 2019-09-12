@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 @Component
 public class KamerExcelDeserializer {
 
-    public List<Kamer> deserlize(File excelFile) {
+    public List<Kamer> deserialize(File excelFile) {
         List<Kamer> kamers = new ArrayList<>();
         int kamerId = 1;
 
@@ -31,7 +31,7 @@ public class KamerExcelDeserializer {
                 Sheet sheet = excelWorkbook.getSheetAt(sheetIndex);
 
                 Iterator<Row> rowIterator = sheet.rowIterator();
-                rowIterator.next();
+                rowIterator.next(); //skip the first row (titles)
 
                 while (rowIterator.hasNext()) {
                     Row row = rowIterator.next();
@@ -63,30 +63,31 @@ public class KamerExcelDeserializer {
     }
 
     public BedType[] getBedTypesFromString(String bedTypes) {
+        if (bedTypes == null || bedTypes.isEmpty()) {
+            return null;
+        }
+
         List<BedType> types = new ArrayList<>();
         String[] bedOptions = bedTypes.split(",");
 
         for (String option : bedOptions) {
-            option = option.replace(" ", "").toUpperCase();
-            BedType bedType = null;
+            option = option.replace(" ", "").replace("BED", "").replace("x", "").toUpperCase();
+            BedType bedType;
 
             Matcher numberInStringRegex = Pattern.compile("\\d[0-9]{0,}").matcher(option);
             if (numberInStringRegex.find()) { //The option contains a number
 
-                String numberInString = numberInStringRegex.group(0);
-                int amountOfBeds = Integer.parseInt(numberInString);
-                for (int amount = 0; amount < amountOfBeds; amount++) {
-                    option = option.replace(numberInString, "").replace("BED", "").replace("x", "");
-                    bedType = BedType.valueOf(option);
+                int amountOfBeds = Integer.parseInt(numberInStringRegex.group(0));
+                for (int bedIndex = 0; bedIndex < amountOfBeds; bedIndex++) {
+                    bedType = BedType.valueOf(option.replace(String.valueOf(amountOfBeds), ""));
 
                     types.add(bedType);
                 }
             } else {
-                bedType = BedType.valueOf(option.replace("BED", ""));
-                types.add(bedType);
+                types.add(BedType.valueOf(option));
             }
         }
 
-        return types.toArray(new BedType[types.size()]);
+        return types.toArray(new BedType[0]);
     }
 }

@@ -26,7 +26,7 @@ public class ReserveringssysteemApplication {
     public void onApplicationStart() throws IOException {
         File excelFile = new File("Hotel kamers v0.1.xlsx");
 
-        List<Kamer> kamersFromExcelsheet = this.excelDeserializer.deserlize(excelFile);
+        List<Kamer> kamersFromExcelsheet = this.excelDeserializer.deserialize(excelFile);
 
         Kamer kamer = kamersFromExcelsheet.get(0);
         Kamer kamer1 = kamersFromExcelsheet.get(1);

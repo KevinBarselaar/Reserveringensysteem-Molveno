@@ -1,6 +1,7 @@
 package com.capgemini.molveno.reserveringssysteem.io;
 
 import com.capgemini.molveno.reserveringssysteem.model.BedType;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -44,6 +45,30 @@ public class KamerExcelDeserializerTest {
         BedType[] actualBedTypes = this.excelDeserializer.getBedTypesFromString(inputString);
 
         assertThat(actualBedTypes, is(expectedBedTypes));
+    }
+
+    @Test
+    void getBedTypesFromString_nullString_returnsNull() {
+        String inputString = null;
+        BedType[] expectedBedTypes = null;
+
+        BedType[] actualBedTypes = this.excelDeserializer.getBedTypesFromString(inputString);
+
+        assertThat(actualBedTypes, is(expectedBedTypes));
+    }
+
+    @Test
+    void getBedTypesFromString_emptyString_returnsNull() {
+        String inputString = "";
+        BedType[] expctedBedTypes = null;
+
+        BedType[] actualBedTypes = this.excelDeserializer.getBedTypesFromString(inputString);
+
+        assertThat(actualBedTypes, is(expctedBedTypes));
+    }
+
+    private void excelStub() {
+        XSSFWorkbook workbook = new XSSFWorkbook();
     }
 
 }
