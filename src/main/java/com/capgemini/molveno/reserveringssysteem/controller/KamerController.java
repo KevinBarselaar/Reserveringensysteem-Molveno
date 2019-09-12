@@ -27,8 +27,8 @@ public class KamerController {
     }
 
     @GetMapping("/{id}")
-    public Kamer getKamer(@PathVariable int id) {
-        return this.roomRepository.findById(id - 1).get();
+    public Kamer getKamer(@PathVariable Long id) {
+        return this.roomRepository.findById(Long.valueOf(id)).get();
     }
 
 //TODO create post / add
