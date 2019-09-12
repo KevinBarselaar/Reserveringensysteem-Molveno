@@ -1,5 +1,6 @@
 package com.capgemini.molveno.reserveringssysteem.controller;
 
+import com.capgemini.molveno.reserveringssysteem.model.Kamer;
 import com.capgemini.molveno.reserveringssysteem.model.Reservering;
 import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,25 @@ public class ReserveringsController {
     @GetMapping("/{id}")
     public Reservering getReservering(@PathVariable Long id) {
         return this.bookingRepository.findById(id).get();
+    }
+
+    /**
+     *
+     * Er is een reserveringen, met geboekte kamers: kamer 1, kamer 2
+     *
+     */
+
+    @GetMapping("/display")
+    public String displayBooking() {
+        List<Reservering> bookings = this.bookingRepository.findAll();
+        String display = "";
+
+        for(Reservering reservering : bookings) {
+            display += "Er is een reservering met de kamers: ";
+            for(Kamer kamers : reservering.getKamers()) {
+                display += "Kamer: " + kamers.getId() + ". ";
+            }
+        }
+        return display;
     }
 }
