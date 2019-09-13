@@ -4,11 +4,9 @@ import com.capgemini.molveno.reserveringssysteem.model.Kamer;
 import com.capgemini.molveno.reserveringssysteem.model.Reservering;
 import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -33,9 +31,7 @@ public class ReserveringsController {
     }
 
     /**
-     *
      * Er is een reserveringen, met geboekte kamers: kamer 1, kamer 2
-     *
      */
 
     @GetMapping("/display")
@@ -43,12 +39,20 @@ public class ReserveringsController {
         List<Reservering> bookings = this.bookingRepository.findAll();
         String display = "";
 
-        for(Reservering reservering : bookings) {
+        for (Reservering reservering : bookings) {
             display += "Er is een reservering met de kamers: ";
-            for(Kamer kamers : reservering.getKamers()) {
+            for (Kamer kamers : reservering.getKamers()) {
                 display += "Kamer: " + kamers.getId() + ". ";
             }
         }
         return display;
+    }
+
+    @PostMapping
+    public void createBooking(@RequestBody Kamer[] kamers) {
+        Reservering reservering = new Reservering();
+        reservering.setKamers(Arrays.asList(kamers));
+
+        this.bookingRepository.saveAndFlush(reservering);
     }
 }
