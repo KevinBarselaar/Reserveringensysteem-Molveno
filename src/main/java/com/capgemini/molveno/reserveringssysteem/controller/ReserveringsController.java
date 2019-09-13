@@ -42,8 +42,9 @@ public class ReserveringsController {
         for (Reservering reservering : bookings) {
             display += "Er is een reservering met de kamers: ";
             for (Kamer kamers : reservering.getKamers()) {
-                display += "Kamer: " + kamers.getId() + ". ";
+                display += "Kamer: " + kamers.getId() + ".";
             }
+            display += "\n";
         }
         return display;
     }
