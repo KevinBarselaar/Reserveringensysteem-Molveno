@@ -16,6 +16,9 @@ public class Booking {
     @ManyToOne(cascade = CascadeType.ALL)
     private Guest guest;
 
+    /**
+     * Customer of the hotel
+     */
     public Booking() {
 
     }
