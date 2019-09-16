@@ -42,7 +42,8 @@ public class BookingSystemApplication {
 
         this.roomRepository.saveAll(roomsFromExcelSheet);
 
-        Booking testBooking = new Booking(Long.valueOf(1), new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(0), roomsFromExcelSheet.get(1))));
+        Booking testBooking = new Booking(Long.valueOf(1), new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(0), roomsFromExcelSheet.get(1))),
+                "Extra badhandoeken en een invalide kamer");
 
         Guest guest = new Guest("Bond", "Cool house street 007", "007007", "England", new Date(), "james@bond.com");
         testBooking.setGuest(guest);
