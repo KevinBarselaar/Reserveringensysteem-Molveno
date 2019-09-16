@@ -13,6 +13,7 @@ import org.springframework.context.event.EventListener;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +41,9 @@ public class BookingSystemApplication {
 
         this.roomRepository.saveAll(roomsFromExcelSheet);
 
-        Booking testBooking = new Booking(Long.valueOf(1), new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(0), roomsFromExcelSheet.get(1))));
+        Booking testBooking = new Booking(new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(0), roomsFromExcelSheet.get(1))),
+                LocalDateTime.of(2019, 10, 15, 13, 00),
+                LocalDateTime.of(2019, 10, 22, 11, 00));
         this.bookingRepository.saveAndFlush(testBooking); //TODO this is test code, replace with a POST request!
     }
 

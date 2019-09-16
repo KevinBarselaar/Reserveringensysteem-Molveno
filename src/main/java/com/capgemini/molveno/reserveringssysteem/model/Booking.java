@@ -1,9 +1,12 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity(name = "reservering")
+@Entity(name = "booking")
 public class Booking {
 
     @Id
@@ -13,14 +16,19 @@ public class Booking {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Room> rooms;
 
+    @DateTimeFormat (pattern = "dd-MM-yyyy HH:mm")
+    private LocalDateTime startBooking;
+    private LocalDateTime endBooking;
+
     public Booking() {
 
     }
 
     //TODO: remove id from constructor
-    public Booking(Long id, List<Room> rooms) {
-        this.id = id;
+    public Booking(List<Room> rooms, LocalDateTime start, LocalDateTime end) {
         this.rooms = rooms;
+        this.startBooking = start;
+        this.endBooking = end;
     }
 
     public Long getId() {
@@ -36,4 +44,11 @@ public class Booking {
         this.rooms = rooms;
     }
 
+    public LocalDateTime getStartBooking() {
+        return startBooking;
+    }
+
+    public LocalDateTime getEndBooking() {
+        return endBooking;
+    }
 }
