@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity(name = "booking")
@@ -16,19 +17,21 @@ public class Booking {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Room> rooms;
 
-    @DateTimeFormat (pattern = "dd-MM-yyyy HH:mm")
-    private LocalDateTime startBooking;
-    private LocalDateTime endBooking;
+    @DateTimeFormat
+    private String startBooking;
+    private String endBooking;
 
     public Booking() {
 
     }
-
-    //TODO: remove id from constructor
+    
     public Booking(List<Room> rooms, LocalDateTime start, LocalDateTime end) {
+        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
         this.rooms = rooms;
-        this.startBooking = start;
-        this.endBooking = end;
+        this.startBooking = outputFormat.format(LocalDateTime.parse(start.toString(), inputFormat));
+        this.endBooking = outputFormat.format(LocalDateTime.parse(end.toString(), inputFormat));
     }
 
     public Long getId() {
@@ -44,11 +47,11 @@ public class Booking {
         this.rooms = rooms;
     }
 
-    public LocalDateTime getStartBooking() {
+    public String getStartBooking() {
         return startBooking;
     }
 
-    public LocalDateTime getEndBooking() {
+    public String getEndBooking() {
         return endBooking;
     }
 }
