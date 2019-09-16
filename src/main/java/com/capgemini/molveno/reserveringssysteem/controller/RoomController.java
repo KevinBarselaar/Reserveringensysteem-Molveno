@@ -22,12 +22,12 @@ public class RoomController {
     }
 
     @GetMapping("/overview")
-    public List<Room> getAllKamers() {
+    public List<Room> getAllRooms() {
         return this.roomRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Room getKamer(@PathVariable Long id) {
+    public Room getRoom(@PathVariable Long id) {
         return this.roomRepository.findById(Long.valueOf(id)).get();
     }
 
