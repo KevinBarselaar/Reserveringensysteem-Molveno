@@ -1,8 +1,8 @@
 package com.capgemini.molveno.reserveringssysteem.io;
 
 import com.capgemini.molveno.reserveringssysteem.model.BedType;
-import com.capgemini.molveno.reserveringssysteem.model.Kamer;
-import com.capgemini.molveno.reserveringssysteem.model.KamerType;
+import com.capgemini.molveno.reserveringssysteem.model.Room;
+import com.capgemini.molveno.reserveringssysteem.model.RoomType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -18,11 +18,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-public class KamerExcelDeserializer {
+public class RoomExcelDeserializer {
 
-    public List<Kamer> deserialize(File excelFile) {
-        List<Kamer> kamers = new ArrayList<>();
-        long kamerId = 1;
+    public List<Room> deserialize(File excelFile) {
+        List<Room> rooms = new ArrayList<>();
+        long roomId = 1;
 
         try (FileInputStream excelInputStream = new FileInputStream(excelFile);
              XSSFWorkbook excelWorkbook = new XSSFWorkbook(excelInputStream)) {
@@ -37,21 +37,21 @@ public class KamerExcelDeserializer {
                     Row row = rowIterator.next();
 
                     if (row.cellIterator().hasNext()) {
-                        KamerType roomType = KamerType.from(row.getCell(0).toString());
-                        String volwassenenCapaciteit = row.getCell(1).toString();
-                        String kinderenCapaciteit = row.getCell(2).toString();
+                        RoomType roomType = RoomType.from(row.getCell(0).toString());
+                        String adultCapacity = row.getCell(1).toString();
+                        String minorCapacity = row.getCell(2).toString();
                         String bedType = row.getCell(3).toString();
-                        boolean invalideVriendelijk = !row.getCell(4).toString().isEmpty();
+                        boolean disabledFriendly = !row.getCell(4).toString().isEmpty();
 
-                        Kamer kamerFromRow = new Kamer(kamerId, roomType,
-                                (int) Double.parseDouble(volwassenenCapaciteit),
-                                (int) Double.parseDouble(kinderenCapaciteit),
+                        Room roomFromRow = new Room(roomId, roomType,
+                                (int) Double.parseDouble(adultCapacity),
+                                (int) Double.parseDouble(minorCapacity),
                                 this.getBedTypesFromString(bedType),
-                                invalideVriendelijk,
+                                disabledFriendly,
                                 sheetIndex + 1);
 
-                        kamers.add(kamerFromRow);
-                        kamerId += 1;
+                        rooms.add(roomFromRow);
+                        roomId += 1;
                     }
                 }
             }
@@ -59,7 +59,7 @@ public class KamerExcelDeserializer {
             e.printStackTrace();
         }
 
-        return kamers;
+        return rooms;
     }
 
     public BedType[] getBedTypesFromString(String bedTypes) {

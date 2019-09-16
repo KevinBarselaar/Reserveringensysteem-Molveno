@@ -1,8 +1,8 @@
 package com.capgemini.molveno.reserveringssysteem;
 
-import com.capgemini.molveno.reserveringssysteem.io.KamerExcelDeserializer;
-import com.capgemini.molveno.reserveringssysteem.model.Kamer;
-import com.capgemini.molveno.reserveringssysteem.model.Reservering;
+import com.capgemini.molveno.reserveringssysteem.io.RoomExcelDeserializer;
+import com.capgemini.molveno.reserveringssysteem.model.Room;
+import com.capgemini.molveno.reserveringssysteem.model.Booking;
 import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
 import com.capgemini.molveno.reserveringssysteem.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +18,15 @@ import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
-public class ReserveringssysteemApplication {
+public class BookingSystemApplication {
 
-    private final KamerExcelDeserializer excelDeserializer;
+    private final RoomExcelDeserializer excelDeserializer;
     private final RoomRepository roomRepository;
 
     private final BookingRepository bookingRepository;
 
     @Autowired
-    public ReserveringssysteemApplication(KamerExcelDeserializer excelDeserializer, RoomRepository roomRepository, BookingRepository bookingRepository) {
+    public BookingSystemApplication(RoomExcelDeserializer excelDeserializer, RoomRepository roomRepository, BookingRepository bookingRepository) {
         this.excelDeserializer = excelDeserializer;
         this.roomRepository = roomRepository;
         this.bookingRepository = bookingRepository;
@@ -36,16 +36,16 @@ public class ReserveringssysteemApplication {
     public void onApplicationStart() throws IOException {
         File excelFile = new File("Hotel kamers v0.1.xlsx");
 
-        List<Kamer> kamersFromExcelsheet = this.excelDeserializer.deserialize(excelFile);
+        List<Room> roomsFromExcelSheet = this.excelDeserializer.deserialize(excelFile);
 
-        this.roomRepository.saveAll(kamersFromExcelsheet);
+        this.roomRepository.saveAll(roomsFromExcelSheet);
 
-        Reservering testReservering = new Reservering(Long.valueOf(1), new ArrayList<>(Arrays.asList(kamersFromExcelsheet.get(0), kamersFromExcelsheet.get(1))));
-        this.bookingRepository.saveAndFlush(testReservering); //TODO this is test code, replace with a POST request!
+        Booking testBooking = new Booking(Long.valueOf(1), new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(0), roomsFromExcelSheet.get(1))));
+        this.bookingRepository.saveAndFlush(testBooking); //TODO this is test code, replace with a POST request!
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(ReserveringssysteemApplication.class, args);
+        SpringApplication.run(BookingSystemApplication.class, args);
     }
 
 }
