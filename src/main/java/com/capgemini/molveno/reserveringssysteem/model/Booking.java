@@ -4,39 +4,36 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "reservering")
-public class Reservering {
+public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<Kamer> kamers;
+    private List<Room> rooms;
 
-    public Reservering() {
+    public Booking() {
 
     }
 
-    public Reservering(Long id, List<Kamer> kamers) {
+    //TODO: remove id from constructor
+    public Booking(Long id, List<Room> rooms) {
         this.id = id;
-        this.kamers = kamers;
+        this.rooms = rooms;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     //Getter and setter for list of rooms
-    public List<Kamer> getKamers() {
-        return kamers;
+    public List<Room> getRooms() {
+        return rooms;
     }
 
-    public void setKamers(List<Kamer> kamers) {
-        this.kamers = kamers;
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 
 }

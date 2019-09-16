@@ -12,13 +12,13 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class KamerExcelDeserializerTest {
+public class RoomExcelDeserializerTest {
 
-    private KamerExcelDeserializer excelDeserializer;
+    private RoomExcelDeserializer excelDeserializer;
 
     @BeforeEach
     void setup() {
-        this.excelDeserializer = new KamerExcelDeserializer();
+        this.excelDeserializer = new RoomExcelDeserializer();
     }
 
     @Test

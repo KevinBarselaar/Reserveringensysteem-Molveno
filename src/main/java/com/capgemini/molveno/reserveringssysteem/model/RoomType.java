@@ -1,6 +1,6 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
-public enum KamerType {
+public enum RoomType {
     SINGLE("single"),
     DOUBLE("double"),
     TWO_DOUBLE("2xdouble"),
@@ -8,14 +8,14 @@ public enum KamerType {
 
     private String name;
 
-    KamerType(String name) {
+    RoomType(String name) {
         this.name = name;
     }
 
-    public static KamerType from(String kamerType) {
-        kamerType = kamerType.toLowerCase().replace(" ", "");
+    public static RoomType from(String roomType) {
+        roomType = roomType.toLowerCase().replace(" ", "");
 
-        switch (kamerType) {
+        switch (roomType) {
             case "single":
                 return SINGLE;
             case "double":
