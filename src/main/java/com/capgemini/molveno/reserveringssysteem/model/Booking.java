@@ -19,6 +19,9 @@ public class Booking {
     /**
      * Customer of the hotel
      */
+    private int numberOfAdults;
+    private int numberOfKids;
+
     public Booking() {
 
     }
@@ -41,12 +44,28 @@ public class Booking {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
-
+    
     public Guest getGuest() {
         return guest;
     }
 
     public void setGuest(Guest guest) {
         this.guest = guest;
+    }
+
+    public int getNumberOfAdults() {
+        return numberOfAdults;
+    }
+
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
+    }
+
+    public int getNumberOfKids() {
+        return numberOfKids;
+    }
+
+    public void setNumberOfKids(int numberOfKids) {
+        this.numberOfKids = numberOfKids;
     }
 }
