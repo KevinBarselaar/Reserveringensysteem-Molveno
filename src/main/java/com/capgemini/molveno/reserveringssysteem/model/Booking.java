@@ -13,6 +13,9 @@ public class Booking {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Room> rooms;
 
+    private int numberOfAdults;
+    private int numberOfKids;
+
     public Booking() {
 
     }
@@ -36,4 +39,19 @@ public class Booking {
         this.rooms = rooms;
     }
 
+    public int getNumberOfAdults() {
+        return numberOfAdults;
+    }
+
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
+    }
+
+    public int getNumberOfKids() {
+        return numberOfKids;
+    }
+
+    public void setNumberOfKids(int numberOfKids) {
+        this.numberOfKids = numberOfKids;
+    }
 }
