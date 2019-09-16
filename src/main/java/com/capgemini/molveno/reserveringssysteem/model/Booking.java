@@ -22,7 +22,6 @@ public class Booking {
     private String endBooking;
 
     public Booking() {
-
     }
     
     public Booking(List<Room> rooms, LocalDateTime start, LocalDateTime end) {
