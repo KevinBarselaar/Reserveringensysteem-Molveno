@@ -49,8 +49,6 @@ public class RoomControllerTest {
 
         Room actualRoom = this.controller.getRoom(1l);
 
-        boolean equals = actualRoom.equals(expectedRoom);
-
         assertThat(actualRoom, equalTo(expectedRoom));
     }
 }
