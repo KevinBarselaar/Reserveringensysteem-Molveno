@@ -47,6 +47,7 @@ public class BookingSystemApplication {
         this.roomRepository.saveAll(roomsFromExcelSheet);
 
         Booking testBooking = new Booking(new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(0), roomsFromExcelSheet.get(1))),
+                "Extra badhandoeken en een invalide kamer",
                 LocalDateTime.of(LocalDate.of(2019, 10, 15), LocalTime.of(15, 0)),
                 LocalDateTime.of(LocalDate.of(2019, 10, 22), LocalTime.of(11, 30)));
 

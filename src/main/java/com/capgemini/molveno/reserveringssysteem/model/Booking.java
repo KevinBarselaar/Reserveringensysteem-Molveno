@@ -21,17 +21,20 @@ public class Booking {
     @ManyToOne(cascade = CascadeType.ALL)
     private Guest guest;
 
+    private int numberOfMinors;
+
+    private int numberOfAdults;
+    private String extraAccommodation;
+
     /**
      * Customer of the hotel
      */
-    private int numberOfAdults;
-    private int numberOfMinors;
-
     public Booking() {
     }
 
-    public Booking(List<Room> rooms, LocalDateTime start, LocalDateTime end) {
+    public Booking(List<Room> rooms, String extraAccommodation, LocalDateTime start, LocalDateTime end) {
         this.rooms = rooms;
+        this.extraAccommodation = extraAccommodation;
         this.startBooking = start;
         this.endBooking = end;
     }
@@ -40,32 +43,16 @@ public class Booking {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public List<Room> getRooms() {
         return rooms;
     }
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
-    }
-    
-    public Guest getGuest() {
-        return guest;
-    }
-
-    public void setGuest(Guest guest) {
-        this.guest = guest;
-    }
-
-    public int getNumberOfAdults() {
-        return numberOfAdults;
-    }
-
-    public void setNumberOfAdults(int numberOfAdults) {
-        this.numberOfAdults = numberOfAdults;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public LocalDateTime getStartBooking() {
@@ -84,11 +71,35 @@ public class Booking {
         this.endBooking = endBooking;
     }
 
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+    public int getNumberOfAdults() {
+        return numberOfAdults;
+    }
+
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
+    }
+
     public int getNumberOfMinors() {
         return numberOfMinors;
     }
 
     public void setNumberOfMinors(int numberOfMinors) {
         this.numberOfMinors = numberOfMinors;
+    }
+
+    public String getExtraAccommodation() {
+        return extraAccommodation;
+    }
+
+    public void setExtraAccommodation(String extraAccommodation) {
+        this.extraAccommodation = extraAccommodation;
     }
 }
