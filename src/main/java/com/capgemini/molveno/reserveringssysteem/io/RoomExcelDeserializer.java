@@ -42,13 +42,15 @@ public class RoomExcelDeserializer {
                         String minorCapacity = row.getCell(2).toString();
                         String bedType = row.getCell(3).toString();
                         boolean disabledFriendly = !row.getCell(4).toString().isEmpty();
+                        String roomPrice = row.getCell(5).toString();
 
-                        Room roomFromRow = new Room(roomId, roomType,
+                        Room roomFromRow = new Room(roomType,
                                 (int) Double.parseDouble(adultCapacity),
                                 (int) Double.parseDouble(minorCapacity),
                                 this.getBedTypesFromString(bedType),
                                 disabledFriendly,
-                                sheetIndex + 1);
+                                sheetIndex + 1,
+                                Double.parseDouble(roomPrice));
 
                         rooms.add(roomFromRow);
                         roomId += 1;

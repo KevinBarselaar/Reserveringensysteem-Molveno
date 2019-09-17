@@ -27,9 +27,7 @@ public class Room {
 
     }
 
-    //TODO: remove id from constructor
-    public Room(Long id, RoomType type, int adultCapacity, int minorCapacity, BedType[] bedTypes, boolean disabledFriendly, int floor, double roomPrice) {
-        this.id = id;
+    public Room(RoomType type, int adultCapacity, int minorCapacity, BedType[] bedTypes, boolean disabledFriendly, int floor, double roomPrice) {
         this.type = type;
         this.adultCapacity = adultCapacity;
         this.minorCapacity = minorCapacity;
