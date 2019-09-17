@@ -1,6 +1,7 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
 import javax.persistence.*;
+import java.util.Arrays;
 
 @Entity(name = "room")
 public class Room {
@@ -97,4 +98,16 @@ public class Room {
         this.price = price;
     }
     
+    @Override
+    public boolean equals(Object obj) {
+        Room room = (Room) obj;
+
+        return room.id == this.id
+                && room.adultCapacity == this.adultCapacity
+                && room.minorCapacity == this.minorCapacity
+                && Arrays.equals(room.bedTypes, this.bedTypes)
+                && room.disabledFriendly == this.disabledFriendly
+                && room.floor == this.floor;
+
+    }
 }
