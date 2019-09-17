@@ -1,9 +1,6 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "guest")
@@ -13,39 +10,49 @@ public class Guest {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
-    private String address;
+    private String firstName;
+    private String lastName;
     private String phoneNumber;
-    private String country;
     private Date birthDate;
     private String emailAddress;
 
-    public Guest(String name, String address, String phoneNumber, String country, Date birthDate, String emailAddress) {
-        this.name = name;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.country = country;
-        this.birthDate = birthDate;
-        this.emailAddress = emailAddress;
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
     public Guest() {
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
+    public Guest(String firstName, String lastName, String phoneNumber, Date birthDate, String emailAddress, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
+        this.emailAddress = emailAddress;
         this.address = address;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhoneNumber() {
@@ -54,14 +61,6 @@ public class Guest {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public Date getBirthDate() {
@@ -78,5 +77,13 @@ public class Guest {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

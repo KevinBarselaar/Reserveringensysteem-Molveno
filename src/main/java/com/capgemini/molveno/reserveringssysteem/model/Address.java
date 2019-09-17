@@ -28,6 +28,10 @@ public class Address {
         this.country = country;
     }
 
+    public Address() {
+
+    }
+
     public String getStreetName() {
         return streetName;
     }
