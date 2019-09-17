@@ -40,7 +40,7 @@ public class BookingSystemApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationStart() throws IOException {
-        File excelFile = new File("Hotel kamers v0.1.xlsx");
+        File excelFile = new File("Hotel kamers plus prices v0.2.xlsx");
 
         List<Room> roomsFromExcelSheet = this.excelDeserializer.deserialize(excelFile);
 

@@ -31,7 +31,7 @@ public class RoomControllerTest {
         this.controller = new RoomController(mockedRoomRepository);
 
         when(mockedRoomRepository.findAll()).thenReturn(new ArrayList<>());
-        when(mockedRoomRepository.findById(1l)).thenReturn(Optional.of(new Room(1l, RoomType.SINGLE, 1, 1, new BedType[]{}, false, 1)));
+        when(mockedRoomRepository.findById(1l)).thenReturn(Optional.of(new Room(RoomType.SINGLE, 1, 1, new BedType[]{}, false, 1, 50)));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class RoomControllerTest {
 
     @Test
     public void getRoom_id1_returnsRoom() {
-        Room expectedRoom = new Room(1l, RoomType.SINGLE, 1, 1, new BedType[]{}, false, 1);
+        Room expectedRoom = new Room(RoomType.SINGLE, 1, 1, new BedType[]{}, false, 1, 50);
 
         Room actualRoom = this.controller.getRoom(1l);
 
