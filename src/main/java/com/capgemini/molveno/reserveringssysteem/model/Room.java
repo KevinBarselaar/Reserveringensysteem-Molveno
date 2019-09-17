@@ -21,12 +21,14 @@ public class Room {
     private boolean disabledFriendly;
     private int floor;
 
+    private double price;
+
     public Room() {
 
     }
 
     //TODO: remove id from constructor
-    public Room(Long id, RoomType type, int adultCapacity, int minorCapacity, BedType[] bedTypes, boolean disabledFriendly, int floor) {
+    public Room(Long id, RoomType type, int adultCapacity, int minorCapacity, BedType[] bedTypes, boolean disabledFriendly, int floor, double roomPrice) {
         this.id = id;
         this.type = type;
         this.adultCapacity = adultCapacity;
@@ -34,6 +36,7 @@ public class Room {
         this.bedTypes = bedTypes;
         this.disabledFriendly = disabledFriendly;
         this.floor = floor;
+        this.price = roomPrice;
     }
 
     public Long getId() {
@@ -87,4 +90,13 @@ public class Room {
     public void setFloor(int floor) {
         this.floor = floor;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    
 }
