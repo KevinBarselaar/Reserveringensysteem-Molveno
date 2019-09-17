@@ -14,8 +14,18 @@ public class Booking {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Room> rooms;
 
+
     private LocalDateTime startBooking;
     private LocalDateTime endBooking;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Guest guest;
+
+    /**
+     * Customer of the hotel
+     */
+    private int numberOfAdults;
+    private int numberOfMinors;
 
     public Booking() {
     }
@@ -30,13 +40,28 @@ public class Booking {
         return id;
     }
 
-    //Getter and setter for list of rooms
     public List<Room> getRooms() {
         return rooms;
     }
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+    
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+    public int getNumberOfAdults() {
+        return numberOfAdults;
+    }
+
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
     }
 
     public void setId(Long id) {
@@ -57,5 +82,12 @@ public class Booking {
 
     public void setEndBooking(LocalDateTime endBooking) {
         this.endBooking = endBooking;
+
+    public int getNumberOfMinors() {
+        return numberOfMinors;
+    }
+
+    public void setNumberOfMinors(int numberOfMinors) {
+        this.numberOfMinors = numberOfMinors;
     }
 }
