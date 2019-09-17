@@ -1,5 +1,6 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import com.capgemini.molveno.reserveringssysteem.io.LocalDateTimeAttributeConverter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,19 +18,19 @@ public class Booking {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Room> rooms;
 
-    @DateTimeFormat
-    private String startBooking;
-    private String endBooking;
+    private LocalDateTime startBooking;
+    private LocalDateTime endBooking;
+
+//    private LocalDateTimeAttributeConverter dateTimeConverter = new LocalDateTimeAttributeConverter();
+//    private DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     public Booking() {
     }
     
     public Booking(List<Room> rooms, LocalDateTime start, LocalDateTime end) {
-        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
         this.rooms = rooms;
-        this.startBooking = start.format(outputFormat);
-        this.endBooking = end.format(outputFormat);
+        this.startBooking = start;
+        this.endBooking = end;
     }
 
     public Long getId() {
@@ -45,11 +46,23 @@ public class Booking {
         this.rooms = rooms;
     }
 
-    public String getStartBooking() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getStartBooking() {
         return startBooking;
     }
 
-    public String getEndBooking() {
+    public void setStartBooking(LocalDateTime startBooking) {
+        this.startBooking = startBooking;
+    }
+
+    public LocalDateTime getEndBooking() {
         return endBooking;
+    }
+
+    public void setEndBooking(LocalDateTime endBooking) {
+        this.endBooking = endBooking;
     }
 }
