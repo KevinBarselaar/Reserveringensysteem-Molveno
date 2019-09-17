@@ -1,11 +1,7 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
-import com.capgemini.molveno.reserveringssysteem.io.LocalDateTimeAttributeConverter;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity(name = "booking")
@@ -21,12 +17,9 @@ public class Booking {
     private LocalDateTime startBooking;
     private LocalDateTime endBooking;
 
-//    private LocalDateTimeAttributeConverter dateTimeConverter = new LocalDateTimeAttributeConverter();
-//    private DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
     public Booking() {
     }
-    
+
     public Booking(List<Room> rooms, LocalDateTime start, LocalDateTime end) {
         this.rooms = rooms;
         this.startBooking = start;
