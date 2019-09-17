@@ -1,6 +1,7 @@
 package com.capgemini.molveno.reserveringssysteem;
 
 import com.capgemini.molveno.reserveringssysteem.io.RoomExcelDeserializer;
+import com.capgemini.molveno.reserveringssysteem.model.Address;
 import com.capgemini.molveno.reserveringssysteem.model.Guest;
 import com.capgemini.molveno.reserveringssysteem.model.Room;
 import com.capgemini.molveno.reserveringssysteem.model.Booking;
@@ -14,6 +15,9 @@ import org.springframework.context.event.EventListener;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -42,10 +46,13 @@ public class BookingSystemApplication {
 
         this.roomRepository.saveAll(roomsFromExcelSheet);
 
-        Booking testBooking = new Booking(Long.valueOf(1), new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(0), roomsFromExcelSheet.get(1))),
-                "Extra badhandoeken en een invalide kamer");
+        Booking testBooking = new Booking(new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(0), roomsFromExcelSheet.get(1))),
+                "Extra badhandoeken en een invalide kamer",
+                LocalDateTime.of(LocalDate.of(2019, 10, 15), LocalTime.of(15, 0)),
+                LocalDateTime.of(LocalDate.of(2019, 10, 22), LocalTime.of(11, 30)));
 
-        Guest guest = new Guest("Bond", "Cool house street 007", "007007", "England", new Date(), "james@bond.com");
+        Address address = new Address("Bondstreet", 1007, null, "6007JB", "Bondtown", "Bondville");
+        Guest guest = new Guest("James", "Bond", "0600700707", new Date(), "james.bond@007.com", address);
         testBooking.setGuest(guest);
 
         this.bookingRepository.saveAndFlush(testBooking); //TODO this is test code, replace with a POST request!
