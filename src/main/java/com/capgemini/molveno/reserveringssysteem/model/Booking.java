@@ -82,6 +82,7 @@ public class Booking {
 
     public void setEndBooking(LocalDateTime endBooking) {
         this.endBooking = endBooking;
+    }
 
     public int getNumberOfMinors() {
         return numberOfMinors;
