@@ -25,12 +25,11 @@ public class Booking {
     }
     
     public Booking(List<Room> rooms, LocalDateTime start, LocalDateTime end) {
-        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
         this.rooms = rooms;
-        this.startBooking = outputFormat.format(LocalDateTime.parse(start.toString(), inputFormat));
-        this.endBooking = outputFormat.format(LocalDateTime.parse(end.toString(), inputFormat));
+        this.startBooking = start.format(outputFormat);
+        this.endBooking = end.format(outputFormat);
     }
 
     public Long getId() {
