@@ -13,6 +13,12 @@ public class Booking {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Room> rooms;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Guest guest;
+
+    /**
+     * Customer of the hotel
+     */
     private int numberOfAdults;
     private int numberOfKids;
 
@@ -37,6 +43,14 @@ public class Booking {
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+    
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
     }
 
     public int getNumberOfAdults() {

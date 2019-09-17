@@ -1,6 +1,8 @@
 package com.capgemini.molveno.reserveringssysteem;
 
 import com.capgemini.molveno.reserveringssysteem.io.RoomExcelDeserializer;
+import com.capgemini.molveno.reserveringssysteem.model.Address;
+import com.capgemini.molveno.reserveringssysteem.model.Guest;
 import com.capgemini.molveno.reserveringssysteem.model.Room;
 import com.capgemini.molveno.reserveringssysteem.model.Booking;
 import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
@@ -15,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -41,6 +44,11 @@ public class BookingSystemApplication {
         this.roomRepository.saveAll(roomsFromExcelSheet);
 
         Booking testBooking = new Booking(Long.valueOf(1), new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(0), roomsFromExcelSheet.get(1))));
+
+        Address address = new Address("Bondstreet", 1007, null, "6007JB", "Bondtown", "Bondville");
+        Guest guest = new Guest("James", "Bond", "0600700707", new Date(), "james.bond@007.com", address);
+        testBooking.setGuest(guest);
+
         this.bookingRepository.saveAndFlush(testBooking); //TODO this is test code, replace with a POST request!
     }
 
