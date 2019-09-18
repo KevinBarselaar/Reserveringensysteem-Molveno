@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
 
 public class AddressTest {
 
@@ -13,18 +14,18 @@ public class AddressTest {
     @BeforeEach
     void setup() {
         this.address = new Address();
+
+        assertThat(address.getHouseNumber(), is(0));
+
+        assertThat(address.getStreetName(), isEmptyOrNullString());
+        assertThat(address.getHouseNumberAddition(), isEmptyOrNullString());
+        assertThat(address.getPostalCode(), isEmptyOrNullString());
+        assertThat(address.getCountry(), isEmptyOrNullString());
+        assertThat(address.getCity(), isEmptyOrNullString());
     }
 
     @Test
-    void getStreetname_void_returnsNull() {
-        String expectedStreetname = null;
-        String actualStreetname = address.getStreetName();
-
-        assertThat(actualStreetname, is(expectedStreetname));
-    }
-
-    @Test
-    void setStreetname_Void_returnsStreetname() {
+    void setStreetName_inputStreet_returnStringStreet() {
         String expectedStreetname = "Street";
 
         address.setStreetName("Street");
@@ -34,15 +35,7 @@ public class AddressTest {
     }
 
     @Test
-    void getHouseNumber_void_returnsZero() {
-        int expectedHouseNumber = 0;
-        int actualHouseNumber = address.getHouseNumber();
-
-        assertThat(actualHouseNumber, is(expectedHouseNumber));
-    }
-
-    @Test
-    void setHouseNumber_void_returnsHouseNumber() {
+    void setHouseNumber_input23_returnInt23() {
         int expectedHouseNumber = 23;
 
         address.setHouseNumber(23);
@@ -52,15 +45,7 @@ public class AddressTest {
     }
 
     @Test
-    void getHouseNumberAddition_void_returnsNull() {
-        String expectedHouseNumberAddition = null;
-        String actualHouseNumberAddition = address.getHouseNumberAddition();
-
-        assertThat(actualHouseNumberAddition, is(expectedHouseNumberAddition));
-    }
-
-    @Test
-    void setHouseNumberAddition_void_returnsHouseNumberAddition() {
+    void setHouseNumberAddition_inputC9_returnStringC9() {
         String expectedHouseNumberAddition = "C9";
 
         address.setHouseNumberAddition("C9");
@@ -70,15 +55,7 @@ public class AddressTest {
     }
 
     @Test
-    void getPostalCode_void_returnsNull() {
-        String expectedPostalCode = null;
-        String actualPostalCode = address.getPostalCode();
-
-        assertThat(actualPostalCode, is(expectedPostalCode));
-    }
-
-    @Test
-    void setPostalCode_void_returnsPostalCode() {
+    void setPostalCode_input1234_AB_returnString1234_AB() {
         String expectedPostalCode = "1234 AB";
 
         address.setPostalCode("1234 AB");
@@ -88,15 +65,7 @@ public class AddressTest {
     }
 
     @Test
-    void getCity_void_returnsNull() {
-        String expectedCity = null;
-        String actualCity = address.getCity();
-
-        assertThat(actualCity, is(expectedCity));
-    }
-
-    @Test
-    void setCity_void_returnsCity() {
+    void setCity_inputGotham_returnStringGotham() {
         String expectedCity = "Gotham";
 
         address.setCity("Gotham");
@@ -106,15 +75,7 @@ public class AddressTest {
     }
 
     @Test
-    void getCountry_void_returnsNull() {
-        String expectedCountry = null;
-        String actualCountry = address.getCountry();
-
-        assertThat(actualCountry, is(expectedCountry));
-    }
-
-    @Test
-    void setCountry_void_returnsCountry() {
+    void setCountry_inputAustralia_returnStringAustralia() {
         String expectedCountry = "Australia";
 
         address.setCountry("Australia");
