@@ -27,8 +27,7 @@ public class RoomExcelDeserializer {
      */
     public List<Room> deserialize(File excelFile) {
         List<Room> rooms = new ArrayList<>();
-        long roomId = 1;
-
+        
         try (FileInputStream excelInputStream = new FileInputStream(excelFile);
              XSSFWorkbook excelWorkbook = new XSSFWorkbook(excelInputStream)) {
 
