@@ -58,7 +58,6 @@ public class RoomExcelDeserializer {
                                 Double.parseDouble(roomPrice));
 
                         rooms.add(roomFromRow);
-                        roomId += 1;
                     }
                 }
             }
