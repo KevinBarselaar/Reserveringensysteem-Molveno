@@ -112,7 +112,7 @@ public class RoomExcelDeserializer {
      * @return BedType found in String
      */
     public BedType getType(String bedType) {
-        String[] split = bedType.replaceAll("[0-9]", "").split("");
+        String[] split = bedType.split("");
         //Due to BedType naming we only have to check the first letter of the string to find the type of bed
         switch (split[0].toLowerCase()) {
             case "s":
