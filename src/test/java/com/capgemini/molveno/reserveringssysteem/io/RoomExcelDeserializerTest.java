@@ -72,6 +72,18 @@ public class RoomExcelDeserializerTest {
     }
 
     @Test
+    void complicatedTest() {
+        String inputString = "2 x Double bed, 4 singles, 2 baby beds";
+        BedType[] expectedBedTypes = {BedType.DOUBLE, BedType.DOUBLE, BedType.SINGLE, BedType.SINGLE, BedType.SINGLE,
+                BedType.SINGLE, BedType.BABY, BedType.BABY};
+
+        BedType[] actualBedTypes = this.excelDeserializer.getBedTypesFromString(inputString);
+
+        assertThat(actualBedTypes, is(expectedBedTypes));
+
+    }
+
+    @Test
     void deserialize_mockedExcelFile_returnsKamerList() {
 //        createMockedExcelFile();
     }

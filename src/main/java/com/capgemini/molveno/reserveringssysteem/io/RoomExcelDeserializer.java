@@ -70,26 +70,41 @@ public class RoomExcelDeserializer {
         }
 
         List<BedType> types = new ArrayList<>();
+        bedTypes = bedTypes.toUpperCase().replace(" ", "").replace("BEDS", "")
+                .replace("BED", "").replace("X", "");
         String[] bedOptions = bedTypes.split(",");
 
-        for (String option : bedOptions) {
-            option = option.toUpperCase().replace(" ", "").replace("BED", "").replace("x", "");
+        for (int i = 0; i < bedOptions.length; i++) {
             BedType bedType;
 
-            Matcher numberInStringRegex = Pattern.compile("\\d[0-9]{0,}").matcher(option);
+            Matcher numberInStringRegex = Pattern.compile("\\d[0-9]{0,}").matcher(bedOptions[i]);
             if (numberInStringRegex.find()) { //The option contains a number
 
                 int amountOfBeds = Integer.parseInt(numberInStringRegex.group(0));
+                bedType = getType(bedOptions[i]);
                 for (int bedIndex = 0; bedIndex < amountOfBeds; bedIndex++) {
-                    bedType = BedType.valueOf(option.replace(String.valueOf(amountOfBeds), ""));
-
                     types.add(bedType);
                 }
             } else {
-                types.add(BedType.valueOf(option));
+                types.add(getType(bedOptions[i]));
             }
         }
 
         return types.toArray(new BedType[0]);
+    }
+
+    public BedType getType(String bedType) {
+        String[] split = bedType.replaceAll("[0-9]", "").split("");
+        switch (split[0].toLowerCase()) {
+            case "s":
+                return BedType.SINGLE;
+            case "d":
+                return BedType.DOUBLE;
+            case "b":
+                return BedType.BABY;
+            default:
+                return BedType.SINGLE;
+        }
+
     }
 }
