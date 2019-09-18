@@ -70,26 +70,30 @@ public class RoomExcelDeserializer {
         }
 
         List<BedType> types = new ArrayList<>();
-        bedTypes = bedTypes.toUpperCase().replace(" ", "").replace("BEDS", "")
-                .replace("BED", "").replace("X", "");
-        String[] bedOptions = bedTypes.split(",");
+        bedTypes = bedTypes.toUpperCase().replace("BEDS", "").replace("BED", "")
+                .replace("X", "").replace(",", "");
+        String[] bedOptions = bedTypes.split(" ");
+        bedOptions = deleteEmpty(bedOptions);
 
         for (int i = 0; i < bedOptions.length; i++) {
-            BedType bedType;
+            if (!bedOptions[i].equals("")) {
+                BedType bedType;
 
-            Matcher numberInStringRegex = Pattern.compile("\\d[0-9]{0,}").matcher(bedOptions[i]);
-            if (numberInStringRegex.find()) { //The option contains a number
+                Matcher numberInStringRegex = Pattern.compile("\\d[0-9]{0,}").matcher(bedOptions[i]);
+                if (numberInStringRegex.find()) { //The option contains a number
+                    int amountOfBeds = Integer.parseInt(numberInStringRegex.group(0));
+                    bedType = getType(bedOptions[i+1]);
 
-                int amountOfBeds = Integer.parseInt(numberInStringRegex.group(0));
-                bedType = getType(bedOptions[i]);
-                for (int bedIndex = 0; bedIndex < amountOfBeds; bedIndex++) {
-                    types.add(bedType);
+                    for (int bedIndex = 0; bedIndex < amountOfBeds; bedIndex++) {
+                        types.add(bedType);
+                    }
+
+                    i++;
+                } else {
+                    types.add(getType(bedOptions[i]));
                 }
-            } else {
-                types.add(getType(bedOptions[i]));
             }
         }
-
         return types.toArray(new BedType[0]);
     }
 
@@ -106,5 +110,16 @@ public class RoomExcelDeserializer {
                 return BedType.SINGLE;
         }
 
+    }
+
+    public String[] deleteEmpty(String[] array) {
+        ArrayList<String> result = new ArrayList<String>();
+        for(String string : array) {
+            if(!string.equals("")) {
+                result.add(string);
+            }
+        }
+
+        return result.toArray(new String[0]);
     }
 }
