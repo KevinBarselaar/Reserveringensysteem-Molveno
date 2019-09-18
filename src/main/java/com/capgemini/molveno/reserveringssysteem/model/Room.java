@@ -107,7 +107,9 @@ public class Room {
                 && room.minorCapacity == this.minorCapacity
                 && Arrays.equals(room.bedTypes, this.bedTypes)
                 && room.disabledFriendly == this.disabledFriendly
-                && room.floor == this.floor;
+                && room.floor == this.floor
+                && room.price == this.price
+                && room.type == this.type;
 
     }
 }

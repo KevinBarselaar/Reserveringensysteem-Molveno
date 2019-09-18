@@ -2,6 +2,7 @@ package com.capgemini.molveno.reserveringssysteem.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity(name = "booking")
@@ -101,5 +102,24 @@ public class Booking {
 
     public void setExtraAccommodation(String extraAccommodation) {
         this.extraAccommodation = extraAccommodation;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Booking booking = (Booking) obj;
+
+        return booking.endBooking.equals(this.endBooking)
+                && booking.startBooking.equals(this.startBooking)
+                && booking.extraAccommodation.equals(this.extraAccommodation)
+                && booking.id == this.id
+                && Arrays.equals(booking.rooms.toArray(), this.rooms.toArray())
+                && booking.guest.equals(this.guest)
+                && booking.numberOfAdults == this.numberOfAdults
+                && booking.numberOfMinors == this.numberOfMinors;
+    }
+
+    @Override
+    public String toString() {
+        return id + ", " + rooms + ", " + startBooking + ", " + endBooking + ", " + guest + ", " + numberOfMinors + ", " + numberOfAdults + ", " + extraAccommodation;
     }
 }
