@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The deserializer extracts the raw data from an Excel workbook and converts it into the appropriate data entries
+ */
 @Component
 public class RoomExcelDeserializer {
 
