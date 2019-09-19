@@ -17,13 +17,20 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The deserializer extracts the raw data from an Excel workbook and converts it into the appropriate data entries
+ */
 @Component
 public class RoomExcelDeserializer {
 
+    /**
+     * Extracts all the room data from an excel sheet
+     * @param excelFile Excel file containing room data
+     * @return List of Room objects
+     */
     public List<Room> deserialize(File excelFile) {
         List<Room> rooms = new ArrayList<>();
-        long roomId = 1;
-
+        
         try (FileInputStream excelInputStream = new FileInputStream(excelFile);
              XSSFWorkbook excelWorkbook = new XSSFWorkbook(excelInputStream)) {
 
@@ -36,6 +43,7 @@ public class RoomExcelDeserializer {
                 while (rowIterator.hasNext()) {
                     Row row = rowIterator.next();
 
+                    //Get room data from row
                     if (row.cellIterator().hasNext()) {
                         RoomType roomType = RoomType.from(row.getCell(0).toString());
                         String adultCapacity = row.getCell(1).toString();
@@ -53,7 +61,6 @@ public class RoomExcelDeserializer {
                                 Double.parseDouble(roomPrice));
 
                         rooms.add(roomFromRow);
-                        roomId += 1;
                     }
                 }
             }
@@ -64,32 +71,79 @@ public class RoomExcelDeserializer {
         return rooms;
     }
 
+    /**
+     * Gets all the different beds found in a room
+     * @param bedTypes Raw string containing number and types of bed
+     * @return Array containing the types of bed found in a room
+     */
     public BedType[] getBedTypesFromString(String bedTypes) {
         if (bedTypes == null || bedTypes.isEmpty()) {
             return null;
         }
 
         List<BedType> types = new ArrayList<>();
-        String[] bedOptions = bedTypes.split(",");
+        //Remove unnecessary data so that only the number of beds and types remain
+        bedTypes = bedTypes.toUpperCase().replace("BEDS", "").replace("BED", "")
+                .replace("X", "").replace(",", "");
+        String[] bedOptions = bedTypes.split(" ");
+        bedOptions = deleteEmpty(bedOptions);
 
-        for (String option : bedOptions) {
-            option = option.toUpperCase().replace(" ", "").replace("BED", "").replace("x", "");
-            BedType bedType;
+        for (int i = 0; i < bedOptions.length; i++) {
+                BedType bedType;
 
-            Matcher numberInStringRegex = Pattern.compile("\\d[0-9]{0,}").matcher(option);
-            if (numberInStringRegex.find()) { //The option contains a number
+                Matcher numberInStringRegex = Pattern.compile("\\d[0-9]{0,}").matcher(bedOptions[i]);
+                if (numberInStringRegex.find()) { //The option contains a number
+                    int amountOfBeds = Integer.parseInt(numberInStringRegex.group(0));
+                    //Type of bed found in next value in array
+                    bedType = getType(bedOptions[i+1]);
 
-                int amountOfBeds = Integer.parseInt(numberInStringRegex.group(0));
-                for (int bedIndex = 0; bedIndex < amountOfBeds; bedIndex++) {
-                    bedType = BedType.valueOf(option.replace(String.valueOf(amountOfBeds), ""));
+                    for (int bedIndex = 0; bedIndex < amountOfBeds; bedIndex++) {
+                        types.add(bedType);
+                    }
 
-                    types.add(bedType);
+                    i++;
+                } else { //Option doesn't contain a number, which means a single bed of the type
+                    types.add(getType(bedOptions[i]));
                 }
-            } else {
-                types.add(BedType.valueOf(option));
+            }
+        return types.toArray(new BedType[0]);
+    }
+
+    /**
+     * Gets the BedType contained in a String
+     * @param bedType String containing info about BedType
+     * @return BedType found in String
+     */
+    public BedType getType(String bedType) {
+        String[] split = bedType.split("");
+        //Due to BedType naming we only have to check the first letter of the string to find the type of bed
+        switch (split[0].toLowerCase()) {
+            case "s":
+                return BedType.SINGLE;
+            case "d":
+                return BedType.DOUBLE;
+            case "b":
+                return BedType.BABY;
+            default:
+                return BedType.SINGLE;
+        }
+
+    }
+
+    /**
+     * Removes empty entries in an array
+     * @param array Array containing strings
+     * @return Array that was given, with the empty values removed
+     */
+    public String[] deleteEmpty(String[] array) {
+        ArrayList<String> result = new ArrayList<String>();
+        //Adds only the strings that are not empty into the ArrayList
+        for(String string : array) {
+            if(!string.equals("")) {
+                result.add(string);
             }
         }
 
-        return types.toArray(new BedType[0]);
+        return result.toArray(new String[0]);
     }
 }

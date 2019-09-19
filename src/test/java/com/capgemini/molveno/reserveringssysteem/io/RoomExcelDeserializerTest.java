@@ -72,6 +72,37 @@ public class RoomExcelDeserializerTest {
     }
 
     @Test
+    void getBedTypesFromString_2_x_Double_bed_4_Singles_2_Baby_Beds_returnsBedTypes() {
+        String inputString = "2 x Double bed, 4 singles, 2 baby beds";
+        BedType[] expectedBedTypes = {BedType.DOUBLE, BedType.DOUBLE, BedType.SINGLE, BedType.SINGLE, BedType.SINGLE,
+                BedType.SINGLE, BedType.BABY, BedType.BABY};
+
+        BedType[] actualBedTypes = this.excelDeserializer.getBedTypesFromString(inputString);
+
+        assertThat(actualBedTypes, is(expectedBedTypes));
+    }
+
+    @Test
+    void getBedTypesFromStringMissingComma() {
+        String inputString = "2 Double bed 1 single";
+        BedType[] expectedBedTypes = {BedType.DOUBLE, BedType.DOUBLE, BedType.SINGLE};
+
+        BedType[] actualBedTypes = this.excelDeserializer.getBedTypesFromString(inputString);
+
+        assertThat(actualBedTypes, is(expectedBedTypes));
+    }
+
+    @Test
+    void getBedTypesFromStringMissingCommaAndX() {
+        String inputString = "2 Double bed 1 single, 2 x baby";
+        BedType[] expectedBedTypes = {BedType.DOUBLE, BedType.DOUBLE, BedType.SINGLE, BedType.BABY, BedType.BABY};
+
+        BedType[] actualBedTypes = this.excelDeserializer.getBedTypesFromString(inputString);
+
+        assertThat(actualBedTypes, is(expectedBedTypes));
+    }
+
+    @Test
     void deserialize_mockedExcelFile_returnsKamerList() {
 //        createMockedExcelFile();
     }

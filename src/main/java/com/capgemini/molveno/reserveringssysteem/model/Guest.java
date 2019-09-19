@@ -5,6 +5,10 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * This class contains information about a guest. A guest is able to make a booking in the system so that
+ * he/she can stay in the hotel.
+ */
 @EqualsAndHashCode
 @Entity(name = "guest")
 public class Guest {
@@ -25,6 +29,15 @@ public class Guest {
     public Guest() {
     }
 
+    /**
+     * Constructor for the Guest class.
+     * @param firstName {@link String String} containing the first name of the guest
+     * @param lastName {@link String String} containing the last name of the guest
+     * @param phoneNumber {@link String String} containing the phone number of the guest
+     * @param birthDate {@link Date Birth date} of the guest
+     * @param emailAddress {@link String String} containing the email address of the guest
+     * @param address {@link Address Address} of the guest
+     */
     public Guest(String firstName, String lastName, String phoneNumber, Date birthDate, String emailAddress, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,10 +49,6 @@ public class Guest {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {

@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This class contains a single booking, with all the info required to link bookings to a guest.
+ */
 @Entity(name = "booking")
 @EqualsAndHashCode
 public class Booking {
@@ -22,6 +25,9 @@ public class Booking {
     private LocalDateTime startBooking;
     private LocalDateTime endBooking;
 
+    /**
+     * Customer of the hotel
+     */
     @ManyToOne(cascade = CascadeType.ALL)
     private Guest guest;
 
@@ -31,11 +37,18 @@ public class Booking {
     private String extraAccommodation;
 
     /**
-     * Customer of the hotel
+     *
      */
     public Booking() {
     }
 
+    /**
+     * Constructor for the Booking class
+     * @param rooms List of {@link Room rooms} linked to the booking
+     * @param extraAccommodation {@link String String} containing any additional comments
+     * @param start {@link LocalDateTime Start date} of the booking
+     * @param end {@link LocalDateTime End date} of the booking
+     */
     public Booking(List<Room> rooms, String extraAccommodation, LocalDateTime start, LocalDateTime end) {
         this.rooms = rooms;
         this.extraAccommodation = extraAccommodation;
@@ -45,10 +58,6 @@ public class Booking {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public List<Room> getRooms() {

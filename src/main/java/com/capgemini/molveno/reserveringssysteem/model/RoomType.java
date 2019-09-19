@@ -1,17 +1,19 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+/**
+ * Enumerator for the room type
+ */
 public enum RoomType {
-    SINGLE("single"),
-    DOUBLE("double"),
-    TWO_DOUBLE("2xdouble"),
-    PENTHOUSE("penthouse");
+    SINGLE,
+    DOUBLE,
+    TWO_DOUBLE,
+    PENTHOUSE;
 
-    private String name;
-
-    RoomType(String name) {
-        this.name = name;
-    }
-
+    /**
+     * Determines type of room
+     * @param roomType {@link String String} containing data about the room type
+     * @return {@link RoomType Type} of room
+     */
     public static RoomType from(String roomType) {
         roomType = roomType.toLowerCase().replace(" ", "");
 
