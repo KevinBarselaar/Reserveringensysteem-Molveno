@@ -8,17 +8,20 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class BookingsControllerTest {
 
-    @Mock   //'nep' repository waarmee je de repository kan na simuleren
+    @Mock
     private BookingRepository mockedBookingRepository;
 
     private BookingsController controller;
@@ -27,7 +30,7 @@ public class BookingsControllerTest {
 
     @Before
     public void setup() {
-        MockitoAnnotations.initMocks(this); //Mockito maakt alle mocks aan van deze klasse
+        MockitoAnnotations.initMocks(this);
 
         this.controller = new BookingsController(mockedBookingRepository);
 
@@ -37,13 +40,12 @@ public class BookingsControllerTest {
                 "I'd like spider webs in my rooms",
                 LocalDateTime.of(1993, 1,1,1,1),
                 LocalDateTime.of(1995,1,1,1,1));
-//        mockedBooking.setId(1l);
+
         mockedBooking.setGuest(new Guest());
 
-        when(mockedBookingRepository.findAll()).thenReturn(new ArrayList<>()); //gedrag specificeren
+        when(mockedBookingRepository.findAll()).thenReturn(new ArrayList<>());
         when(mockedBookingRepository.findById(1l)).thenReturn(Optional.of(mockedBooking));
 
-        //De repo wordt niet echt gebruikt, maar je vertelt hoe het zich moet gedragen
     }
 
     @Test
@@ -55,7 +57,6 @@ public class BookingsControllerTest {
         assertThat(actualResult, equalTo(expectedResult));
     }
 
-    //booking klasse equals methode moeten overriden
     @Test
     public void getBooking_id1_returnsBooking() {
         mockedRooms = Arrays.asList(new Room(), new Room());
@@ -63,12 +64,10 @@ public class BookingsControllerTest {
         Booking expectedBooking = new Booking(mockedRooms,"I'd like spider webs in my rooms",
                 LocalDateTime.of(1993, 1,1,1,1),
                 LocalDateTime.of(1995,1,1,1,1));
-//        expectedBooking.setId(1l);
+
         expectedBooking.setGuest(new Guest());
 
         Booking actualBooking = this.controller.getBooking(1l);
-//        actualBooking.setId(1l);
-
 
         assertThat(actualBooking, equalTo(expectedBooking));
     }

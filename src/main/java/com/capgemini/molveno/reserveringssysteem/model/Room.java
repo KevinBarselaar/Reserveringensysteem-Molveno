@@ -1,9 +1,14 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Arrays;
 
 @Entity(name = "room")
+@EqualsAndHashCode
 public class Room {
 
     @Id
@@ -97,19 +102,5 @@ public class Room {
     public void setPrice(double price) {
         this.price = price;
     }
-    
-    @Override
-    public boolean equals(Object obj) {
-        Room room = (Room) obj;
 
-        return room.id == this.id
-                && room.adultCapacity == this.adultCapacity
-                && room.minorCapacity == this.minorCapacity
-                && Arrays.equals(room.bedTypes, this.bedTypes)
-                && room.disabledFriendly == this.disabledFriendly
-                && room.floor == this.floor
-                && room.price == this.price
-                && room.type == this.type;
-
-    }
 }
