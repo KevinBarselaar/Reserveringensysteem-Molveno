@@ -46,7 +46,7 @@ public class Address {
     }
 
     public String getStreetName() {
-        return streetName;
+        return this.streetName;
     }
 
     public void setStreetName(String streetName) {

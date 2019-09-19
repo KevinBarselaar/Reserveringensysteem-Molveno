@@ -1,5 +1,7 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -7,6 +9,7 @@ import java.util.Date;
  * This class contains information about a guest. A guest is able to make a booking in the system so that
  * he/she can stay in the hotel.
  */
+@EqualsAndHashCode
 @Entity(name = "guest")
 public class Guest {
 

@@ -1,13 +1,17 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * This class contains a single booking, with all the info required to link bookings to a guest.
  */
 @Entity(name = "booking")
+@EqualsAndHashCode
 public class Booking {
 
     @Id
@@ -110,5 +114,10 @@ public class Booking {
 
     public void setExtraAccommodation(String extraAccommodation) {
         this.extraAccommodation = extraAccommodation;
+    }
+
+    @Override
+    public String toString() {
+        return id + ", " + rooms + ", " + startBooking + ", " + endBooking + ", " + guest + ", " + numberOfMinors + ", " + numberOfAdults + ", " + extraAccommodation;
     }
 }

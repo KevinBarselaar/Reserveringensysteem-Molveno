@@ -1,5 +1,9 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 /**
@@ -7,6 +11,7 @@ import javax.persistence.*;
  * a guest adds it to his/her {@link Booking booking}.
  */
 @Entity(name = "room")
+@EqualsAndHashCode
 public class Room {
 
     @Id
