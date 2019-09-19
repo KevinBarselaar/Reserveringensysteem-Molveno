@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Class where the address of a guest is stored.
+ */
 @Entity(name = "address")
 public class Address {
 
@@ -19,6 +22,16 @@ public class Address {
     private String city;
     private String country;
 
+    /**
+     * Constructor for address
+     * @param streetName {@link String String} containing address
+     * @param houseNumber {@link Integer Integer} containing house number
+     * @param houseNumberAddition {@link String String} containing addition to house number
+     *                                                 (e.g. "B" if complete house number is "2B")
+     * @param postalCode {@link String String} containing zip code
+     * @param city {@link String String} containing city
+     * @param country {@link String String} containing country
+     */
     public Address(String streetName, int houseNumber, String houseNumberAddition, String postalCode, String city, String country) {
         this.streetName = streetName;
         this.houseNumber = houseNumber;

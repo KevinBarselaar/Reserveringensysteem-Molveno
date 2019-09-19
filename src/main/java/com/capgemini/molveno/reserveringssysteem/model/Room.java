@@ -1,8 +1,11 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
 import javax.persistence.*;
-import java.util.Arrays;
 
+/**
+ * This class contains information about a room. A room can be included in a {@link Booking booking} if
+ * a guest adds it to his/her {@link Booking booking}.
+ */
 @Entity(name = "room")
 public class Room {
 
@@ -28,6 +31,16 @@ public class Room {
 
     }
 
+    /**
+     * Constructor for the class
+     * @param type {@link RoomType Type} of the room
+     * @param adultCapacity {@link Integer Number} containing maximum capacity of adults for the room
+     * @param minorCapacity {@link Integer Number} containing maximum capacity of minors for the room
+     * @param bedTypes List of {@link BedType types of beds} found in the room
+     * @param disabledFriendly {@link Boolean Bool} determining if disabled people can stay in the room
+     * @param floor {@link Integer Number} of the floor room
+     * @param roomPrice {@link Double Price of the room}
+     */
     public Room(RoomType type, int adultCapacity, int minorCapacity, BedType[] bedTypes, boolean disabledFriendly, int floor, double roomPrice) {
         this.type = type;
         this.adultCapacity = adultCapacity;
@@ -96,18 +109,5 @@ public class Room {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-        Room room = (Room) obj;
-
-        return room.id == this.id
-                && room.adultCapacity == this.adultCapacity
-                && room.minorCapacity == this.minorCapacity
-                && Arrays.equals(room.bedTypes, this.bedTypes)
-                && room.disabledFriendly == this.disabledFriendly
-                && room.floor == this.floor;
-
     }
 }
