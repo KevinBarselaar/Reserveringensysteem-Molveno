@@ -1,8 +1,11 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@EqualsAndHashCode
 @Entity(name = "guest")
 public class Guest {
 
