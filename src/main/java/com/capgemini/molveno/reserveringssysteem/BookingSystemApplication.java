@@ -7,6 +7,7 @@ import com.capgemini.molveno.reserveringssysteem.model.Room;
 import com.capgemini.molveno.reserveringssysteem.model.Booking;
 import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
 import com.capgemini.molveno.reserveringssysteem.repository.RoomRepository;
+import org.hibernate.type.TimeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +16,7 @@ import org.springframework.context.event.EventListener;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -54,6 +56,8 @@ public class BookingSystemApplication {
         Address address = new Address("Bondstreet", 1007, null, "6007JB", "Bondtown", "Bondville");
         Guest guest = new Guest("James", "Bond", "0600700707", new Date(), "james.bond@007.com", address);
         testBooking.setGuest(guest);
+
+        testBooking.setCreationDate(LocalDateTime.now());
 
         this.bookingRepository.saveAndFlush(testBooking); //TODO this is test code, replace with a POST request!
     }

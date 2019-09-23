@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -73,25 +75,33 @@ public class BookingsController {
         Booking booking = new Booking();
         booking.setRooms(Arrays.asList(rooms));
 
+        LocalDateTime creationDate = LocalDateTime.now();
+
         this.bookingRepository.saveAndFlush(booking);
     }
 
     @DeleteMapping("{bookingId}/rooms/{roomId}")
-    public void removeRooms(@PathVariable Long bookingId, @PathVariable Long roomId) {
+    public void removeRooms(@PathVariable Long bookingId, @PathVariable Long roomId) throws Exception {
         Booking booking = this.getBooking(bookingId);
 
-        int roomIndexToRemove = -1;
+        if (LocalDateTime.now().isBefore(booking.getCreationDate().plusHours(1))) {
+            int roomIndexToRemove = -1;
 
-        for(int index = 0; index < booking.getRooms().size(); index++) {
-            if(booking.getRooms().get(index).getId().equals(roomId)) {
-                roomIndexToRemove = index;
-                break;
+            for(int index = 0; index < booking.getRooms().size(); index++) {
+                if(booking.getRooms().get(index).getId().equals(roomId)) {
+                    roomIndexToRemove = index;
+                    break;
+                }
+            }
+
+            if(roomIndexToRemove >= 0) {
+                booking.getRooms().remove(roomIndexToRemove);
+                this.bookingRepository.save(booking);
             }
         }
-
-        if(roomIndexToRemove >= 0) {
-            booking.getRooms().remove(roomIndexToRemove);
-            this.bookingRepository.save(booking);
+        else {
+            throw new Exception("Nope");
         }
+
     }
 }
