@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Create booking</title>
+</head>
+<body>
+    <form action="/api/bookings" method="POST">
+        First name:<br>
+        <input type="text" name="firstName"><br>
+        Last name:<br>
+        <input type="text" name="lastName"><br>
+        Rooms:<br>
+        <select id="rooms"></select>
+        <p><input type="button" name="submit" value="Submit"></p>
+    </form>
+
+    <script src="js/AddBooking.js"></script>
+</body>
+</html>
