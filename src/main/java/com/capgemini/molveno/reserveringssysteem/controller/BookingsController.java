@@ -76,12 +76,14 @@ public class BookingsController {
         this.bookingRepository.saveAndFlush(booking);
     }
 
-    @DeleteMapping("/rooms/{id}")
-    public void removeRooms(@RequestBody Booking booking, @PathVariable Long id) {
+    @DeleteMapping("{bookingId}/rooms/{roomId}")
+    public void removeRooms(@PathVariable Long bookingId, @PathVariable Long roomId) {
+        Booking booking = this.getBooking(bookingId);
+
         int roomIndexToRemove = -1;
 
         for(int index = 0; index < booking.getRooms().size(); index++) {
-            if(booking.getRooms().get(index).getId().equals(id)) {
+            if(booking.getRooms().get(index).getId().equals(roomId)) {
                 roomIndexToRemove = index;
                 break;
             }
