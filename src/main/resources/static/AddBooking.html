@@ -2,15 +2,41 @@
 <html lang="en">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/stylesheet.css" />
     <meta charset="UTF-8">
     <title>Create booking</title>
 </head>
 <body>
-    <form action="/api/bookings" method="POST">
-        First name:<br>
-        <input type="text" name="firstName"><br>
-        Last name:<br>
-        <input type="text" name="lastName"><br>
+    <form action="/api/bookings" method="POST" id="details">
+        <fieldset>
+            <legend>Personal information</legend>
+            First name<br>
+            <input type="text" name="firstName"><br>
+            Last name<br>
+            <input type="text" name="lastName"><br>
+            Birth date<br>
+            <input type="date" name="birthday"><br>
+            Phone number<br>
+            <input type="tel" name="phone"><br>
+            Email address<br>
+            <input type="email" name="email"><br>
+        </fieldset>
+        <fieldset>
+            <legend>Address information</legend>
+            Street name<br>
+            <input type="text" name="streetName"><br>
+            House number<br>
+            <input type="text" id="houseNumber" name="houseNumber">
+            <input type="text" name="addition" id="addition" placeholder="e.g. B"><br>
+            Zip code<br>
+            <input type="text" name="zipcode"><br>
+            City<br>
+            <input type="text" name="city"><br>
+            Country
+            <div id="countryselect"></div>
+        </fieldset>
+
+
         Rooms:<br>
         <select id="rooms"></select>
         <p><input type="button" name="submit" value="Submit"></p>

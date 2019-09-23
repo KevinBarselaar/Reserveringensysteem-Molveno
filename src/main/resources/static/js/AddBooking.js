@@ -8,3 +8,7 @@ $.getJSON("api/rooms/overview", function(rooms) {
         select.add(option);
     }
 })
+
+$(function(){
+    $("#countryselect").load(".../templates/countryselect.html"); 
+  });
