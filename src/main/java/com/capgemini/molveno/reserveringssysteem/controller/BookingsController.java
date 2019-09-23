@@ -1,9 +1,12 @@
 package com.capgemini.molveno.reserveringssysteem.controller;
 
+import ch.qos.logback.core.joran.action.IADataForComplexProperty;
 import com.capgemini.molveno.reserveringssysteem.model.Room;
 import com.capgemini.molveno.reserveringssysteem.model.Booking;
 import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
+import com.capgemini.molveno.reserveringssysteem.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Id;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -71,5 +74,22 @@ public class BookingsController {
         booking.setRooms(Arrays.asList(rooms));
 
         this.bookingRepository.saveAndFlush(booking);
+    }
+
+    @DeleteMapping("/rooms/{id}")
+    public void removeRooms(@RequestBody Booking booking, @PathVariable Long id) {
+        int roomIndexToRemove = -1;
+
+        for(int index = 0; index < booking.getRooms().size(); index++) {
+            if(booking.getRooms().get(index).getId().equals(id)) {
+                roomIndexToRemove = index;
+                break;
+            }
+        }
+
+        if(roomIndexToRemove >= 0) {
+            booking.getRooms().remove(roomIndexToRemove);
+            this.bookingRepository.save(booking);
+        }
     }
 }
