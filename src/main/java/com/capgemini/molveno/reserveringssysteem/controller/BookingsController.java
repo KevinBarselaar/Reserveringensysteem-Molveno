@@ -67,7 +67,7 @@ public class BookingsController {
      * @param
      */
     @PostMapping
-    public void createBooking(@RequestBody Guest guest) {
+    public void createBooking(@RequestBody Booking booking) {
         //TODO save booking
     }
 }
