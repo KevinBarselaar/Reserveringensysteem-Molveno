@@ -1,7 +1,7 @@
 package com.capgemini.molveno.reserveringssysteem.controller;
 
-import com.capgemini.molveno.reserveringssysteem.model.Room;
 import com.capgemini.molveno.reserveringssysteem.model.Booking;
+import com.capgemini.molveno.reserveringssysteem.model.Room;
 import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +25,7 @@ public class BookingsController {
 
     /**
      * Shows a list of all {@link Booking bookings} and the info contained
+     *
      * @return JSON response of all {@link Booking bookings} in the database
      */
     @GetMapping("/overview")
@@ -34,6 +35,7 @@ public class BookingsController {
 
     /**
      * Gets a specific {@link Booking booking} and its information
+     *
      * @param id {@link Long Number} of the {@link Booking booking} in the database
      * @return JSON response containing the {@link Booking booking}
      */
@@ -44,6 +46,7 @@ public class BookingsController {
 
     /**
      * Shows a list of {@link Booking bookings} in readable language
+     *
      * @return {@link String String} of all the {@link Booking bookings} and which rooms are in each
      */
     @GetMapping("/display")
@@ -63,6 +66,7 @@ public class BookingsController {
 
     /**
      * Request to create a new {@link Booking booking} and add it to the database
+     *
      * @param rooms List of {@link Room rooms} to be added to the new booking
      */
     @PostMapping

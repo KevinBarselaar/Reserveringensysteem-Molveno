@@ -1,13 +1,36 @@
 <html>
 <head>
     <title>Bookings | Overview</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
+    <script src="js/bookings.js"></script>
+
 </head>
 
 <body>
-<p>Hello world!</p>
+<section>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+        </tr>
+        </thead>
+        <tbody id="bookings">
+        </tbody>
+    </table>
+</section>
+
+<script>
+    $(document).ready(function() {
+        getBookingsOverview();
+    });
+
+</script>
 </body>
 </html>
