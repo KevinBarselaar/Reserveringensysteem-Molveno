@@ -1,7 +1,5 @@
 getBookingsOverview = function() {
     $.get("/api/bookings/overview", function(bookingData) {
-
-        console.log(bookingData);
         for(var index = 0; index < bookingData.length; index++) {
             var booking = bookingData[index];
 
