@@ -62,6 +62,10 @@ public class Booking {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public List<Room> getRooms() {
         return rooms;
     }
