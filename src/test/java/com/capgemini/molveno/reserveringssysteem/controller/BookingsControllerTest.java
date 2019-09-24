@@ -15,9 +15,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -70,6 +72,7 @@ public class BookingsControllerTest {
         this.controller.removeRooms(inputBookingId, inputRoomId);
 
         verify(mockedBookingRepository).save(mockedBooking);
+        assertThat(mockedBooking.getRooms().size(), is(1));
     }
 
     @Test
@@ -91,9 +94,7 @@ public class BookingsControllerTest {
         Booking testBooking = this.createMockedBooking(inputBookingId, LocalDateTime.now().minusHours(2), new ArrayList<>(Arrays.asList(this.createMockedRoom(inputRoomId))));
         when(mockedBookingRepository.findById(inputBookingId)).thenReturn(Optional.of(testBooking));
 
-        assertThrows(DeadlineExpiredException.class, () -> {
-           this.controller.removeRooms(inputBookingId, inputRoomId);
-        });
+        assertThrows(DeadlineExpiredException.class, () -> this.controller.removeRooms(inputBookingId, inputRoomId));
     }
 
     private Room createMockedRoom(Long id) {
