@@ -1,5 +1,6 @@
 package com.capgemini.molveno.reserveringssysteem.controller;
 
+import com.capgemini.molveno.reserveringssysteem.model.Guest;
 import com.capgemini.molveno.reserveringssysteem.model.Room;
 import com.capgemini.molveno.reserveringssysteem.model.Booking;
 import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
@@ -63,13 +64,10 @@ public class BookingsController {
 
     /**
      * Request to create a new {@link Booking booking} and add it to the database
-     * @param rooms List of {@link Room rooms} to be added to the new booking
+     * @param
      */
     @PostMapping
-    public void createBooking(@RequestBody Room[] rooms) {
-        Booking booking = new Booking();
-        booking.setRooms(Arrays.asList(rooms));
-
-        this.bookingRepository.saveAndFlush(booking);
+    public void createBooking(@RequestBody Guest guest) {
+        //TODO save booking
     }
 }

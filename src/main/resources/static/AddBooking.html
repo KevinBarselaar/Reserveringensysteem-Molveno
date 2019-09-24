@@ -6,40 +6,45 @@
     <meta charset="UTF-8">
     <title>Create booking</title>
 </head>
+
 <body>
-    <form action="/api/bookings" method="POST" id="details">
+    <form id="details">
         <fieldset>
             <legend>Personal information</legend>
             First name<br>
-            <input type="text" name="firstName"><br>
+            <input type="text" name="firstName" required><br>
             Last name<br>
-            <input type="text" name="lastName"><br>
+            <input type="text" name="lastName" required><br>
             Birth date<br>
-            <input type="date" name="birthday"><br>
+            <input type="date" name="birthday" required><br>
             Phone number<br>
-            <input type="tel" name="phone"><br>
+            <input type="tel" name="phone" required><br>
             Email address<br>
-            <input type="email" name="email"><br>
+            <input type="email" name="email" required><br>
         </fieldset>
         <fieldset>
             <legend>Address information</legend>
             Street name<br>
-            <input type="text" name="streetName"><br>
+            <input type="text" name="streetName" required><br>
             House number<br>
-            <input type="text" id="houseNumber" name="houseNumber">
-            <input type="text" name="addition" id="addition" placeholder="e.g. B"><br>
+            <input type="text" id="houseNumber" name="houseNumber" required>
+            <input type="text" name="addition" id="addition" placeholder="e.g. B" required><br>
             Zip code<br>
-            <input type="text" name="zipcode"><br>
+            <input type="text" name="zipcode" required><br>
             City<br>
-            <input type="text" name="city"><br>
-            Country
+            <input type="text" name="city" required><br>
+            Country<br>
             <div id="countryselect"></div>
         </fieldset>
 
 
         Rooms:<br>
-        <select id="rooms"></select>
-        <p><input type="button" name="submit" value="Submit"></p>
+        <select id="rooms"></select><br>
+        Start date<br>
+        <input type="date" name="start"><br>
+        End date<br>
+        <input type="date" name="end"><br>
+        <p><button onclick="createBooking()">Submit</button></p>
     </form>
 
     <script src="js/AddBooking.js"></script>
