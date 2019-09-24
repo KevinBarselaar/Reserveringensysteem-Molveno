@@ -36,6 +36,8 @@ public class Booking {
     private int numberOfAdults;
     private String extraAccommodation;
 
+    private LocalDateTime creationDate;
+
     /**
      *
      */
@@ -58,6 +60,10 @@ public class Booking {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public List<Room> getRooms() {
@@ -114,6 +120,14 @@ public class Booking {
 
     public void setExtraAccommodation(String extraAccommodation) {
         this.extraAccommodation = extraAccommodation;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override
