@@ -10,15 +10,3 @@ getBookingsOverview = function() {
     });
 
 }
-
-class Booking {
-    constructor(id, rooms, startBooking, endBooking, guest, numberOfMinors, numberOfAdults) {
-        this.id = id;
-        this.rooms = rooms;
-        this.startBooking = startBooking;
-        this.endBooking = endBooking;
-        this.guest = guest;
-        this.numberOfMinors = numberOfMinors;
-        this.numberOfAdults = numberOfAdults;
-    }
-}
