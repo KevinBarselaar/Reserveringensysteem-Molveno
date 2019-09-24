@@ -1,5 +1,6 @@
 package com.capgemini.molveno.reserveringssysteem.controller;
 
+import com.capgemini.molveno.reserveringssysteem.exception.DeadlineExpiredException;
 import com.capgemini.molveno.reserveringssysteem.model.*;
 import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
 import org.junit.Before;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -35,7 +37,7 @@ public class BookingsControllerTest {
 
         this.controller = new BookingsController(mockedBookingRepository);
 
-        this.mockedBooking = this.createMockedBooking(1l, LocalDateTime.now());
+        this.mockedBooking = this.createMockedBooking(1l, LocalDateTime.now(), new ArrayList<>(Arrays.asList(this.createMockedRoom(1l), this.createMockedRoom(2l))));
         this.mockedBookingList = new ArrayList<>(Arrays.asList(mockedBooking));
 
         when(mockedBookingRepository.findAll()).thenReturn(this.mockedBookingList);
@@ -70,17 +72,38 @@ public class BookingsControllerTest {
         verify(mockedBookingRepository).save(mockedBooking);
     }
 
-    private Booking createMockedBooking(Long bookingId, LocalDateTime bookingCreationDate) {
-        Room room1 = new Room(RoomType.SINGLE, 1, 1, new BedType[]{BedType.DOUBLE}, false, 1, 100);
-        room1.setId(1l);
+    @Test
+    public void removeRooms_booking1room1_removesBooking() {
+        Long inputBookingId = 1l;
+        Long inputRoomId = 1l;
+        Booking testBooking = this.createMockedBooking(inputBookingId, LocalDateTime.now(), new ArrayList<>(Arrays.asList(this.createMockedRoom(inputRoomId))));
+        when(mockedBookingRepository.findById(inputBookingId)).thenReturn(Optional.of(testBooking));
 
-        Room room2 = new Room(RoomType.DOUBLE, 2, 1, new BedType[]{BedType.DOUBLE, BedType.BABY}, true, 2, 200);
-        room1.setId(2l);
+        this.controller.removeRooms(inputBookingId, inputRoomId);
 
-        List<Room> rooms = new ArrayList<>();
-        rooms.add(room1);
-        rooms.add(room2);
+        verify(mockedBookingRepository).delete(testBooking);
+    }
 
+    @Test
+    public void removeRooms_bookingOlderThan1Hour_throwsDeadlineExpiredException() {
+        Long inputBookingId = 1l;
+        Long inputRoomId = 1l;
+        Booking testBooking = this.createMockedBooking(inputBookingId, LocalDateTime.now().minusHours(2), new ArrayList<>(Arrays.asList(this.createMockedRoom(inputRoomId))));
+        when(mockedBookingRepository.findById(inputBookingId)).thenReturn(Optional.of(testBooking));
+
+        assertThrows(DeadlineExpiredException.class, () -> {
+           this.controller.removeRooms(inputBookingId, inputRoomId);
+        });
+    }
+
+    private Room createMockedRoom(Long id) {
+        Room room = new Room(RoomType.SINGLE, 1, 1, new BedType[]{BedType.DOUBLE}, false, 1, 100);
+        room.setId(id);
+
+        return room;
+    }
+
+    private Booking createMockedBooking(Long bookingId, LocalDateTime bookingCreationDate, List<Room> rooms) {
         Booking booking = new Booking(rooms, "Butterflies", LocalDateTime.now().plusDays(1), LocalDateTime.now().plusWeeks(1));
         booking.setId(bookingId);
         booking.setCreationDate(bookingCreationDate);

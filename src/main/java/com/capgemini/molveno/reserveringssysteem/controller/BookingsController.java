@@ -111,6 +111,5 @@ public class BookingsController {
         else {
             throw new DeadlineExpiredException(booking);
         }
-
     }
 }
