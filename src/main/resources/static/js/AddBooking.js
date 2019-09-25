@@ -1,31 +1,39 @@
 var roomArray = [];
 
-$.getJSON("api/rooms/overview", function(rooms) {
-    roomArray = rooms.slice();
-    var select = document.getElementById("roomSelection");
-    rooms.forEach(display);
+//GET request to obtain all rooms
+//TODO: Get available rooms instead of all rooms
+$.ajax({
+    type: "GET",
+    url: "api/rooms/overview",
+    contentType: 'application/json',
+    success: function(data) {
+        roomArray = data.slice();
+        var select = document.getElementById("roomSelection");
+        //data.forEach(display);
+        $.each(data, function(index, room) {
+            var option = document.createElement("option");
+            option.text = "Room " + room.id;
+            option.value = room.id;
+            select.add(option);
+        });
 
-    function display(item) {
-        var option = document.createElement("option");
-        option.text = "Room " + item.id;
-        option.value = item.id;
-        select.add(option);
-    }
-})
+        /*function display(item) {
+            var option = document.createElement("option");
+            option.text = "Room " + item.id;
+            option.value = item.id;
+            select.add(option);
+        }*/
+    },
+    dataType: 'json'
+});
 
 $(function(){
     $("#countryselect").load("countryselect.html"); 
   });
 
+//Creates a POST request to send to the backend
 function createBooking() {
     event.preventDefault();
-
-    var booking = {
-        rooms : roomArray[$("#roomSelection").val()-1],
-        extraItems : $("[name='extra']").val(),
-        startBooking : $("[name='start']").val(),
-        endBooking :$("[name='end']").val()
-    }
 
     var guestAddress = {
         streetName : $("[name='streetName']").val(),
@@ -45,32 +53,20 @@ function createBooking() {
         address : guestAddress
     }
 
-    var guestJson = JSON.stringify(guest);
-    var bookingJson = JSON.stringify(booking);
-
-    console.log(bookingJson);
-
     $.ajax({
         type: "POST",
         url: "api/bookings",
         contentType: 'application/json',
-        data: JSON.stringify(new Booking(booking, guest)),
+        data: JSON.stringify(new Booking(guest)),
         success: function() {
-            console.log("Success");
         },
         dataType: 'json'
-      });
-
-    console.log("Booked.");
-
-    //test
-    console.log(JSON.stringify(new GuestAddress(guestAddress)));
-    console.log(JSON.stringify(new Guest(guest)));
-    console.log(JSON.stringify(new Booking(booking, guest)));
+    });
 
     return false;
 }
 
+//Show current time
 $.fn.setNow = function (onlyBlank) {
     var now = new Date($.now()),
         year,
@@ -79,45 +75,51 @@ $.fn.setNow = function (onlyBlank) {
         hours,
         minutes,
         formattedDateTime;
-    
+
     year = now.getFullYear();
     month = now.getMonth().toString().length === 1 ? '0' + (now.getMonth() + 1).toString() : now.getMonth() + 1;
     date = now.getDate().toString().length === 1 ? '0' + (now.getDate()).toString() : now.getDate();
     hours = now.getHours().toString().length === 1 ? '0' + now.getHours().toString() : now.getHours();
     minutes = now.getMinutes().toString().length === 1 ? '0' + now.getMinutes().toString() : now.getMinutes();
-    
+
     formattedDateTime = year + '-' + month + '-' + date + 'T' + hours + ':' + minutes;
-   
+
     if ( onlyBlank === true && $(this).val() ) {
-      return this;
+        return this;
     }
-    
+
     $(this).val(formattedDateTime);
-    
+
     return this;
-  }
+}
   
-  $(function () {
-      // Handler for .ready() called.
-      $('input[type="datetime-local"]').setNow();
-  });
+$(function () {
+    // Handler for .ready() called.
+    $('input[type="datetime-local"]').setNow();
+});
 
-  class Booking { 
+//Models to send to backend
+class Booking { 
 
-    constructor(booking, guest) {
-        this.booking = booking;
+    constructor(guest) {
+        this.rooms = [roomArray[$("#roomSelection").val()-1]];
+        this.extraItems = $("[name='extra']").val();
+        this.startBooking = $("[name='start']").val();
+        this.endBooking = $("[name='end']").val();
+        this.numberOfAdults = $("[name='adults']").val();
+        this.numberOfMinors = $("[name='minors']").val();
         this.guest = guest;
     }
-  }
+}
 
-  class Guest {
-      constructor(guest) {
-          this.guest = guest;
-      }
-  }
+class Guest {
+    constructor(guest) {
+        this.guest = guest;
+    }
+}
 
-  class GuestAddress {
-      constructor(address) {
-          this.guestAddress = address;
-      }
-  }
+class GuestAddress {
+    constructor(address) {
+        this.guestAddress = address;
+    }
+}

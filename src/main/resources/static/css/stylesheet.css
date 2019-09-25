@@ -1,5 +1,5 @@
 #addition {
-    width: 5%;
+    width: 8%;
 }
 
 #details {
@@ -9,5 +9,9 @@
 }
 
 #houseNumber {
+    width: 10%;
+}
+
+.capacity {
     width: 10%;
 }

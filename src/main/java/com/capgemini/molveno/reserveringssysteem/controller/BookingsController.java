@@ -64,10 +64,10 @@ public class BookingsController {
 
     /**
      * Request to create a new {@link Booking booking} and add it to the database
-     * @param
+     * @param {@link Booking booking} object containing all the data from the front-end form
      */
     @PostMapping
     public void createBooking(@RequestBody Booking booking) {
-        //TODO save booking
+        this.bookingRepository.save(booking);
     }
 }
