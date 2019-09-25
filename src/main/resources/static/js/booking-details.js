@@ -47,5 +47,5 @@ function createRoomTableRow(rowName, rowValue) {
 }
 
 function createRoomTableHeader(headerName, headerValue) {
-    return '<thead class="thead-dark"><tr><th scope="col">' + headerName + ' ' + headerValue + '</th><th scope="col"></th></tr></thead>';
+    return '<tr><tr class="thead-dark"><th scope="col">' + headerName + ' ' + headerValue + '</th><th scope="col"></th></tr></tr>';
 }
