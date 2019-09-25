@@ -16,13 +16,6 @@ $.ajax({
             option.value = room.id;
             select.add(option);
         });
-
-        /*function display(item) {
-            var option = document.createElement("option");
-            option.text = "Room " + item.id;
-            option.value = item.id;
-            select.add(option);
-        }*/
     },
     dataType: 'json'
 });
