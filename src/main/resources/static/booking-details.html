@@ -3,9 +3,13 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <script src="../js/booking-details.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>Booking details</title>
 </head>
@@ -21,23 +25,23 @@
                 <tbody>
                   <tr>
                     <th scope="row">Full name</th>
-                    <td>Kermit the Frog</td>
+                    <td id="full-name">Koop een iphone</td>
                   </tr>
                   <tr>
                     <th scope="row">Date of birth</th>
-                    <td>May 9, 1995</td>
+                    <td id="birth-date">Koop een iphone</td>
                   </tr>
                   <tr>
                     <th scope="row">Phone number</th>
-                    <td>+1 555 777</td>
+                    <td id="phone-number">+31koopeeniphone</td>
                   </tr>
                   <tr>
                         <th scope="row">Email address</th>
-                        <td>fR0gg1N-4-l1fE@hotmail.com</td>
+                        <td id="email-address">koopeeniphone@doehetsnel.nl</td>
                   </tr>
                   <tr>
                         <th scope="row">Address</th>
-                        <td>Louisiana Swamps 5, 70360, United States</td>
+                        <td id="home-address">Koopeeniphonestraat</td>
                  </tr>
                 </tbody>
               </table>
@@ -52,15 +56,16 @@
                 <tbody>
                   <tr>
                     <th scope="row">Booking period</th>
-                    <td>01/04/2020 - 00/04/2020</td>
+                    <td id="booking-period">HET IS NOOIT TE LAAT OM NU NOG EEN IPHONE TE KOPEN!</td>
                   </tr>
                   <tr>
                     <th scope="row">Extra items</th>
-                    <td>Bowl of flies, Fresh lavender-infused towels, 2x Moet & Chandon</td>
+                    <td id="extra-items">Extra items alleen beschikbaar bij bezit van een iPhone</td>
                   </tr>
                 </tbody>
               </table>
 
+        <section id="rooms">
               <table class="table" id="room-details">
                     <thead class="thead-dark">
                       <tr>
@@ -69,36 +74,43 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">Room type</th>
-                        <td>Penthouse</td>
-                      </tr>
+<!--                      <tr>-->
+<!--                        <th scope="row">Room type</th>-->
+<!--                        <td id="room-type">Penthouse</td>-->
+<!--                      </tr>-->
                       <tr>
                         <th scope="row">Adult capacity</th>
-                        <td>8</td>
+                        <td id="adult-capacity">8</td>
                       </tr>
                       <tr>
                         <th scope="row">Minor capacity</th>
-                        <td>2</td>
+                        <td id="minor-capacity">2</td>
                       </tr>
                       <tr>
                             <th scope="row">Bed type(s)</th>
-                            <td>Frog-sized</td>
+                            <td id="bed-type">Frog-sized</td>
                       </tr>
                       <tr>
                             <th scope="row">Floor</th>
-                            <td>77</td>
+                            <td id="floor-level">77</td>
                      </tr>
                      <tr>
                             <th scope="row">Disabled Friendly</th>
-                            <td>No</td>
+                            <td id="disabled-friendly">No</td>
                      </tr>
                      <tr>
                             <th scope="row">Price</th>
-                            <td>1,000,000</td>
+                            <td id="room-price">1,000,000</td>
                      </tr>
                     </tbody>
                   </table>
+        </section>
 
+<script>
+    $(document).ready(function() {
+        getBookingDetails();
+    });
+
+</script>
 </body>
 </html>
