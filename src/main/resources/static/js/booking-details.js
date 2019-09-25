@@ -32,6 +32,12 @@ function getBookingDetails() {
             $("#room-table").append(createRoomTableHeader("Room", room.id));
             roomsContainer.append(createRoomTableRow("Room type", room.type));
             roomsContainer.append(createRoomTableRow("Adult capacity", room.adultCapacity));
+            roomsContainer.append(createRoomTableRow("Minor capacity", room.minorCapacity));
+            roomsContainer.append(createRoomTableRow("Bed type", room.bedTypes));
+            roomsContainer.append(createRoomTableRow("Floor", room.floor));
+            roomsContainer.append(createRoomTableRow("Disabled friendly", room.disabledFriendly));
+            roomsContainer.append(createRoomTableRow("Price", room.price));
+
         }
     });
 }
