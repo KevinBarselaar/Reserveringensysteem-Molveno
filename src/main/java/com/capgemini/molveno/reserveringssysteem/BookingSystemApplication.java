@@ -48,13 +48,13 @@ public class BookingSystemApplication {
 
         this.roomRepository.saveAll(roomsFromExcelSheet);
 
-        Booking testBooking = new Booking(new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(0), roomsFromExcelSheet.get(1))),
+        Booking testBooking = new Booking(new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(roomsFromExcelSheet.size() -1), roomsFromExcelSheet.get(17))),
                 "Extra badhandoeken en een invalide kamer",
                 LocalDateTime.of(LocalDate.of(2019, 10, 15), LocalTime.of(15, 0)),
                 LocalDateTime.of(LocalDate.of(2019, 10, 22), LocalTime.of(11, 30)));
 
-        Address address = new Address("Bondstreet", 1007, null, "6007JB", "Bondtown", "Bondville");
-        Guest guest = new Guest("James", "Bond", "0600700707", new Date(), "james.bond@007.com", address);
+        Address address = new Address("Bondstreet", 11, "B", "6007 JB", "Ruhr Valley", "United Kingdom");
+        Guest guest = new Guest("James", "Bond", "+44-700700707", new Date(), "james.bond@007.com", address);
         testBooking.setGuest(guest);
 
         testBooking.setCreationDate(LocalDateTime.now());
