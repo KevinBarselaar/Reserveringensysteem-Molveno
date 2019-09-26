@@ -3,6 +3,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/stylesheet.css" />
+    <link rel="stylesheet" href="css/intlTelInput.css" />
     <meta charset="UTF-8">
     <title>Create booking</title>
 </head>
@@ -18,7 +19,7 @@
             Birth date<br>
             <input type="date" name="birthday" required><br>
             Phone number<br>
-            <input type="tel" name="phone" required><br>
+            <input type="tel" name="phone" id="phone" required><br>
             Email address<br>
             <input type="email" name="email" required><br>
         </fieldset>
@@ -56,6 +57,10 @@
         </fieldset>
     </form>
 
+    <script src="js/intlTelInput.js"></script>
     <script src="js/AddBooking.js"></script>
+    <script>var input = document.querySelector("#phone");
+        window.intlTelInput(input);
+        var iti = intlTelInput(input);</script>
 </body>
 </html>

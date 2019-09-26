@@ -28,6 +28,8 @@ $(function(){
 function createBooking() {
     event.preventDefault();
 
+    var pNumber = "+" + iti.selectedCountryData.dialCode + " " + iti.telInput.value;
+    
     var guestAddress = {
         streetName : $("[name='streetName']").val(),
         houseNumber : $("[name='houseNumber']").val(),
@@ -40,7 +42,7 @@ function createBooking() {
     var guest = {
         firstName : $("[name='firstName']").val(),
         lastName : $("[name='lastName']").val(),
-        phoneNumber : $("[name='phone']").val(),
+        phoneNumber : pNumber,
         birthDate : $("[name='birthday']").val(),
         emailAddress : $("[name='email']").val(),
         address : guestAddress
