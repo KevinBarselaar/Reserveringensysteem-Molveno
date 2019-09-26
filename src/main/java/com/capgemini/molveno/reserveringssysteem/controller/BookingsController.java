@@ -1,16 +1,12 @@
 package com.capgemini.molveno.reserveringssysteem.controller;
 
-import ch.qos.logback.core.joran.action.IADataForComplexProperty;
 import com.capgemini.molveno.reserveringssysteem.exception.DeadlineExpiredException;
-import com.capgemini.molveno.reserveringssysteem.model.Room;
 import com.capgemini.molveno.reserveringssysteem.model.Booking;
+import com.capgemini.molveno.reserveringssysteem.model.Room;
 import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
-import com.capgemini.molveno.reserveringssysteem.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +27,7 @@ public class BookingsController {
 
     /**
      * Shows a list of all {@link Booking bookings} and the info contained
+     *
      * @return JSON response of all {@link Booking bookings} in the database
      */
     @GetMapping("/overview")
@@ -40,6 +37,7 @@ public class BookingsController {
 
     /**
      * Gets a specific {@link Booking booking} and its information
+     *
      * @param id {@link Long Number} of the {@link Booking booking} in the database
      * @return JSON response containing the {@link Booking booking}
      */
@@ -50,6 +48,7 @@ public class BookingsController {
 
     /**
      * Shows a list of {@link Booking bookings} in readable language
+     *
      * @return {@link String String} of all the {@link Booking bookings} and which rooms are in each
      */
     @GetMapping("/display")
@@ -69,6 +68,7 @@ public class BookingsController {
 
     /**
      * Request to create a new {@link Booking booking} and add it to the database
+     *
      * @param rooms List of {@link Room rooms} to be added to the new booking
      */
     @PostMapping
@@ -91,24 +91,23 @@ public class BookingsController {
         if (now.isBefore(deadline)) {
             int roomIndexToRemove = -1;
 
-            for(int index = 0; index < booking.getRooms().size(); index++) {
-                if(booking.getRooms().get(index).getId().equals(roomId)) {
+            for (int index = 0; index < booking.getRooms().size(); index++) {
+                if (booking.getRooms().get(index).getId().equals(roomId)) {
                     roomIndexToRemove = index;
                     break;
                 }
             }
 
-            if(roomIndexToRemove >= 0) {
+            if (roomIndexToRemove >= 0) {
                 booking.getRooms().remove(roomIndexToRemove);
 
-                if(booking.getRooms().isEmpty()) {
+                if (booking.getRooms().isEmpty()) {
                     this.bookingRepository.delete(booking);
                 } else {
                     this.bookingRepository.save(booking);
                 }
             }
-        }
-        else {
+        } else {
             throw new DeadlineExpiredException(booking);
         }
     }
