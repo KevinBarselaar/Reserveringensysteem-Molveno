@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/stylesheet.css" />
+    <link rel="stylesheet" href="css/intlTelInput.css" />
+    <meta charset="UTF-8">
+    <title>Create booking</title>
+</head>
+
+<body>
+    <form id="details">
+        <fieldset>
+            <legend>Personal information</legend>
+            First name<br>
+            <input type="text" name="firstName" required><br>
+            Last name<br>
+            <input type="text" name="lastName" required><br>
+            Birth date<br>
+            <input type="date" name="birthday" required><br>
+            Phone number<br>
+            <input type="tel" name="phone" id="phone" required><br>
+            Email address<br>
+            <input type="email" name="email" required><br>
+        </fieldset>
+        <fieldset>
+            <legend>Address information</legend>
+            Street name<br>
+            <input type="text" name="streetName" required><br>
+            House number<br>
+            <input type="text" id="houseNumber" name="houseNumber" required>
+            <input type="text" name="addition" id="addition" placeholder="e.g. B" required><br>
+            Zip code<br>
+            <input type="text" name="zipcode" required><br>
+            City<br>
+            <input type="text" name="city" required><br>
+            Country<br>
+            <div id="countryselect"></div>
+        </fieldset>
+
+
+        <fieldset>
+            <legend>Booking details</legend>
+            Number of adults<br>
+            <input type="number" class="capacity" name="adults" min="0"><br>
+            Number of minors<br>
+            <input type="number" class="capacity" name="minors" min="0"><br>
+            Rooms<br>
+            <select id="roomSelection"></select><br>
+            Extra items<br>
+            <input type="text" name="extra"><br>
+            Start date<br>
+            <input type="datetime-local" name="start" value="2000-01-01T00:00"><br>
+            End date<br>
+            <input type="datetime-local" name="end" value="2000-01-01T00:00"><br>
+            <p><button onclick="createBooking()">Submit</button></p>
+        </fieldset>
+    </form>
+
+    <script src="js/intlTelInput.js"></script>
+    <script src="js/AddBooking.js"></script>
+    <script>var input = document.querySelector("#phone");
+        window.intlTelInput(input);
+        var iti = intlTelInput(input);</script>
+</body>
+</html>

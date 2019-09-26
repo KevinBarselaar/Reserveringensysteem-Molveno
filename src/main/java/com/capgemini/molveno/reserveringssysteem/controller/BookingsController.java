@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -69,16 +68,11 @@ public class BookingsController {
     /**
      * Request to create a new {@link Booking booking} and add it to the database
      *
-     * @param rooms List of {@link Room rooms} to be added to the new booking
+     * @param {@link Booking booking} object containing all the data from the front-end form
      */
     @PostMapping
-    public void createBooking(@RequestBody Room[] rooms) {
-        Booking booking = new Booking();
-        booking.setRooms(Arrays.asList(rooms));
-
-        LocalDateTime creationDate = LocalDateTime.now();
-
-        this.bookingRepository.saveAndFlush(booking);
+    public void createBooking(@RequestBody Booking booking) {
+        this.bookingRepository.save(booking);
     }
 
     @DeleteMapping("{bookingId}/rooms/{roomId}")

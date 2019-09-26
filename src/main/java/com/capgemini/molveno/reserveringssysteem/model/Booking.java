@@ -57,6 +57,17 @@ public class Booking {
         this.endBooking = end;
     }
 
+    public Booking(List<Room> rooms, String extraItems, LocalDateTime start, LocalDateTime end,
+                   int adults, int minors, Guest guest) {
+        this.rooms = rooms;
+        this.extraItems = extraItems;
+        this.startBooking = start;
+        this.endBooking = end;
+        this.numberOfAdults = adults;
+        this.numberOfMinors = minors;
+        this.guest = guest;
+    }
+
     public Long getId() {
         return id;
     }
