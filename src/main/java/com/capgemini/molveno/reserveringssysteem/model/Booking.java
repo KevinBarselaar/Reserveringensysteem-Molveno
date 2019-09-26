@@ -4,7 +4,6 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,7 +33,7 @@ public class Booking {
     private int numberOfMinors;
 
     private int numberOfAdults;
-    private String extraAccommodation;
+    private String extraItems;
 
     private LocalDateTime creationDate;
 
@@ -47,13 +46,13 @@ public class Booking {
     /**
      * Constructor for the Booking class
      * @param rooms List of {@link Room rooms} linked to the booking
-     * @param extraAccommodation {@link String String} containing any additional comments
+     * @param extraItems {@link String String} containing any additional comments
      * @param start {@link LocalDateTime Start date} of the booking
      * @param end {@link LocalDateTime End date} of the booking
      */
-    public Booking(List<Room> rooms, String extraAccommodation, LocalDateTime start, LocalDateTime end) {
+    public Booking(List<Room> rooms, String extraItems, LocalDateTime start, LocalDateTime end) {
         this.rooms = rooms;
-        this.extraAccommodation = extraAccommodation;
+        this.extraItems = extraItems;
         this.startBooking = start;
         this.endBooking = end;
     }
@@ -114,12 +113,12 @@ public class Booking {
         this.numberOfMinors = numberOfMinors;
     }
 
-    public String getExtraAccommodation() {
-        return extraAccommodation;
+    public String getExtraItems() {
+        return extraItems;
     }
 
-    public void setExtraAccommodation(String extraAccommodation) {
-        this.extraAccommodation = extraAccommodation;
+    public void setExtraItems(String extraItems) {
+        this.extraItems = extraItems;
     }
 
     public LocalDateTime getCreationDate() {
@@ -132,6 +131,6 @@ public class Booking {
 
     @Override
     public String toString() {
-        return id + ", " + rooms + ", " + startBooking + ", " + endBooking + ", " + guest + ", " + numberOfMinors + ", " + numberOfAdults + ", " + extraAccommodation;
+        return id + ", " + rooms + ", " + startBooking + ", " + endBooking + ", " + guest + ", " + numberOfMinors + ", " + numberOfAdults + ", " + extraItems;
     }
 }
