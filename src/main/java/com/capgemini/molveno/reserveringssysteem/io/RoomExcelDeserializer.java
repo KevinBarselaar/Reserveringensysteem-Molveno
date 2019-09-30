@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -59,6 +60,8 @@ public class RoomExcelDeserializer {
                                 disabledFriendly,
                                 sheetIndex + 1,
                                 Double.parseDouble(roomPrice));
+
+                        roomFromRow.setAvailable(true);
 
                         rooms.add(roomFromRow);
                     }
