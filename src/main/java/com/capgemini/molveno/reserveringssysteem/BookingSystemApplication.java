@@ -1,10 +1,7 @@
 package com.capgemini.molveno.reserveringssysteem;
 
 import com.capgemini.molveno.reserveringssysteem.io.RoomExcelDeserializer;
-import com.capgemini.molveno.reserveringssysteem.model.Address;
-import com.capgemini.molveno.reserveringssysteem.model.Guest;
-import com.capgemini.molveno.reserveringssysteem.model.Room;
-import com.capgemini.molveno.reserveringssysteem.model.Booking;
+import com.capgemini.molveno.reserveringssysteem.model.*;
 import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
 import com.capgemini.molveno.reserveringssysteem.repository.RoomRepository;
 import org.hibernate.type.TimeType;
@@ -52,9 +49,12 @@ public class BookingSystemApplication {
                 "Extra badhandoeken en een invalide kamer",
                 LocalDateTime.of(LocalDate.of(2019, 10, 15), LocalTime.of(15, 0)),
                 LocalDateTime.of(LocalDate.of(2019, 10, 22), LocalTime.of(11, 30)));
+        testBooking.setBoardType(BoardType.BED_AND_BREAKFAST);
+        testBooking.setCheckedIn(true);
 
         Address address = new Address("Bondstreet", 11, "B", "6007 JB", "Ruhr Valley", "United Kingdom");
         Guest guest = new Guest("James", "Bond", "+44-700700707", new Date(), "james.bond@007.com", address);
+        guest.setTitle(Title.MR);
         testBooking.setGuest(guest);
 
         testBooking.setCreationDate(LocalDateTime.now());
