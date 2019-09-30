@@ -42,18 +42,28 @@ public class BookingsController {
         return this.bookingService.findById(id);
     }
 
+    @GetMapping("/checkedout")
+    private List<Booking> getAllCheckedOut() {
+        return this.bookingService.findAllCheckedOut();
+    }
+
     /**
      * Request to create a new {@link Booking booking} and add it to the database
      *
      * @param {@link Booking booking} object containing all the data from the front-end form
      */
-    @PostMapping
+    @PostMapping("/create")
     public void createBooking(@RequestBody Booking booking) {
         this.bookingService.create(booking);
     }
 
-    @DeleteMapping("{bookingId}/rooms/{roomId}")
+    @DeleteMapping("/{bookingId}/rooms/{roomId}")
     public void removeRooms(@PathVariable Long bookingId, @PathVariable Long roomId) {
         this.bookingService.removeRoomFromBooking(bookingId, roomId);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteById(@PathVariable Long id) {
+        this.bookingService.deleteById(id);
     }
 }

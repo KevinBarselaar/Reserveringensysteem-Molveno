@@ -25,6 +25,10 @@ public class BookingService {
         return this.bookingRepository.findAll();
     }
 
+    public List<Booking> findAllCheckedOut() {
+        return this.bookingRepository.findAllCheckedOut();
+    }
+
     public Booking create(Booking booking) {
         return this.bookingRepository.saveAndFlush(booking);
     }

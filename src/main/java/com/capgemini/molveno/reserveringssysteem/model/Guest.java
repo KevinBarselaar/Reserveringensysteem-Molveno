@@ -106,6 +106,10 @@ public class Guest {
         return title;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setTitle(Title title) {
         this.title = title;
     }
