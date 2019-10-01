@@ -1,26 +1,25 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class RestaurantReservation {
-
-//    private Room room;
-    //    private long roomId = room.getId();
-
 
     private LocalDateTime reservationTime;
     private int numberOfGuests;
     private String extraItems;
     private int numberOfMinors;
+    private long roomId;
 
     public RestaurantReservation() {
     }
 
-    public RestaurantReservation(LocalDateTime reservationTime, int numberOfGuests, String extraItems, int numberOfMinors) {
+    public RestaurantReservation(LocalDateTime reservationTime, int numberOfGuests, String extraItems, int numberOfMinors, long roomId) {
         this.reservationTime = reservationTime;
         this.numberOfGuests = numberOfGuests;
         this.extraItems = extraItems;
         this.numberOfMinors = numberOfMinors;
+        this.roomId = roomId;
     }
 
     public LocalDateTime getReservationTime() {
@@ -53,5 +52,13 @@ public class RestaurantReservation {
 
     public void setNumberOfMinors(int numberOfMinors) {
         this.numberOfMinors = numberOfMinors;
+    }
+
+    public long getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(long roomId) {
+        this.roomId = roomId;
     }
 }
