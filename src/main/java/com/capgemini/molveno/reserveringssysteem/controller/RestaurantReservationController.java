@@ -5,6 +5,7 @@ import com.capgemini.molveno.reserveringssysteem.services.RestaurantReservationS
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -36,6 +37,12 @@ public class RestaurantReservationController {
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
         this.restaurantReservationService.deleteById(id);
+    }
+
+    @GetMapping("/nepreservering")
+    public RestaurantReservation getFakeReservation() {
+        RestaurantReservation reservation = new RestaurantReservation(LocalDateTime.now(), 6, "Invalide persoon en super veel kut kinderen", 200, 7);
+        return reservation;
     }
 
 }

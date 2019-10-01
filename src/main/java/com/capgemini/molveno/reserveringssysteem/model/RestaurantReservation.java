@@ -1,14 +1,22 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity(name = "reservation")
 public class RestaurantReservation {
 
     private LocalDateTime reservationTime;
     private int numberOfGuests;
     private String extraItems;
     private int numberOfMinors;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long roomId;
 
     public RestaurantReservation() {
