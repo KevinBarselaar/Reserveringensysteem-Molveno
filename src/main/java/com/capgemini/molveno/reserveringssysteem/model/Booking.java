@@ -35,7 +35,12 @@ public class Booking {
     private int numberOfAdults;
     private String extraItems;
 
+    @Enumerated(EnumType.STRING)
+    private BoardType boardType;
+
     private LocalDateTime creationDate;
+
+    private boolean isCheckedIn;
 
     /**
      *
@@ -138,6 +143,22 @@ public class Booking {
 
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public BoardType getBoardType() {
+        return boardType;
+    }
+
+    public void setBoardType(BoardType boardType) {
+        this.boardType = boardType;
+    }
+
+    public boolean isCheckedIn() {
+        return isCheckedIn;
+    }
+
+    public void setCheckedIn(boolean checkedIn) {
+        isCheckedIn = checkedIn;
     }
 
     @Override

@@ -1,12 +1,9 @@
 package com.capgemini.molveno.reserveringssysteem.controller;
 
 import com.capgemini.molveno.reserveringssysteem.model.Room;
-import com.capgemini.molveno.reserveringssysteem.repository.RoomRepository;
+import com.capgemini.molveno.reserveringssysteem.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,31 +14,46 @@ import java.util.List;
 @RequestMapping("/api/rooms")
 public class RoomController {
 
-    private final RoomRepository roomRepository;
+    private final RoomService roomService;
 
     @Autowired
-    public RoomController(RoomRepository roomRepository) {
-        this.roomRepository = roomRepository;
+    public RoomController(RoomService service) {
+        this.roomService = service;
     }
 
     /**
      * Shows every {@link Room room} and the info contained in them
+     *
      * @return JSON response of all {@link Room rooms} in the database
      */
     @GetMapping("/overview")
     public List<Room> getAllRooms() {
-        return this.roomRepository.findAll();
+        return this.roomService.findAll();
+    }
+
+    @GetMapping("/overview/available")
+    public List<Room> getAllAvailableRooms() {
+        return this.roomService.findAllAvailable();
     }
 
     /**
      * Request to show the information of a single {@link Room room}
+     *
      * @param id {@link Long Number} of the {@link Room room} in the database
      * @return JSON response containing the {@link Room room}
      */
     @GetMapping("/{id}")
     public Room getRoom(@PathVariable Long id) {
-        return this.roomRepository.findById(Long.valueOf(id)).get();
+        return this.roomService.findById(id);
     }
 
-//TODO create post / add
+    @PostMapping("/create")
+    public Room create(@RequestBody Room newRoom) {
+        return this.roomService.create(newRoom);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteById(@PathVariable Long id) {
+        this.roomService.deleteById(id);
+    }
 }

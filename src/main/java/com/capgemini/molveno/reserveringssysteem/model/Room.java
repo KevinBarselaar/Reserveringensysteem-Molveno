@@ -29,8 +29,8 @@ public class Room {
 
     private boolean disabledFriendly;
     private int floor;
-
     private double price;
+    private boolean available;
 
     public Room() {
 
@@ -118,5 +118,13 @@ public class Room {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

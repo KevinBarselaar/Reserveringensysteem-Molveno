@@ -17,6 +17,9 @@ public class Guest {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
+    private Title title;
+
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -97,5 +100,17 @@ public class Guest {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Title getTitle() {
+        return title;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTitle(Title title) {
+        this.title = title;
     }
 }

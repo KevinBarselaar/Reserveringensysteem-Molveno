@@ -1,13 +1,10 @@
 package com.capgemini.molveno.reserveringssysteem.controller;
 
-import com.capgemini.molveno.reserveringssysteem.exception.DeadlineExpiredException;
 import com.capgemini.molveno.reserveringssysteem.model.Booking;
-import com.capgemini.molveno.reserveringssysteem.model.Room;
-import com.capgemini.molveno.reserveringssysteem.repository.BookingRepository;
+import com.capgemini.molveno.reserveringssysteem.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -17,11 +14,11 @@ import java.util.List;
 @RequestMapping("/api/bookings")
 public class BookingsController {
 
-    private final BookingRepository bookingRepository;
+    private final BookingService bookingService;
 
     @Autowired
-    public BookingsController(BookingRepository bookingRepository) {
-        this.bookingRepository = bookingRepository;
+    public BookingsController(BookingService service) {
+        this.bookingService = service;
     }
 
     /**
@@ -31,7 +28,7 @@ public class BookingsController {
      */
     @GetMapping("/overview")
     public List<Booking> getAllBookings() {
-        return this.bookingRepository.findAll();
+        return this.bookingService.findAll();
     }
 
     /**
@@ -41,28 +38,13 @@ public class BookingsController {
      * @return JSON response containing the {@link Booking booking}
      */
     @GetMapping("/{id}")
-    public Booking getBooking(@PathVariable Long id) {
-        return this.bookingRepository.findById(id).get();
+    public Booking getBookingById(@PathVariable Long id) {
+        return this.bookingService.findById(id);
     }
 
-    /**
-     * Shows a list of {@link Booking bookings} in readable language
-     *
-     * @return {@link String String} of all the {@link Booking bookings} and which rooms are in each
-     */
-    @GetMapping("/display")
-    public String displayBooking() {
-        List<Booking> bookings = this.bookingRepository.findAll();
-        String display = "";
-
-        for (Booking booking : bookings) {
-            display += "Er is een reservering met de kamers: ";
-            for (Room kamers : booking.getRooms()) {
-                display += "Kamer: " + kamers.getId() + ". ";
-            }
-            display += "\n";
-        }
-        return display;
+    @GetMapping("/checkedout")
+    private List<Booking> getAllCheckedOut() {
+        return this.bookingService.findAllCheckedOut();
     }
 
     /**
@@ -70,39 +52,18 @@ public class BookingsController {
      *
      * @param {@link Booking booking} object containing all the data from the front-end form
      */
-    @PostMapping
+    @PostMapping("/create")
     public void createBooking(@RequestBody Booking booking) {
-        this.bookingRepository.save(booking);
+        this.bookingService.create(booking);
     }
 
-    @DeleteMapping("{bookingId}/rooms/{roomId}")
+    @DeleteMapping("/{bookingId}/rooms/{roomId}")
     public void removeRooms(@PathVariable Long bookingId, @PathVariable Long roomId) {
-        Booking booking = this.getBooking(bookingId);
+        this.bookingService.removeRoomFromBooking(bookingId, roomId);
+    }
 
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime deadline = booking.getCreationDate().plusHours(1);
-
-        if (now.isBefore(deadline)) {
-            int roomIndexToRemove = -1;
-
-            for (int index = 0; index < booking.getRooms().size(); index++) {
-                if (booking.getRooms().get(index).getId().equals(roomId)) {
-                    roomIndexToRemove = index;
-                    break;
-                }
-            }
-
-            if (roomIndexToRemove >= 0) {
-                booking.getRooms().remove(roomIndexToRemove);
-
-                if (booking.getRooms().isEmpty()) {
-                    this.bookingRepository.delete(booking);
-                } else {
-                    this.bookingRepository.save(booking);
-                }
-            }
-        } else {
-            throw new DeadlineExpiredException(booking);
-        }
+    @DeleteMapping("/delete/{id}")
+    public void deleteById(@PathVariable Long id) {
+        this.bookingService.deleteById(id);
     }
 }
