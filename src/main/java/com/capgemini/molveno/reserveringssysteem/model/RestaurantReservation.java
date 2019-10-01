@@ -5,15 +5,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "reservation")
 public class RestaurantReservation {
 
+    private String lastName;
     private LocalDateTime reservationTime;
     private int numberOfGuests;
-    private String extraItems;
     private int numberOfMinors;
+
+    private List<ExtraItems> extraItems = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,12 +25,21 @@ public class RestaurantReservation {
     public RestaurantReservation() {
     }
 
-    public RestaurantReservation(LocalDateTime reservationTime, int numberOfGuests, String extraItems, int numberOfMinors, long roomId) {
+    public RestaurantReservation(String lastName, LocalDateTime reservationTime, int numberOfGuests, List<ExtraItems> extraItems, int numberOfMinors, long roomId) {
+        this.lastName = lastName;
         this.reservationTime = reservationTime;
         this.numberOfGuests = numberOfGuests;
         this.extraItems = extraItems;
         this.numberOfMinors = numberOfMinors;
         this.roomId = roomId;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public LocalDateTime getReservationTime() {
@@ -46,11 +58,11 @@ public class RestaurantReservation {
         this.numberOfGuests = numberOfGuests;
     }
 
-    public String getExtraItems() {
+    public List<ExtraItems> getExtraItems() {
         return extraItems;
     }
 
-    public void setExtraItems(String extraItems) {
+    public void setExtraItems(List<ExtraItems> extraItems) {
         this.extraItems = extraItems;
     }
 

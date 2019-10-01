@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reservations")
+@RequestMapping("/api/v1/reservations")
 public class RestaurantReservationController {
 
     private final RestaurantReservationService restaurantReservationService;
@@ -41,7 +41,7 @@ public class RestaurantReservationController {
 
     @GetMapping("/nepreservering")
     public RestaurantReservation getFakeReservation() {
-        RestaurantReservation reservation = new RestaurantReservation(LocalDateTime.now(), 6, "Invalide persoon en super veel kinderen", 200, 7);
+        RestaurantReservation reservation = new RestaurantReservation("Henk", LocalDateTime.now(), 6, "Invalide persoon en super veel kinderen", 200, 7);
         return reservation;
     }
 
