@@ -9,7 +9,4 @@ import java.util.List;
 
 @Repository
 public interface RestaurantReservationRepository extends JpaRepository<RestaurantReservation, Long> {
-
-    @Query("SELECT b from booking b WHERE b.isCheckedIn = false")
-    public List<RestaurantReservation> findAllCheckedOut();
 }
