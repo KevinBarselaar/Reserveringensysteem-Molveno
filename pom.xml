@@ -15,7 +15,7 @@
 	<description>Reserveringssysteem voor hotel Molveno gevestigd in Italie</description>
 
 	<properties>
-		<java.version>12</java.version>
+		<java.version>11</java.version>
 		<h2.version>1.4.199</h2.version>
 		<apache.poi.version>4.1.0</apache.poi.version>
 	</properties>
