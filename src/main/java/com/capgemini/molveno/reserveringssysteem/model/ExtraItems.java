@@ -1,11 +1,22 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity(name = "extra")
 public class ExtraItems {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private boolean disabledFriendly;
     private boolean isTerrace;
     private int numberOfChildChairs;
     private int numberOfBoosterSeats;
+
 
     public ExtraItems() {
     }
@@ -47,5 +58,13 @@ public class ExtraItems {
 
     public void setNumberOfBoosterSeats(int numberOfBoosterSeats) {
         this.numberOfBoosterSeats = numberOfBoosterSeats;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

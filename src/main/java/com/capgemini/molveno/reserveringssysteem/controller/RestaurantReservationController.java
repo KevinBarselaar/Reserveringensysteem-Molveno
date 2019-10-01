@@ -1,11 +1,14 @@
 package com.capgemini.molveno.reserveringssysteem.controller;
 
+import com.capgemini.molveno.reserveringssysteem.model.ExtraItems;
 import com.capgemini.molveno.reserveringssysteem.model.RestaurantReservation;
 import com.capgemini.molveno.reserveringssysteem.services.RestaurantReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -41,7 +44,11 @@ public class RestaurantReservationController {
 
     @GetMapping("/nepreservering")
     public RestaurantReservation getFakeReservation() {
-        RestaurantReservation reservation = new RestaurantReservation("Henk", LocalDateTime.now(), 6, "Invalide persoon en super veel kinderen", 200, 7);
+
+        ExtraItems fakeExtraItems = new ExtraItems(true, false, 2, 23);
+
+        RestaurantReservation reservation = new RestaurantReservation("Henk", LocalDateTime.now(), 6, Arrays.asList(fakeExtraItems) , 200, 7);
+
         return reservation;
     }
 

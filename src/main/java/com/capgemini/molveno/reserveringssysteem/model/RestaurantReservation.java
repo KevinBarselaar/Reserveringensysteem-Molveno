@@ -1,9 +1,6 @@
 package com.capgemini.molveno.reserveringssysteem.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +13,7 @@ public class RestaurantReservation {
     private int numberOfGuests;
     private int numberOfMinors;
 
+    @OneToMany(fetch = FetchType.LAZY)
     private List<ExtraItems> extraItems = new ArrayList<>();
 
     @Id
