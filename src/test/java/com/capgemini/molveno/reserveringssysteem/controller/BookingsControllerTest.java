@@ -65,6 +65,15 @@ public class BookingsControllerTest {
     }
 
     @Test
+    public void createBooking_inputBooking_savesNewBooking() {
+        Booking inputBooking = this.mockedBooking;
+
+        this.controller.createBooking(inputBooking);
+
+        verify(bookingService).create(inputBooking);
+    }
+
+    @Test
     public void removeRooms_booking1room2_removesRoom2() {
         Long inputBookingId = 1L;
         Long inputRoomId = 2L;
@@ -97,6 +106,15 @@ public class BookingsControllerTest {
         when(repository.findById(inputBookingId)).thenReturn(Optional.of(testBooking));
 
         assertThrows(DeadlineExpiredException.class, () -> this.controller.removeRooms(inputBookingId, inputRoomId));
+    }
+
+    @Test
+    public void deleteById_bookingId1_deletesBooking() {
+        Long inputBookingId = 1L;
+
+        this.controller.deleteById(inputBookingId);
+
+        verify(this.bookingService).deleteById(inputBookingId);
     }
 
     private Room createMockedRoom(Long id) {
