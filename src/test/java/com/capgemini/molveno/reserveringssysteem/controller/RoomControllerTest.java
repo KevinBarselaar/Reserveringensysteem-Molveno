@@ -47,10 +47,10 @@ public class RoomControllerTest {
     }
 
     @Test
-    public void getRoom_id1_returnsRoom() {
+    public void getRoomById_id1_returnsRoom() {
         Room expectedRoom = new Room(RoomType.SINGLE, 1, 1, new BedType[]{}, false, 1, 50);
 
-        Room actualRoom = this.controller.getRoom(1l);
+        Room actualRoom = this.controller.getRoomById(1l);
 
         assertThat(actualRoom, equalTo(expectedRoom));
     }
