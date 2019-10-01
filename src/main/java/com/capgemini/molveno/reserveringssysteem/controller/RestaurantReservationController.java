@@ -41,7 +41,7 @@ public class RestaurantReservationController {
 
     @GetMapping("/nepreservering")
     public RestaurantReservation getFakeReservation() {
-        RestaurantReservation reservation = new RestaurantReservation(LocalDateTime.now(), 6, "Invalide persoon en super veel kut kinderen", 200, 7);
+        RestaurantReservation reservation = new RestaurantReservation(LocalDateTime.now(), 6, "Invalide persoon en super veel kinderen", 200, 7);
         return reservation;
     }
 
