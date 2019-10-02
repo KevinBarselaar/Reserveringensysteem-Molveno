@@ -22,18 +22,18 @@ public class RestaurantBookingController {
     }
 
     @GetMapping("/overview")
-    public List<RestaurantBooking> getAllReservations() {
+    public List<RestaurantBooking> getAllBookings() {
         return this.restaurantBookingService.findAll();
     }
 
     @GetMapping("/{id}")
-    public RestaurantBooking getReservationById(@PathVariable Long id) {
+    public RestaurantBooking getBookingById(@PathVariable Long id) {
         return this.restaurantBookingService.findById(id);
     }
 
     @PostMapping("/create")
-    public void createReservation(@RequestBody RestaurantBooking reservation) {
-        this.restaurantBookingService.create(reservation);
+    public void createBooking(@RequestBody RestaurantBooking booking) {
+        this.restaurantBookingService.create(booking);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -41,14 +41,14 @@ public class RestaurantBookingController {
         this.restaurantBookingService.deleteById(id);
     }
 
-    @GetMapping("/nepreservering")
-    public RestaurantBooking getFakeReservation() {
+    @GetMapping("/nepbooking")
+    public RestaurantBooking getFakeBooking() {
 
         ExtraItems fakeExtraItems = new ExtraItems(true, false, 2, 23);
 
-        RestaurantBooking reservation = new RestaurantBooking("Henk", LocalDateTime.now(), 6, Arrays.asList(fakeExtraItems) , 200, 7);
+        RestaurantBooking booking = new RestaurantBooking("Henk", LocalDateTime.now(), 6, Arrays.asList(fakeExtraItems) , 200, 7);
 
-        return reservation;
+        return booking;
     }
 
 }
