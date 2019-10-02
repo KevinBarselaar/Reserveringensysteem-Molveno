@@ -52,8 +52,7 @@ public class RoomServiceTest {
 
     @Test
     void findById_longRoomId_returnsRoom() {
-        Room expectedRoom = new Room(RoomType.TWO_DOUBLE, 2, 2, new BedType[]{BedType.DOUBLE, BedType.DOUBLE}, false, 1, 75);
-        this.roomService.create(expectedRoom);
+        Room expectedRoom = this.roomService.create(new Room(RoomType.TWO_DOUBLE, 2, 2, new BedType[]{BedType.DOUBLE, BedType.DOUBLE}, false, 1, 75));
         List<Room> allRooms = this.roomService.findAll();
         Long roomId = allRooms.get(0).getId();
 
@@ -72,5 +71,25 @@ public class RoomServiceTest {
         Room actualAvailableRoom = this.roomService.findAllAvailable().get(0);
 
         assertThat(actualAvailableRoom, is(expectedAvailableRoom));
+    }
+
+    @Test
+    void create_newRoom_returnsRoom() {
+        Room expectedRoom = new Room(RoomType.SINGLE, 1, 0, new BedType[]{BedType.SINGLE}, false, 2, 50);
+
+        this.roomService.create(expectedRoom);
+        Room actualRoom = this.roomService.findAll().get(0);
+
+        assertThat(actualRoom, is(expectedRoom));
+    }
+
+    @Test
+    void deleteById_roomWithId_deletesRoom() {
+        Room expectedRoomToDelete = this.roomService.create(new Room(RoomType.PENTHOUSE, 1, 2, new BedType[]{BedType.DOUBLE}, true, 1, 250));
+
+        this.roomService.deleteById(expectedRoomToDelete.getId());
+        List<Room> allRooms = this.roomService.findAll();
+
+        assertThat(allRooms.size(), is(0));
     }
 }
