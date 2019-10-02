@@ -14,10 +14,10 @@ import java.util.List;
 public class Booking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private List<Room> rooms;
 
 
@@ -50,10 +50,11 @@ public class Booking {
 
     /**
      * Constructor for the Booking class
-     * @param rooms List of {@link Room rooms} linked to the booking
+     *
+     * @param rooms      List of {@link Room rooms} linked to the booking
      * @param extraItems {@link String String} containing any additional comments
-     * @param start {@link LocalDateTime Start date} of the booking
-     * @param end {@link LocalDateTime End date} of the booking
+     * @param start      {@link LocalDateTime Start date} of the booking
+     * @param end        {@link LocalDateTime End date} of the booking
      */
     public Booking(List<Room> rooms, String extraItems, LocalDateTime start, LocalDateTime end) {
         this.rooms = rooms;
