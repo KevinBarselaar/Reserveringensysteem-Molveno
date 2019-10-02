@@ -44,15 +44,17 @@ public class RoomControllerTest {
         List<Room> actualResult = this.controller.getAllRooms();
 
         assertThat(actualResult, equalTo(expectedResult));
+        verify(this.roomService).findAll();
     }
 
     @Test
     public void getRoomById_id1_returnsRoom() {
         Room expectedRoom = new Room(RoomType.SINGLE, 1, 1, new BedType[]{}, false, 1, 50);
 
-        Room actualRoom = this.controller.getRoomById(1l);
+        Room actualRoom = this.controller.getRoomById(1L);
 
         assertThat(actualRoom, equalTo(expectedRoom));
+        verify(this.roomService).findById(1L);
     }
 
     @Test
@@ -62,6 +64,7 @@ public class RoomControllerTest {
         int actualListSize = this.controller.getAllAvailableRooms().size();
 
         assertThat(actualListSize, is(expectedListSize));
+        verify(this.roomService).findAllAvailable();
     }
 
     @Test
