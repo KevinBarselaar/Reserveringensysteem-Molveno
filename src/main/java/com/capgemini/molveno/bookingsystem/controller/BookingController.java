@@ -42,7 +42,7 @@ public class BookingController {
         return this.bookingService.findById(id);
     }
 
-    @GetMapping("/checkedout")
+    @GetMapping("/checked-out")
     private List<Booking> getAllCheckedOut() {
         return this.bookingService.findAllCheckedOut();
     }
