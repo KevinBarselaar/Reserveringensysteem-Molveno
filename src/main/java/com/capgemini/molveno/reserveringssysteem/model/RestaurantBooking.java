@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "reservation")
-public class RestaurantReservation {
+public class RestaurantBooking {
 
     private String lastName;
     private LocalDateTime reservationTime;
@@ -20,10 +20,10 @@ public class RestaurantReservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long roomId;
 
-    public RestaurantReservation() {
+    public RestaurantBooking() {
     }
 
-    public RestaurantReservation(String lastName, LocalDateTime reservationTime, int numberOfGuests, List<ExtraItems> extraItems, int numberOfMinors, long roomId) {
+    public RestaurantBooking(String lastName, LocalDateTime reservationTime, int numberOfGuests, List<ExtraItems> extraItems, int numberOfMinors, long roomId) {
         this.lastName = lastName;
         this.reservationTime = reservationTime;
         this.numberOfGuests = numberOfGuests;

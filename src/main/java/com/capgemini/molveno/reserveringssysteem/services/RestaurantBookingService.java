@@ -1,27 +1,27 @@
 package com.capgemini.molveno.reserveringssysteem.services;
 
-import com.capgemini.molveno.reserveringssysteem.model.RestaurantReservation;
-import com.capgemini.molveno.reserveringssysteem.repository.RestaurantReservationRepository;
+import com.capgemini.molveno.reserveringssysteem.model.RestaurantBooking;
+import com.capgemini.molveno.reserveringssysteem.repository.RestaurantBookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RestaurantReservationService {
+public class RestaurantBookingService {
 
-    private final RestaurantReservationRepository reservationRepository;
+    private final RestaurantBookingRepository reservationRepository;
 
     @Autowired
-    public RestaurantReservationService(RestaurantReservationRepository reservationRepository) {
+    public RestaurantBookingService(RestaurantBookingRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
     }
 
-    public RestaurantReservation findById(Long id) {
+    public RestaurantBooking findById(Long id) {
         return this.reservationRepository.findById(id).get();
     }
 
-    public List<RestaurantReservation> findAll() {
+    public List<RestaurantBooking> findAll() {
         return this.reservationRepository.findAll();
     }
 
@@ -29,7 +29,7 @@ public class RestaurantReservationService {
         this.reservationRepository.deleteById(id);
     }
 
-    public RestaurantReservation create(RestaurantReservation reservation) {
+    public RestaurantBooking create(RestaurantBooking reservation) {
         return this.reservationRepository.saveAndFlush(reservation);
     }
 }
