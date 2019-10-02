@@ -67,8 +67,13 @@ public class BookingController {
         this.bookingService.deleteById(id);
     }
 
-    @PutMapping("/checkout/{id}")
-    public void checkoutBooking(@PathVariable Long id) {
-        this.bookingService.checkoutBooking(id);
+    /**
+     * Check in or out a booking and set the availabillity of the rooms in the booking to true or false.
+     *
+     * @param id {@link Long id} of the {@link Booking booking} in the database
+     */
+    @PutMapping("/check-in-out/{id}")
+    public void checkInOutBooking(@PathVariable Long id) {
+        this.bookingService.checkInOutBooking(id);
     }
 }

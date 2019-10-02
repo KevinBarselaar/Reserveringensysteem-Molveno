@@ -39,7 +39,7 @@ public class BookingService {
         this.bookingRepository.deleteById(id);
     }
 
-    public void checkoutBooking(Long id) {
+    public void checkInOutBooking(Long id) {
         Booking booking = this.findById(id);
         booking.setCheckedIn(!booking.isCheckedIn());
 
