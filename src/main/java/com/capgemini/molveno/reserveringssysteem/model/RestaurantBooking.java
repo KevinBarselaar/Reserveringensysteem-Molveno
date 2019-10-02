@@ -12,13 +12,16 @@ public class RestaurantBooking {
     private LocalDateTime bookingTime;
     private int numberOfGuests;
     private int numberOfMinors;
+    private long roomId;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<ExtraItems> extraItems = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long roomId;
+    private long bookingId;
+
+
 
     public RestaurantBooking() {
     }
@@ -78,5 +81,13 @@ public class RestaurantBooking {
 
     public void setRoomId(long roomId) {
         this.roomId = roomId;
+    }
+
+    public long getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(long bookingId) {
+        this.bookingId = bookingId;
     }
 }
