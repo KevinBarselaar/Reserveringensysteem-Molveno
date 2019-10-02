@@ -1,6 +1,5 @@
 package com.capgemini.molveno.reserveringssysteem.controller;
 
-import com.capgemini.molveno.reserveringssysteem.model.Booking;
 import com.capgemini.molveno.reserveringssysteem.model.ExtraItems;
 import com.capgemini.molveno.reserveringssysteem.model.RestaurantBooking;
 import com.capgemini.molveno.reserveringssysteem.services.RestaurantBookingService;
@@ -17,6 +16,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class RestaurantBookingControllerTests {
@@ -34,11 +34,11 @@ public class RestaurantBookingControllerTests {
         MockitoAnnotations.initMocks(this);
         this.bookingController = new RestaurantBookingController(bookingService);
 
-       this.mockedBooking = this.createMockedBooking(8L, new ArrayList<>(Arrays.asList(this.createMockedExtraItems(6L))));
+       this.mockedBooking = this.createMockedBooking(1L, new ArrayList<>(Arrays.asList(this.createMockedExtraItems(2L))));
        this.mockedBookingList = new ArrayList<>(Arrays.asList(mockedBooking));
 
         when(bookingService.findAll()).thenReturn(this.mockedBookingList);
-        when(bookingService.findById(8L)).thenReturn(mockedBooking);
+        when(bookingService.findById(1L)).thenReturn(mockedBooking);
     }
 
     @Test
@@ -49,13 +49,34 @@ public class RestaurantBookingControllerTests {
 
         assertThat(actualResult, equalTo(expectedResult));
     }
-    
+
+    @Test
+    public void getBookingById_id1_returnsBooking() {
+        RestaurantBooking expectedBooking = this.mockedBooking;
+
+        RestaurantBooking actualBooking = this.bookingController.getBookingById(1L);
+
+        assertThat(actualBooking, equalTo(expectedBooking));
+    }
+
+    @Test
+    public void createBooking_inputBooking_savesNewBooking() {
+        RestaurantBooking inputBooking = this.mockedBooking;
+
+        this.bookingController.createBooking(inputBooking);
+
+        verify(bookingService).create(inputBooking);
+    }
 
 
+    @Test
+    public void deleteById_bookingId1_deletesBooking() {
+        Long inputBookingId = 1L;
 
+        this.bookingController.deleteById(inputBookingId);
 
-
-
+        verify(this.bookingService).deleteById(inputBookingId);
+    }
 
     private ExtraItems createMockedExtraItems(Long id) {
         ExtraItems extraItems = new ExtraItems(true, true, 5, 6);
@@ -64,7 +85,6 @@ public class RestaurantBookingControllerTests {
         return extraItems;
     }
 
-
     private RestaurantBooking createMockedBooking(Long bookingId, List<ExtraItems> extraItems) {
         RestaurantBooking booking = new RestaurantBooking("piet", LocalDateTime.now(), 3,
                 extraItems, 4, 5);
@@ -72,7 +92,5 @@ public class RestaurantBookingControllerTests {
 
         return booking;
     }
-
-
-
+    
 }
