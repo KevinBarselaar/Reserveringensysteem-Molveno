@@ -66,4 +66,9 @@ public class BookingController {
     public void deleteById(@PathVariable Long id) {
         this.bookingService.deleteById(id);
     }
+
+    @PutMapping("/checkout/{id}")
+    public void checkoutBooking(@PathVariable Long id) {
+        this.bookingService.checkoutBooking(id);
+    }
 }
