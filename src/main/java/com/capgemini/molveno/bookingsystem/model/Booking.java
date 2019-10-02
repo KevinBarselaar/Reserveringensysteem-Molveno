@@ -20,19 +20,21 @@ public class Booking {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Room> rooms;
 
-
     private LocalDateTime startBooking;
     private LocalDateTime endBooking;
 
     /**
-     * Customer of the hotel
+     * The main booker
      */
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Guest guest;
+    @OneToOne(cascade = CascadeType.ALL)
+    private MainGuest mainGuest;
 
-    private int numberOfMinors;
+    /**
+     * The fellow travelers
+     */
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.ALL})
+    private List<Guest> guests;
 
-    private int numberOfAdults;
     private String extraItems;
 
     @Enumerated(EnumType.STRING)
@@ -42,9 +44,6 @@ public class Booking {
 
     private boolean isCheckedIn;
 
-    /**
-     *
-     */
     public Booking() {
     }
 
@@ -62,15 +61,13 @@ public class Booking {
         this.endBooking = end;
     }
 
-    public Booking(List<Room> rooms, String extraItems, LocalDateTime start, LocalDateTime end,
-                   int adults, int minors, Guest guest) {
+    public Booking(List<Room> rooms, String extraItems, LocalDateTime start, LocalDateTime end, MainGuest mainGuest, List<Guest> guests) {
         this.rooms = rooms;
         this.extraItems = extraItems;
         this.startBooking = start;
         this.endBooking = end;
-        this.numberOfAdults = adults;
-        this.numberOfMinors = minors;
-        this.guest = guest;
+        this.mainGuest = mainGuest;
+        this.guests = guests;
     }
 
     public Long getId() {
@@ -105,28 +102,20 @@ public class Booking {
         this.endBooking = endBooking;
     }
 
-    public Guest getGuest() {
-        return guest;
+    public MainGuest getMainGuest() {
+        return mainGuest;
     }
 
-    public void setGuest(Guest guest) {
-        this.guest = guest;
+    public void setMainGuest(MainGuest mainGuest) {
+        this.mainGuest = mainGuest;
     }
 
-    public int getNumberOfAdults() {
-        return numberOfAdults;
+    public List<Guest> getGuests() {
+        return guests;
     }
 
-    public void setNumberOfAdults(int numberOfAdults) {
-        this.numberOfAdults = numberOfAdults;
-    }
-
-    public int getNumberOfMinors() {
-        return numberOfMinors;
-    }
-
-    public void setNumberOfMinors(int numberOfMinors) {
-        this.numberOfMinors = numberOfMinors;
+    public void setGuests(List<Guest> guests) {
+        this.guests = guests;
     }
 
     public String getExtraItems() {
@@ -163,6 +152,6 @@ public class Booking {
 
     @Override
     public String toString() {
-        return id + ", " + rooms + ", " + startBooking + ", " + endBooking + ", " + guest + ", " + numberOfMinors + ", " + numberOfAdults + ", " + extraItems;
+        return id + ", " + rooms + ", " + startBooking + ", " + endBooking + ", " + mainGuest + ", " + extraItems;
     }
 }

@@ -51,9 +51,17 @@ public class BookingSystemApplication {
         testBooking.setCheckedIn(true);
 
         Address address = new Address("Bondstreet", 11, "B", "6007 JB", "Ruhr Valley", "United Kingdom");
-        Guest guest = new Guest("James", "Bond", "+44-700700707", new Date(), "james.bond@007.com", address);
-        guest.setTitle(Title.MR);
-        testBooking.setGuest(guest);
+        MainGuest mainGuest = new MainGuest(Title.MR, "James", "Bond", new Date(), "+44-700700707", "james.bond@007.com", address);
+        testBooking.setMainGuest(mainGuest);
+
+        Guest guest1 = new Guest(Title.MR,"Freek", "Vonk", new Date());
+        Guest guest2 = new Guest(Title.MR, "Peter", "R. de Vries", new Date());
+        Guest guest3 = new Guest(Title.MS, "Anna", "Nas", new Date());
+        List<Guest> guests = new ArrayList<>();
+        guests.add(guest1);
+        guests.add(guest2);
+        guests.add(guest3);
+        testBooking.setGuests(guests);
 
         testBooking.setCreationDate(LocalDateTime.now());
 
