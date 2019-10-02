@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @SpringBootTest
@@ -49,5 +50,27 @@ public class RoomServiceTest {
         assertThat(actualListSize, equalTo(expectedListSize));
     }
 
+    @Test
+    void findById_longRoomId_returnsRoom() {
+        Room expectedRoom = new Room(RoomType.TWO_DOUBLE, 2, 2, new BedType[]{BedType.DOUBLE, BedType.DOUBLE}, false, 1, 75);
+        this.roomService.create(expectedRoom);
+        List<Room> allRooms = this.roomService.findAll();
+        Long roomId = allRooms.get(0).getId();
 
+        Room actualRoom = this.roomService.findById(roomId);
+
+        assertThat(allRooms.size(), is(1));
+        assertThat(actualRoom, equalTo(expectedRoom));
+    }
+
+    @Test
+    void findAllAvailable_newAvailableRoom_returnsAvailableRoom() {
+        Room expectedAvailableRoom = new Room(RoomType.PENTHOUSE, 1, 2, new BedType[]{BedType.DOUBLE, BedType.DOUBLE, BedType.SINGLE}, true, 1, 250);
+        expectedAvailableRoom.setAvailable(true);
+        this.roomService.create(expectedAvailableRoom);
+
+        Room actualAvailableRoom = this.roomService.findAllAvailable().get(0);
+
+        assertThat(actualAvailableRoom, is(expectedAvailableRoom));
+    }
 }
