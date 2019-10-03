@@ -21,8 +21,8 @@ public class Booking {
     private List<Room> rooms;
 
 
-    private LocalDateTime startBooking;
-    private LocalDateTime endBooking;
+    private String startBooking;
+    private String endBooking;
 
     /**
      * Customer of the hotel
@@ -55,14 +55,14 @@ public class Booking {
      * @param start {@link LocalDateTime Start date} of the booking
      * @param end {@link LocalDateTime End date} of the booking
      */
-    public Booking(List<Room> rooms, String extraItems, LocalDateTime start, LocalDateTime end) {
+    public Booking(List<Room> rooms, String extraItems, String start, String end) {
         this.rooms = rooms;
         this.extraItems = extraItems;
         this.startBooking = start;
         this.endBooking = end;
     }
 
-    public Booking(List<Room> rooms, String extraItems, LocalDateTime start, LocalDateTime end,
+    public Booking(List<Room> rooms, String extraItems, String start, String end,
                    int adults, int minors, Guest guest) {
         this.rooms = rooms;
         this.extraItems = extraItems;
@@ -89,19 +89,19 @@ public class Booking {
         this.rooms = rooms;
     }
 
-    public LocalDateTime getStartBooking() {
+    public String getStartBooking() {
         return startBooking;
     }
 
-    public void setStartBooking(LocalDateTime startBooking) {
+    public void setStartBooking(String startBooking) {
         this.startBooking = startBooking;
     }
 
-    public LocalDateTime getEndBooking() {
+    public String getEndBooking() {
         return endBooking;
     }
 
-    public void setEndBooking(LocalDateTime endBooking) {
+    public void setEndBooking(String endBooking) {
         this.endBooking = endBooking;
     }
 

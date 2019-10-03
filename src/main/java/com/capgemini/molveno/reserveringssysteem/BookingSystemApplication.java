@@ -47,8 +47,8 @@ public class BookingSystemApplication {
 
         Booking testBooking = new Booking(new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(roomsFromExcelSheet.size() -1), roomsFromExcelSheet.get(17))),
                 "Extra badhandoeken en een invalide kamer",
-                LocalDateTime.of(LocalDate.of(2019, 10, 15), LocalTime.of(15, 0)),
-                LocalDateTime.of(LocalDate.of(2019, 10, 22), LocalTime.of(11, 30)));
+                "01/01/2000",
+                "01/08/2000");
         testBooking.setBoardType(BoardType.BED_AND_BREAKFAST);
         testBooking.setCheckedIn(true);
 

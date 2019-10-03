@@ -3,24 +3,7 @@ var host = "http://localhost:8080";
 function postData() {
     console.log("posting data...");
 
-    // Get values from html.
-    var input_startDate = $("#checkInDate").val();
-    var input_endDate = $("#checkOutDate").val();
 
-    var startYear = input_startDate.substring(6,10);
-    var startMonth = input_startDate.substring(3,5);
-    var startDay = input_startDate.substring(0,2);
-    
-    input_startDate = new Date(startYear, startMonth, startDay);
-    console.log(input_startDate);
-
-    var endYear = input_endDate.substring(6,10);
-    var endMonth = input_endDate.substring(3,5);
-    var endDay = input_endDate.substring(0,2);
-    
-    input_endDate = new Date(endYear, endMonth, endDay);
-
-    console.log(input_endDate);
 
     var input_firstname = $("#firstName").val(); 
     var input_lastname = $("#lastName").val(); 
@@ -47,29 +30,26 @@ function postData() {
       input_boardType = $("#half").val(); 
     }
     
-    var input_reservationDate = new Date();
+    var guestAddress = {
+        streetName : $("[name='streetName']").val(),
+        houseNumber : $("[name='houseNumber']").val(),
+        houseNumberAddition : $("[name='addition']").val(),
+        postalCode : $("[name='zipcode']").val(),
+        city : $("[name='city']").val(),
+        country : $("[name='country']").val()
+    }
+
+    var guest = {
+        firstName : input_firstname,
+        lastName : input_lastname,
+        phoneNumber : input_phonenumber,
+        birthDate : input_birthday,
+        emailAddress : input_email,
+        address : guestAddress
+    }
 
     // Create JS object with data.
-    var newReservation = {
-      reservationNumber: null,
-      reservationDate: input_reservationDate,
-      startDate: input_startDate,
-      endDate: input_endDate,
-      totalPrice: 0.0,
-      customer: {
-          customerId: null,
-          title: "MS",
-          firstName: input_firstname,
-          lastName: input_lastname,
-          address: {},
-          phoneNumber: input_phonenumber,
-          email: input_email,
-          birthday: input_birthday
-      },
-      boardType: input_boardType,
-      rooms: [],
-      checkedIn: false
-    };
+    var newReservation = new Booking(guest);
     console.log(newReservation);
 
     // Convert JS object to JSON.
@@ -156,3 +136,32 @@ $(document).ready(function() {
         md.initSliders();
     }
 });
+
+class Booking {  
+
+    constructor(guest) {
+
+        var input_start = $("#checkInDate").val();
+        var input_end = $("#checkOutDate").val();
+
+        this.rooms = [];
+        this.extraItems = "Hey";
+        this.startBooking = input_start;
+        this.endBooking = input_end;
+        this.numberOfAdults = $("[name='adults']").val();
+        this.numberOfMinors = $("[name='minors']").val();
+        this.guest = guest;
+    }
+}
+
+class Guest {
+    constructor(guest) {
+        this.guest = guest;
+    }
+}
+
+class GuestAddress {
+    constructor(address) {
+        this.guestAddress = address;
+    }
+}

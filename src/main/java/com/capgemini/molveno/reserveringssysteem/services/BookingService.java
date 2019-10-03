@@ -30,6 +30,8 @@ public class BookingService {
     }
 
     public Booking create(Booking booking) {
+        booking.setCreationDate(LocalDateTime.now());
+        System.out.println(booking.getStartBooking());
         return this.bookingRepository.saveAndFlush(booking);
     }
 

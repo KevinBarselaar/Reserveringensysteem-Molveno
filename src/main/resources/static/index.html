@@ -137,13 +137,13 @@
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label for="checkInDate" class="bmd-label-floating">Check-in date*</label>
-                                                        <input type="text" class="form-control datepicker" value="10/06/2018" id="checkInDate" required="true">
+                                                        <input type="text" class="form-control datepicker" id="checkInDate" required="true">
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group">
                                                     <label for="checkOutDate" class="bmd-label-floating">Check-out date*</label>
-                                                    <input type="text" class="form-control datepicker" value="10/06/2018" id="checkOutDate" required="true">
+                                                    <input type="text" class="form-control datepicker" id="checkOutDate" required="true">
                                                     </div>
                                                 </div>
                                             </div>
@@ -248,13 +248,13 @@
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating"> Amount adults *</label>
-                                                        <input class="form-control" type="text" name="number" number="true" required="true">
+                                                        <input class="form-control" type="text" name="number" number="true" required="true" id="adults">
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating"> Amount children *</label>
-                                                        <input class="form-control" type="text" name="number2" number="true" required="true">
+                                                        <input class="form-control" type="text" name="number2" number="true" required="true" id="minors">
                                                     </div>
                                                 </div>
                                             </div>
@@ -291,19 +291,19 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Street Name</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" class="form-control" id="streetName">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Street No.</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" class="form-control" id="houseNumber">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Addition</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" class="form-control" id="addition">
                                                     </div>
                                                 </div>
                                             </div>
@@ -311,7 +311,7 @@
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Zip code</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" class="form-control" id="zipcode">
                                                     </div>
                                                 </div>
                                                 <div class="col">
@@ -324,7 +324,7 @@
                                                 <div class="col">
                                                     <div class="form-group select-wizard">
                                                         <label>Country</label>
-                                                        <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select">
+                                                        <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" id="country">
                                                             <option value="Netherlands"> Netherlands </option>
                                                             <option value="Belgium"> Belgium </option>
                                                             <option value="France"> France </option>
@@ -504,7 +504,9 @@
                 { "data": function ( data ) {
                     return data.guest.title + " " + data.guest.firstName + " " + data.guest.lastName;
                 }},
-                { "data": "startBooking" },
+                { "data": function(data) {
+                    return data.startBooking.split("T")[0];
+                } },
                 { "data": "endBooking" },
                 { "data": function ( data ) {
                     console.log(data);
