@@ -43,7 +43,7 @@ public class BookingController {
         return this.bookingService.findById(id);
     }
 
-    @GetMapping("/checkedout")
+    @GetMapping("/checked-out")
     private List<Booking> getAllCheckedOut() {
         return this.bookingService.findAllCheckedOut();
     }
@@ -66,5 +66,15 @@ public class BookingController {
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
         this.bookingService.deleteById(id);
+    }
+
+    /**
+     * Check in or out a booking and set the availabillity of the rooms in the booking to true or false.
+     *
+     * @param id {@link Long id} of the {@link Booking booking} in the database
+     */
+    @PutMapping("/check-in-out/{id}")
+    public void checkInOutBooking(@PathVariable Long id) {
+        this.bookingService.checkInOutBooking(id);
     }
 }

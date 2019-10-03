@@ -2,9 +2,11 @@ package com.capgemini.molveno.bookingsystem.services;
 
 import com.capgemini.molveno.bookingsystem.exception.DeadlineExpiredException;
 import com.capgemini.molveno.bookingsystem.model.Booking;
+import com.capgemini.molveno.bookingsystem.model.Room;
 import com.capgemini.molveno.bookingsystem.repository.BookingRepository;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -37,6 +39,17 @@ public class BookingService {
 
     public void deleteById(Long id) {
         this.bookingRepository.deleteById(id);
+    }
+
+    public void checkInOutBooking(Long id) {
+        Booking booking = this.findById(id);
+        booking.setCheckedIn(!booking.isCheckedIn());
+
+        for (Room room : booking.getRooms()) {
+            room.setAvailable(!room.isAvailable());
+        }
+
+        this.bookingRepository.save(booking);
     }
 
     public void removeRoomFromBooking(Long bookingId, Long roomId) {
