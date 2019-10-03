@@ -11,19 +11,22 @@ function postData() {
     var input_children = parseInt($("#amountChild").val(), 0);
     
     
-    var input_extraItems;
+    // var input_extraItems;
     
     var input_booster = parseInt($("#booster").val(), 0);
     var input_childChair = parseInt($("#childChair").val(), 0);
 
 
+    var isDisabled = $("#disabled").prop('checked');
 
-    if ($("#disabled").prop('checked')) {
-      input_extraItems = $("#disabled").val();
-    }
-    }if ($("#terrace").prop('checked')) {
-        input_extraItems = $("#terrace").val(); 
-    }
+    var isTerrace = $("#terrace").prop('checked');
+
+    // if ($("#disabled").prop('checked')) {
+    //   input_extraItems = $("#disabled").val();
+    // }
+    // if ($("#terrace").prop('checked')) {
+    //     input_extraItems = $("#terrace").val(); 
+    // }
 
 
 
@@ -39,10 +42,10 @@ function postData() {
         extraItems: [
             {
                 id: null,
-                disabledFriendly: input_extraItems,
-                numberOfChildChairs: input_extraItems,
-                numberOfBoosterSeats: input_extraItems,
-                terrace:  input_extraItems
+                disabledFriendly: isDisabled,
+                numberOfChildChairs: input_childChair,
+                numberOfBoosterSeats: input_booster,
+                terrace:  isTerrace
             }
         ],
 
@@ -66,3 +69,23 @@ function postData() {
             //getData();
         }
     });
+
+//     function getData() {
+//         console.log("getting data...");
+    
+//         // Get the data from endpoint.
+//         $.ajax({
+//             url: host + "/api/v1/restaurantbookings/overview",
+//             type:"get",
+//             success: function(bookings) {
+//                 // On successful get, reload the datatable with new data.
+//                 console.log("This is the data: ");
+//                 bookings.forEach(element => {
+//                     console.log(element);
+//                 });
+//                 $('#datatables').DataTable().clear();
+//                 $('#datatables').DataTable().rows.add(bookings);
+//                 $('#datatables').DataTable().columns.adjust().draw();
+//             }
+//         });
+}

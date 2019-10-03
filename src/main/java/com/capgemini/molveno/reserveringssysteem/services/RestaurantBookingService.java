@@ -36,7 +36,7 @@ public class RestaurantBookingService {
     }
 
     public void checkRestaurantCapacity() {
-        RestaurantBooking booking = new RestaurantBooking("Blabla", LocalDateTime.now(), 4, null, 2, 4l);
+        RestaurantBooking booking = new RestaurantBooking("Blabla", "10/10/1000", 4, null, 2, 4l);
 
         int maxCapacity = 102;
         int numberOfGuests = booking.getNumberOfGuests();

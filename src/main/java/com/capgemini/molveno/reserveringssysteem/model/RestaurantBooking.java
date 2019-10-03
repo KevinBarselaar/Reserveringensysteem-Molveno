@@ -9,7 +9,7 @@ import java.util.List;
 public class RestaurantBooking {
 
     private String lastName;
-    private LocalDateTime bookingTime;
+    private String bookingTime;
     private int numberOfGuests;
     private int numberOfMinors;
     private long roomId;
@@ -26,7 +26,7 @@ public class RestaurantBooking {
     public RestaurantBooking() {
     }
 
-    public RestaurantBooking(String lastName, LocalDateTime bookingTime, int numberOfGuests, List<ExtraItems> extraItems, int numberOfMinors, long roomId) {
+    public RestaurantBooking(String lastName, String bookingTime, int numberOfGuests, List<ExtraItems> extraItems, int numberOfMinors, long roomId) {
         this.lastName = lastName;
         this.bookingTime = bookingTime;
         this.numberOfGuests = numberOfGuests;
@@ -43,11 +43,11 @@ public class RestaurantBooking {
         this.lastName = lastName;
     }
 
-    public LocalDateTime getBookingTime() {
+    public String getBookingTime() {
         return bookingTime;
     }
 
-    public void setBookingTime(LocalDateTime bookingTime) {
+    public void setBookingTime(String bookingTime) {
         this.bookingTime = bookingTime;
     }
 

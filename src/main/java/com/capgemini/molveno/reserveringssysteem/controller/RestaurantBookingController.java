@@ -46,7 +46,7 @@ public class RestaurantBookingController {
 
         ExtraItems fakeExtraItems = new ExtraItems(true, false, 2, 23);
 
-        RestaurantBooking booking = new RestaurantBooking("Henk", LocalDateTime.now(), 6, Arrays.asList(fakeExtraItems) , 200, 7);
+        RestaurantBooking booking = new RestaurantBooking("Henk", "10/10/1000", 6, Arrays.asList(fakeExtraItems) , 200, 7);
 
         return booking;
     }
