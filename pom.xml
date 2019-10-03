@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.capgemini.molveno</groupId>
-	<artifactId>reserveringssysteem</artifactId>
+	<artifactId>bookingsystem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>reserveringssysteem</name>
-	<description>Reserveringssysteem voor hotel Molveno gevestigd in Italie</description>
+	<name>bookingsystem</name>
+	<description>Booking system - Molveno</description>
 
 	<properties>
 		<java.version>12</java.version>
