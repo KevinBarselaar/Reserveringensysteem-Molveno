@@ -14,7 +14,7 @@ public class RestaurantBooking {
     private int numberOfMinors;
     private long roomId;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ExtraItems> extraItems = new ArrayList<>();
 
     @Id
