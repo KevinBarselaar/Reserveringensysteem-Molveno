@@ -24,6 +24,7 @@ public class Guest {
     private Title title;
 
     @Column
+    @NonNull
     private String firstName;
 
     @Column
@@ -37,6 +38,7 @@ public class Guest {
 
     /**
      * Constructor for the Guest class.
+     * @param title {@link Title Title} containing the title of the guest
      * @param firstName {@link String String} containing the first name of the guest
      * @param lastName {@link String String} containing the last name of the guest
      * @param birthDate {@link Date Birth date} of the guest

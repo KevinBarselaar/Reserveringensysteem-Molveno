@@ -433,7 +433,7 @@
             ],
             columns: [
                 { "data": function ( data ) {
-                    return data.guest.title + " " + data.guest.firstName + " " + data.guest.lastName;
+                    return titleString[data.mainGuest.title] + " " + data.mainGuest.firstName + " " + data.mainGuest.lastName;
                 }},
                 { "data": "startBooking" },
                 { "data": "endBooking" },
@@ -445,7 +445,9 @@
                     }
                     return rooms.substring(0, rooms.length - 2);
                 }},
-                { "data": "boardType" },
+                { "data": function (data) {
+                    return boardTypeString[data.boardType];
+                }},
                 { data: null,
                     render: function ( data, type, row ) {
                         return '<a href="#" class="btn btn-link btn-info btn-just-icon info"><i class="material-icons">info</i></a>' +

@@ -1,4 +1,15 @@
-var host = "http://localhost:8080";
+var host = window.location.origin; // Server or domain independent host variable
+var titleString = {
+    "MR": "Mr.",
+    "MRS": "Mrs.",
+    "MS": "Ms.",
+}
+var boardTypeString = {
+    "ACCOMMODATIONS": "Accommodations",
+    "BED_AND_BREAKFAST": "Bed & Breakfast",
+    "HALF_BOARD": "Half Board",
+}
+
 
 function postData() {
     console.log("posting data...");
