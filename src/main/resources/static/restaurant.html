@@ -173,24 +173,53 @@
                           </div>
                         </div>
 
-                        <div class="form-group">
-                          <div class="card-content">
-                            <label class="bmd-label-floating"> Amount adults *</label>
+                        <div class="col">
+                            <div class="form-row">
+                                <div class="card-content">
+                            <label class="bmd-label-floating"> Number of adults *</label>
                             <input class="form-control" type="text" name="number"
                               number="true" required="true" id="amountAd">
                           </div>
                         </div>
+                      </div>
 
-                        <div class="col">
-                          <div class="form-group">
-                            <label class="bmd-label-floating"> Amount children *</label>
+                      <div class="col">
+                          <div class="form-row">
+                              <div class="card-content">
+                            <label class="bmd-label-floating"> Number of children *</label>
                             <input class="form-control" type="text" name="number2"
                               number="true" required="true" id="amountChild">
                           </div>
                         </div>
+                      </div>
 
                         <div class="col">
                           <label class="label-control">Please select extra items</label>
+
+                          <div class="col">
+                              <div class="form-row">
+                                  <div class="card-content">
+                                <label class="bmd-label-floating"> Number of booster seats:</label>
+                                <input class="form-control" type="text" name="number2"
+                                  number="true" required="true" id="booster">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                              <div class="form-row">
+                                  <div class="card-content">
+                                <label class="bmd-label-floating"> Number of child chairs:</label>
+                                <input class="form-control" type="text" name="number2"
+                                  number="true" required="true" id="childChair">
+                              </div>
+                            </div>
+                          </div>
+
+
+
+
+
                           <div class="col-sm-10 checkbox-radios">
                             <div class="checkbox">
                               <label>
@@ -198,31 +227,18 @@
                                 I'm coming with disabled people
                               </label>
                             </div>
-
                             <div class="checkbox">
-                              <label>
-                                <input type="checkbox" name="optionsCheckboxes2"
-                                  id="booster">
-                                I need a booster seat
-                              </label>
-                            </div>
-
-                            <div class="checkbox">
-                              <label>
-                                <input type="checkbox" name="optionsCheckboxes3"
-                                  id="child">
-                                I need a child chair
-                              </label>
-                            </div>
+                                <label>
+                                  <input type="checkbox" name="optionsCheckboxes4"
+                                    id="terrace">
+                                  I want to dine on the terrace
+                                </label>
+                              </div>
 
 
-                            <div class="checkbox">
-                              <label>
-                                <input type="checkbox" name="optionsCheckboxes4"
-                                  id="terrace">
-                                I want to dine on the terrace
-                              </label>
-                            </div>
+
+
+
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary"
                                 data-dismiss="modal">Cancel</button>

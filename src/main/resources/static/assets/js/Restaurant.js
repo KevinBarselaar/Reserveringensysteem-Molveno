@@ -8,20 +8,25 @@ function postData() {
 
     console.log("input adult" + input_adults);
 
-    var input_children =  $("#amountChild").val();
+    var input_children = parseInt($("#amountChild").val(), 0);
     
     
     var input_extraItems;
+    
+    var input_booster = parseInt($("#booster").val(), 0);
+    var input_childChair = parseInt($("#childChair").val(), 0);
+
+
 
     if ($("#disabled").prop('checked')) {
       input_extraItems = $("#disabled").val();
-    } if ($("#booster").prop('checked')) {
-      input_extraItems = $("#booster").val(); 
-    } if ($("#child").prop('checked')) {
-      input_extraItems = $("#child").val(); 
+    }
     }if ($("#terrace").prop('checked')) {
         input_extraItems = $("#terrace").val(); 
     }
+
+
+
     var input_reservationDate = new Date();
 
     // Create JS object with data.
@@ -61,4 +66,3 @@ function postData() {
             //getData();
         }
     });
-}
