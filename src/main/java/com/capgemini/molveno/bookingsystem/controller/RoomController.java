@@ -43,7 +43,7 @@ public class RoomController {
      * @return JSON response containing the {@link Room room}
      */
     @GetMapping("/{id}")
-    public Room getRoom(@PathVariable Long id) {
+    public Room getRoomById(@PathVariable Long id) {
         return this.roomService.findById(id);
     }
 
