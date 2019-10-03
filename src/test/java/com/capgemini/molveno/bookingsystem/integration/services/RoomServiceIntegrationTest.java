@@ -18,7 +18,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @SpringBootTest
-public class RoomServiceTest {
+public class RoomServiceIntegrationTest {
 
     @Autowired
     private RoomRepository roomRepository;
