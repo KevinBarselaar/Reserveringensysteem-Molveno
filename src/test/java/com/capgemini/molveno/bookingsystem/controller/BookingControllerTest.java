@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -125,7 +126,7 @@ public class BookingControllerTest {
     }
 
     private Booking createMockedBooking(Long bookingId, LocalDateTime bookingCreationDate, List<Room> rooms) {
-        Booking booking = new Booking(rooms, "Butterflies", LocalDateTime.now().plusDays(1), LocalDateTime.now().plusWeeks(1));
+        Booking booking = new Booking(rooms, "Butterflies", "01/01/2000", "01/08/2000");
         booking.setId(bookingId);
         booking.setCreationDate(bookingCreationDate);
 
