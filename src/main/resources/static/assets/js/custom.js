@@ -1,4 +1,4 @@
-var host = "http://localhost:8080"; // Server or domain independent host variable
+var host = "http://localhost:8080"; 
 
 var titleString = {
     "MR": "Mr.",
@@ -13,6 +13,7 @@ var boardTypeString = {
 
 
 function postData() {
+<<<<<<< HEAD
     console.log("posting data...");
 
     var input_firstname = $("#firstName").val(); 
@@ -79,6 +80,9 @@ function postData() {
             getData();
         }
     });
+=======
+    // Wordt in andere branch gefixt, werkt in deze geenszins door project merge
+>>>>>>> front-end-integration
 }
 
 function setFormValidation(id) {

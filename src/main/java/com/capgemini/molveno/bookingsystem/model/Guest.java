@@ -17,21 +17,16 @@ public class Guest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
     @Enumerated(EnumType.STRING)
     private Title title;
 
-    @Column
     @NonNull
     private String firstName;
 
-    @Column
     @NonNull
     private String lastName;
-
-    @Column
     private Date birthDate;
 
     public Guest() {}

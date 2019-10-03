@@ -6,13 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import java.util.Date;
 
-@Entity(name = "mainGuest")
+@Entity(name = "main_guest")
 public class MainGuest extends Guest {
 
-    @Column
     private String phoneNumber;
-
-    @Column
     private String emailAddress;
 
     @OneToOne(cascade = CascadeType.ALL)

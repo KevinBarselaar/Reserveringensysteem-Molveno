@@ -27,7 +27,6 @@ public class BookingController {
      *
      * @return JSON response of all {@link Booking bookings} in the database
      */
-    @CrossOrigin
     @GetMapping("/overview")
     public List<Booking> getAllBookings() {
         return this.bookingService.findAll();
@@ -39,13 +38,11 @@ public class BookingController {
      * @param id {@link Long Number} of the {@link Booking booking} in the database
      * @return JSON response containing the {@link Booking booking}
      */
-    @CrossOrigin
     @GetMapping("/{id}")
     public Booking getBookingById(@PathVariable Long id) {
         return this.bookingService.findById(id);
     }
 
-    @CrossOrigin
     @GetMapping("/checkedout")
     private List<Booking> getAllCheckedOut() {
         return this.bookingService.findAllCheckedOut();
@@ -56,7 +53,6 @@ public class BookingController {
      *
      * @param {@link Booking booking} object containing all the data from the front-end form
      */
-    @CrossOrigin
     @PostMapping("/create")
     public void createBooking(@RequestBody Booking booking) {
         this.bookingService.create(booking);
