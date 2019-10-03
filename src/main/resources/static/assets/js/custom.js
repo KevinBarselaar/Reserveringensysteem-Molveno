@@ -1,4 +1,5 @@
-var host = window.location.origin; // Server or domain independent host variable
+var host = "http://localhost:8080"; // Server or domain independent host variable
+
 var titleString = {
     "MR": "Mr.",
     "MRS": "Mrs.",
