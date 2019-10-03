@@ -1,9 +1,19 @@
-var host = "http://localhost:8080";
+var host = "http://localhost:8080"; // Server or domain independent host variable
+
+var titleString = {
+    "MR": "Mr.",
+    "MRS": "Mrs.",
+    "MS": "Ms.",
+}
+var boardTypeString = {
+    "ACCOMMODATIONS": "Accommodations",
+    "BED_AND_BREAKFAST": "Bed & Breakfast",
+    "HALF_BOARD": "Half Board",
+}
+
 
 function postData() {
     console.log("posting data...");
-
-
 
     var input_firstname = $("#firstName").val(); 
     var input_lastname = $("#lastName").val(); 
@@ -150,9 +160,9 @@ class Booking {
         this.endBooking = input_end;
         this.numberOfAdults = $("[name='adults']").val();
         this.numberOfMinors = $("[name='minors']").val();
-        this.guest = guest;
-    }
-}
+        this.mainGuest = guest;
+        this.boardType = $("[name='exampleRadios2']:checked").val();
+    }}
 
 class Guest {
     constructor(guest) {
