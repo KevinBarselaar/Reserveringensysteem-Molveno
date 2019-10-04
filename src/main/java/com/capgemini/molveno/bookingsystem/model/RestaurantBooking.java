@@ -1,0 +1,92 @@
+package com.capgemini.molveno.bookingsystem.model;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity(name = "reservation")
+public class RestaurantBooking {
+
+    private String lastName;
+    private String bookingTime;
+    private int numberOfGuests;
+    private int numberOfMinors;
+    private long roomId;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ExtraItems> extraItems = new ArrayList<>();
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long bookingId;
+
+
+
+    public RestaurantBooking() {
+    }
+
+    public RestaurantBooking(String lastName, String bookingTime, int numberOfGuests, List<ExtraItems> extraItems, int numberOfMinors, long roomId) {
+        this.lastName = lastName;
+        this.bookingTime = bookingTime;
+        this.numberOfGuests = numberOfGuests;
+        this.extraItems = extraItems;
+        this.numberOfMinors = numberOfMinors;
+        this.roomId = roomId;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getBookingTime() {
+        return bookingTime;
+    }
+
+    public void setBookingTime(String bookingTime) {
+        this.bookingTime = bookingTime;
+    }
+
+    public int getNumberOfGuests() {
+        return numberOfGuests;
+    }
+
+    public void setNumberOfGuests(int numberOfGuests) {
+        this.numberOfGuests = numberOfGuests;
+    }
+
+    public List<ExtraItems> getExtraItems() {
+        return extraItems;
+    }
+
+    public void setExtraItems(List<ExtraItems> extraItems) {
+        this.extraItems = extraItems;
+    }
+
+    public int getNumberOfMinors() {
+        return numberOfMinors;
+    }
+
+    public void setNumberOfMinors(int numberOfMinors) {
+        this.numberOfMinors = numberOfMinors;
+    }
+
+    public long getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(long roomId) {
+        this.roomId = roomId;
+    }
+
+    public long getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(long bookingId) {
+        this.bookingId = bookingId;
+    }
+}

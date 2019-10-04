@@ -58,7 +58,7 @@ function postData() {
 
     // Post JSON to endpoint.
     $.ajax({
-        url:"http://localhost:1010/api/v1/restaurantbookings/create",
+        url:"http://localhost:8080/api/v1/restaurantbookings/create",
         type:"post",
         data: validJsonBooking,
         contentType: "application/json",
