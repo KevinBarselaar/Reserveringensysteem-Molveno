@@ -5,6 +5,7 @@ import com.capgemini.molveno.bookingsystem.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -67,5 +68,15 @@ public class BookingController {
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
         this.bookingService.deleteById(id);
+    }
+
+    /**
+     * Check in or out a booking and set the availabillity of the rooms in the booking to true or false.
+     *
+     * @param id {@link Long id} of the {@link Booking booking} in the database
+     */
+    @PutMapping("/check-in-out/{id}")
+    public void checkInOutBooking(@PathVariable Long id) {
+        this.bookingService.checkInOutBooking(id);
     }
 }
