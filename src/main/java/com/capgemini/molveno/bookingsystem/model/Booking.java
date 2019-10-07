@@ -23,7 +23,6 @@ public class Booking {
     private String startBooking;
     private String endBooking;
 
-
     /**
      * The main booker
      */
