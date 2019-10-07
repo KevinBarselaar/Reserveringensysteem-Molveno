@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,7 +39,6 @@ public class BookingServiceIntegrationTest {
 
         this.bookingRepository.deleteAll();
         this.roomRepository.deleteAll();
-        //TODO clean whole DB in order to clear ID's
     }
 
     @Test
