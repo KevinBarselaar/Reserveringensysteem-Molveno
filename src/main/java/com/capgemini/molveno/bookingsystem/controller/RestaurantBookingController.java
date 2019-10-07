@@ -40,14 +40,6 @@ public class RestaurantBookingController {
         this.restaurantBookingService.deleteById(id);
     }
 
-    @GetMapping("/nepbooking")
-    public RestaurantBooking getFakeBooking() {
 
-        ExtraItems fakeExtraItems = new ExtraItems(true, false, 2, 23);
-
-        RestaurantBooking booking = new RestaurantBooking("Henk", "10/10/1000", 6, Arrays.asList(fakeExtraItems) , 200, 7);
-
-        return booking;
-    }
 
 }

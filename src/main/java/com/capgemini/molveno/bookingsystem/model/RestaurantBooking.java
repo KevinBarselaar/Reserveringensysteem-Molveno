@@ -6,8 +6,10 @@ import java.util.List;
 
 @Entity(name = "reservation")
 public class RestaurantBooking {
-
+    private int roomNo;
+    private String firstName;
     private String lastName;
+    private String bookingDate;
     private String bookingTime;
     private int numberOfGuests;
     private int numberOfMinors;
@@ -25,13 +27,17 @@ public class RestaurantBooking {
     public RestaurantBooking() {
     }
 
-    public RestaurantBooking(String lastName, String bookingTime, int numberOfGuests, List<ExtraItems> extraItems, int numberOfMinors, long roomId) {
+    public RestaurantBooking(int roomNo, String firstName, String lastName, String bookingDate, String bookingTime, int numberOfGuests, int numberOfMinors, long roomId, List<ExtraItems> extraItems, long bookingId) {
+        this.roomNo = roomNo;
+        this.firstName = firstName;
         this.lastName = lastName;
+        this.bookingDate = bookingDate;
         this.bookingTime = bookingTime;
         this.numberOfGuests = numberOfGuests;
-        this.extraItems = extraItems;
         this.numberOfMinors = numberOfMinors;
         this.roomId = roomId;
+        this.extraItems = extraItems;
+        this.bookingId = bookingId;
     }
 
     public String getLastName() {
@@ -88,5 +94,30 @@ public class RestaurantBooking {
 
     public void setBookingId(long bookingId) {
         this.bookingId = bookingId;
+    }
+
+
+    public int getRoomNo() {
+        return roomNo;
+    }
+
+    public void setRoomNo(int roomNo) {
+        this.roomNo = roomNo;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(String bookingDate) {
+        this.bookingDate = bookingDate;
     }
 }

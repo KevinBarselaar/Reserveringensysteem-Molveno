@@ -4,7 +4,11 @@ function postData() {
     console.log("posting data...");
 
     // Get values from html.
-    var input_dateandtime = $("#datetime").val();
+
+    var input_roomNo = parseInt($("#roomNo").val(), 0);
+    var input_date = $("#date").val();
+    var input_time = $("#time").val();
+    var input_firstname = $("#firstName").val();
     var input_lastname = $("#lastName").val(); 
     var input_adults = parseInt($("#amountAd").val(), 0);
 
@@ -36,8 +40,11 @@ function postData() {
 
     // Create JS object with data.
     var newBooking = {
+        roomNo: input_roomNo,
+        date:input_date,
+        time: input_time, 
+        firstName:input_firstname,
         lastName: input_lastname,
-        bookingTime: input_dateandtime,
         numberOfGuests: input_adults,
         numberOfMinors: input_children,
         roomId: 7,
@@ -60,11 +67,7 @@ function postData() {
 
     // Post JSON to endpoint.
     $.ajax({
-<<<<<<< HEAD
         url: host + "/api/v1/restaurantbookings/create",
-=======
-        url:"http://localhost:8080/api/v1/restaurantbookings/create",
->>>>>>> 8d07f6a3b4cf547108f8bb347aa3bce5ddd9b1e6
         type:"post",
         data: validJsonBooking,
         contentType: "application/json",

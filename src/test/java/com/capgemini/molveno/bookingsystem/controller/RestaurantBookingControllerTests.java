@@ -84,8 +84,9 @@ public class RestaurantBookingControllerTests {
     }
 
     private RestaurantBooking createMockedBooking(Long bookingId, List<ExtraItems> extraItems) {
-        RestaurantBooking booking = new RestaurantBooking("piet", "10/10/1000", 3,
-                extraItems, 4, 5);
+        RestaurantBooking booking = new RestaurantBooking(0, "piet", "de jong",
+                "10/10/1000", "10:00", 3, 3, 4L,
+                extraItems, 4L);
         booking.setBookingId(bookingId);
 
         return booking;
