@@ -5,6 +5,7 @@ import com.capgemini.molveno.bookingsystem.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public class BookingController {
      *
      * @return JSON response of all {@link Booking bookings} in the database
      */
+
     @GetMapping("/overview")
     public List<Booking> getAllBookings() {
         return this.bookingService.findAll();
@@ -37,6 +39,7 @@ public class BookingController {
      * @param id {@link Long Number} of the {@link Booking booking} in the database
      * @return JSON response containing the {@link Booking booking}
      */
+
     @GetMapping("/{id}")
     public Booking getBookingById(@PathVariable Long id) {
         return this.bookingService.findById(id);

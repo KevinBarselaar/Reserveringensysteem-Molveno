@@ -4,7 +4,7 @@ public enum BoardType {
 
     BED_AND_BREAKFAST("Bed and Breakfast"),
     HALF_BOARD("Half board"),
-    ACCOMODATIONS("Accomodations");
+    ACCOMMODATIONS("Accommodations");
 
     private String boardType;
 

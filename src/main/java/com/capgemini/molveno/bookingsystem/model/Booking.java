@@ -20,18 +20,21 @@ public class Booking {
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private List<Room> rooms;
 
-    private LocalDateTime startBooking;
-    private LocalDateTime endBooking;
+    private String startBooking;
+    private String endBooking;
 
     /**
-     * Customer of the hotel
+     * The main booker
      */
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Guest guest;
+    @OneToOne(cascade = CascadeType.ALL)
+    private MainGuest mainGuest;
 
-    private int numberOfMinors;
+    /**
+     * The fellow travelers
+     */
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.ALL})
+    private List<Guest> guests;
 
-    private int numberOfAdults;
     private String extraItems;
 
     @Enumerated(EnumType.STRING)
@@ -52,22 +55,19 @@ public class Booking {
      * @param start      {@link LocalDateTime Start date} of the booking
      * @param end        {@link LocalDateTime End date} of the booking
      */
-    public Booking(List<Room> rooms, String extraItems, LocalDateTime start, LocalDateTime end) {
+    public Booking(List<Room> rooms, String extraItems, String start, String end) {
         this.rooms = rooms;
         this.extraItems = extraItems;
         this.startBooking = start;
         this.endBooking = end;
     }
-
-    public Booking(List<Room> rooms, String extraItems, LocalDateTime start, LocalDateTime end,
-                   int adults, int minors, Guest guest) {
+    public Booking(List<Room> rooms, String extraItems, String start, String end, MainGuest mainGuest, List<Guest> guests) {
         this.rooms = rooms;
         this.extraItems = extraItems;
         this.startBooking = start;
         this.endBooking = end;
-        this.numberOfAdults = adults;
-        this.numberOfMinors = minors;
-        this.guest = guest;
+        this.mainGuest = mainGuest;
+        this.guests = guests;
     }
 
     public Long getId() {
@@ -86,44 +86,36 @@ public class Booking {
         this.rooms = rooms;
     }
 
-    public LocalDateTime getStartBooking() {
+    public String getStartBooking() {
         return startBooking;
     }
 
-    public void setStartBooking(LocalDateTime startBooking) {
+    public void setStartBooking(String startBooking) {
         this.startBooking = startBooking;
     }
 
-    public LocalDateTime getEndBooking() {
+    public String getEndBooking() {
         return endBooking;
     }
 
-    public void setEndBooking(LocalDateTime endBooking) {
+    public void setEndBooking(String endBooking) {
         this.endBooking = endBooking;
     }
 
-    public Guest getGuest() {
-        return guest;
+    public MainGuest getMainGuest() {
+        return mainGuest;
     }
 
-    public void setGuest(Guest guest) {
-        this.guest = guest;
+    public void setMainGuest(MainGuest mainGuest) {
+        this.mainGuest = mainGuest;
     }
 
-    public int getNumberOfAdults() {
-        return numberOfAdults;
+    public List<Guest> getGuests() {
+        return guests;
     }
 
-    public void setNumberOfAdults(int numberOfAdults) {
-        this.numberOfAdults = numberOfAdults;
-    }
-
-    public int getNumberOfMinors() {
-        return numberOfMinors;
-    }
-
-    public void setNumberOfMinors(int numberOfMinors) {
-        this.numberOfMinors = numberOfMinors;
+    public void setGuests(List<Guest> guests) {
+        this.guests = guests;
     }
 
     public String getExtraItems() {
@@ -160,6 +152,6 @@ public class Booking {
 
     @Override
     public String toString() {
-        return id + ", " + rooms + ", " + startBooking + ", " + endBooking + ", " + guest + ", " + numberOfMinors + ", " + numberOfAdults + ", " + extraItems;
+        return id + ", " + rooms + ", " + startBooking + ", " + endBooking + ", " + mainGuest + ", " + extraItems;
     }
 }
