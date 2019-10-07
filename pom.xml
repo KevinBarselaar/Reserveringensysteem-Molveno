@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.capgemini.molveno</groupId>
-	<artifactId>reserveringssysteem</artifactId>
+	<artifactId>bookingsystem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>reserveringssysteem</name>
-	<description>Reserveringssysteem voor hotel Molveno gevestigd in Italie</description>
+	<name>bookingsystem</name>
+	<description>Booking system - Molveno</description>
 
 	<properties>
 		<java.version>12</java.version>
@@ -21,6 +21,7 @@
 	</properties>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -68,6 +69,15 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.0</version>
+				<configuration>
+					<excludes>
+						<exclude>**/*IntegrationTest</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
