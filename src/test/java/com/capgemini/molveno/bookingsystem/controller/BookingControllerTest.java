@@ -117,6 +117,15 @@ public class BookingControllerTest {
         verify(this.bookingService).deleteById(inputBookingId);
     }
 
+    @Test
+    public void checkInOutBooking_longId1_togglesAvailableState() {
+        Long inputBookingId = 1L;
+
+        this.controller.checkInOutBooking(inputBookingId);
+
+        verify(this.bookingService).checkInOutBooking(inputBookingId);
+    }
+
     private Room createMockedRoom(Long id) {
         Room room = new Room(RoomType.SINGLE, 1, 1, new BedType[]{BedType.DOUBLE}, false, 1, 100);
         room.setId(id);

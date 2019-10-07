@@ -20,7 +20,6 @@ public class Booking {
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private List<Room> rooms;
 
-
     private LocalDateTime startBooking;
     private LocalDateTime endBooking;
 
@@ -42,9 +41,6 @@ public class Booking {
 
     private boolean isCheckedIn;
 
-    /**
-     *
-     */
     public Booking() {
     }
 

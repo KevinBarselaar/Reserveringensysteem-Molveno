@@ -31,7 +31,7 @@ public class Room {
     private boolean available;
 
     public Room() {
-
+        this.available = true;
     }
 
     /**
@@ -52,6 +52,7 @@ public class Room {
         this.disabledFriendly = disabledFriendly;
         this.floor = floor;
         this.price = roomPrice;
+        this.available = true;
     }
 
     public void setId(Long id) {
