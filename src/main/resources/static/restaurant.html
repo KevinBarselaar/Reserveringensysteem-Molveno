@@ -145,24 +145,19 @@
                     <div class="modal-body">
                       <form class="form" id="RegisterValidation" action="" method="">
                         <div class="form-row">
-
-                          <div class="col">
-
+                          <div class="col-md-6">
                             <div class="form-group">
-                              <div class="card-content">
-                                <h4 class="card-title"></h4>
-                                <div class="form-group">
-                                  <label class="label-control">Pick the date and time
-                                    to book a table:</label><br>
-                                  <input type="text"
-                                    class="form-control datetimepicker"
-                                    id="datetime" value="10/05/2016" />
-                                </div>
-                              </div>
+                              <label class="label-control">Pick a date</label><br>
+                                <input type="text" class="form-control datepicker" value="11/06/2018" id="date">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="label-control">Pick the time</label><br>
+                                <input type="text" class="form-control timepicker" value="11:00" id="time">
                             </div>
                           </div>
                         </div>
-
                         <div class="col">
                           <div class="form-row">
                             <div class="card-content">
@@ -172,7 +167,6 @@
                             </div>
                           </div>
                         </div>
-
                         <div class="col">
                             <div class="form-row">
                                 <div class="card-content">
@@ -182,7 +176,6 @@
                           </div>
                         </div>
                       </div>
-
                       <div class="col">
                           <div class="form-row">
                               <div class="card-content">
@@ -192,10 +185,8 @@
                           </div>
                         </div>
                       </div>
-
                         <div class="col">
                           <label class="label-control">Please select extra items</label>
-
                           <div class="col">
                               <div class="form-row">
                                   <div class="card-content">
@@ -205,7 +196,6 @@
                               </div>
                             </div>
                           </div>
-
                           <div class="col">
                               <div class="form-row">
                                   <div class="card-content">
@@ -215,11 +205,6 @@
                               </div>
                             </div>
                           </div>
-
-
-
-
-
                           <div class="col-sm-10 checkbox-radios">
                             <div class="checkbox">
                               <label>
@@ -234,11 +219,6 @@
                                   I want to dine on the terrace
                                 </label>
                               </div>
-
-
-
-
-
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary"
                                 data-dismiss="modal">Cancel</button>
@@ -247,25 +227,10 @@
                             </div>
                           </div>
                         </div>
-                      
                       </div>
                     </div>
                   </div>
-                  
-
-
-
-
                 </div>
-
-
-
-
-
-
-
-
-
               </div>
             </div>
           </div>
@@ -335,16 +300,20 @@
     $(document).ready(function () {
       console.log("Document ready");
 
+      // initialise Datetimepicker and Sliders
+      md.initFormExtendedDatetimepickers();
 
+      $('#date_time').datetimepicker({
+    minTime:'11:00'
+
+});
 
       $('#newTableFormModal').perfectScrollbar();
-
       $('#newTableButton').click(function () {
         $('#newTableFormModal').modal({
           backdrop: 'static'
         });
       });
-
 
       $("#submitButton").click(function (e) {
         e.preventDefault();
@@ -354,7 +323,6 @@
           $(this).find('form')[0].reset();
         });
         // getData();
-        
       });
 
       // $("#datatables").DataTable({
@@ -401,61 +369,32 @@
       //   ]
       // });
 
-      console.log("DataTable init");
-      // Load DataTable with data format.
-      var table = $("#datatables").DataTable();
+      // console.log("DataTable init");
+      // // Load DataTable with data format.
+      // var table = $("#datatables").DataTable();
 
-      // Load first data.
-      getData();
+      // // Load first data.
+      // getData();
 
-      // Edit record
-      table.on('click', '.edit', function () {
-        $tr = $(this).closest('tr');
-        var data = table.row($tr).data();
-        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-      });
+      // // Edit record
+      // table.on('click', '.edit', function () {
+      //   $tr = $(this).closest('tr');
+      //   var data = table.row($tr).data();
+      //   alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      // });
 
-      // Delete a record
-      table.on('click', '.remove', function (e) {
-        $tr = $(this).closest('tr');
-        table.row($tr).remove().draw();
-        e.preventDefault();
-      });
+      // // Delete a record
+      // table.on('click', '.remove', function (e) {
+      //   $tr = $(this).closest('tr');
+      //   table.row($tr).remove().draw();
+      //   e.preventDefault();
+      // });
 
-      //Get detail information
-      table.on('click', '.info', function () {
-        alert('You clicked on the info button');
-      });
-
-      $('#newReservationFormModal').perfectScrollbar();
-
-      $('#newReservationButton').click(function () {
-        $('#newReservationFormModal').modal({
-          backdrop: 'static'
-        });
-      });
-
-
-
-
-
-
-
-
-
-
-
+      // //Get detail information
+      // table.on('click', '.info', function () {
+      //   alert('You clicked on the info button');
+      // });
     });
-
-
-
-
-
-
-
-
-
   </script>
 </body>
-
 </html>

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 @Entity(name = "extra")
 public class ExtraItems {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,6 +17,7 @@ public class ExtraItems {
     private boolean isTerrace;
     private int numberOfChildChairs;
     private int numberOfBoosterSeats;
+
 
 
     public ExtraItems() {

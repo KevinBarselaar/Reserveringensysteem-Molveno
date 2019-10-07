@@ -1,3 +1,5 @@
+var host = "http://localhost:1010";
+
 function postData() {
     console.log("posting data...");
 
@@ -58,7 +60,7 @@ function postData() {
 
     // Post JSON to endpoint.
     $.ajax({
-        url:"http://localhost:1010/api/v1/restaurantbookings/create",
+        url: host + "/api/v1/restaurantbookings/create",
         type:"post",
         data: validJsonBooking,
         contentType: "application/json",
@@ -69,23 +71,24 @@ function postData() {
             //getData();
         }
     });
+}
 
-//     function getData() {
-//         console.log("getting data...");
-    
-//         // Get the data from endpoint.
-//         $.ajax({
-//             url: host + "/api/v1/restaurantbookings/overview",
-//             type:"get",
-//             success: function(bookings) {
-//                 // On successful get, reload the datatable with new data.
-//                 console.log("This is the data: ");
-//                 bookings.forEach(element => {
-//                     console.log(element);
-//                 });
-//                 $('#datatables').DataTable().clear();
-//                 $('#datatables').DataTable().rows.add(bookings);
-//                 $('#datatables').DataTable().columns.adjust().draw();
-//             }
-//         });
+function getData() {
+    console.log("getting data...");
+
+    // Get the data from endpoint.
+    $.ajax({
+        url: host + "/api/v1/restaurantbookings/overview",
+        type:"get",
+        success: function(bookings) {
+            // On successful get, reload the datatable with new data.
+            console.log("This is the data: ");
+            bookings.forEach(element => {
+                console.log(element);
+            });
+            $('#datatables').DataTable().clear();
+            $('#datatables').DataTable().rows.add(bookings);
+            $('#datatables').DataTable().columns.adjust().draw();
+        }
+    });
 }
