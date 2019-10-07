@@ -48,7 +48,7 @@ public class BookingServiceIntegrationTest {
         //Arange.
         Room room_1 = this.roomService.create(new Room(RoomType.DOUBLE, 2, 5, new BedType[]{BedType.DOUBLE, BedType.DOUBLE}, true, 1, 100));
         Room room_2 = this.roomService.create(new Room(RoomType.SINGLE, 2, 5, new BedType[]{BedType.DOUBLE, BedType.DOUBLE}, true, 1, 100));
-        this.bookingService.create(new Booking(Arrays.asList(room_1, room_2), "handdoeken", LocalDateTime.now(), LocalDateTime.now()));
+        this.bookingService.create(new Booking(Arrays.asList(room_1, room_2), "handdoeken", "01/01/2019", "01/01/2019"));
 
         //Act.
         List<Booking> allBookings = this.bookingService.findAll();
