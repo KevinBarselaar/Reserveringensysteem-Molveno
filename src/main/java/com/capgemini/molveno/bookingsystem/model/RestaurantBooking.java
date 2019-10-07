@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "reservation")
+@Entity(name = "restaurantbooking")
 public class RestaurantBooking {
     private int roomNo;
     private String firstName;

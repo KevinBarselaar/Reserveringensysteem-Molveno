@@ -32,24 +32,4 @@ public class RestaurantBookingService {
     public RestaurantBooking create(RestaurantBooking reservation) {
         return this.reservationRepository.saveAndFlush(reservation);
     }
-
-//    public void checkRestaurantCapacity() {
-//        RestaurantBooking booking = new RestaurantBooking();
-//
-//        int maxCapacity = 102;
-//        int numberOfGuests = booking.getNumberOfGuests();
-//        int numberOfMinors = booking.getNumberOfMinors();
-//        int totalNumberOfGuests = numberOfGuests + numberOfMinors;
-//
-//        if (totalNumberOfGuests > 102) {
-//            System.out.println("NOPE");
-//        }
-//        else if (totalNumberOfGuests < 1) {
-//            System.out.println("Whoops..");
-//        }
-//        else {
-//            maxCapacity = maxCapacity - totalNumberOfGuests;
-//        }
-//
-//    }
 }
