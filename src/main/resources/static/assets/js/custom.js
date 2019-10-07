@@ -5,12 +5,12 @@ var titleString = {
     "MRS": "Mrs.",
     "MS": "Ms.",
 }
-var boardTypeString = {
+var boardTypes = {
     "ACCOMMODATIONS": "Accommodations",
     "BED_AND_BREAKFAST": "Bed & Breakfast",
     "HALF_BOARD": "Half Board",
 }
-var roomTypeString = {
+var roomTypes = {
     "SINGLE": "Single",
     "DOUBLE": "Double",
     "TWO_DOUBLE": "2x Double",
@@ -19,7 +19,6 @@ var roomTypeString = {
 
 
 function postData() {
-<<<<<<< HEAD
     console.log("posting data...");
 
     var input_firstname = $("#firstName").val(); 
@@ -86,9 +85,6 @@ function postData() {
             getData();
         }
     });
-=======
-    // Wordt in andere branch gefixt, werkt in deze geenszins door project merge
->>>>>>> front-end-integration
 }
 
 function setFormValidation(id) {
@@ -131,7 +127,7 @@ function getData() {
 function openBookingDetail(booking) {
     var rooms = "";
     for (var i = 0; i < booking.rooms.length; i++){
-        rooms += booking.rooms[i].id + " (" + roomTypeString[booking.rooms[i].type] + ")" + "<br/>";
+        rooms += booking.rooms[i].id + " (" + roomTypes[booking.rooms[i].type] + ")" + "<br/>";
     }
     
     // Set data
@@ -140,7 +136,7 @@ function openBookingDetail(booking) {
     $('#bookingDetailsCheckin').html(booking.startBooking);
     $('#bookingDetailsCheckout').html(booking.endBooking);
     $('#bookingDetailsRooms').html(rooms.substring(0, rooms.length - 5));
-    $('#bookingDetailsBoardType').html(boardTypeString[booking.boardType]);
+    $('#bookingDetailsBoardType').html(boardTypes[booking.boardType]);
     $('#bookingDetailsMainGuestName').html(titleString[booking.mainGuest.title] + " " + booking.mainGuest.firstName + " " + booking.mainGuest.lastName);
     $('#bookingDetailsMainGuestPhone').html(booking.mainGuest.phoneNumber);
     $('#bookingDetailsMainGuestEmail').html(booking.mainGuest.emailAddress);
