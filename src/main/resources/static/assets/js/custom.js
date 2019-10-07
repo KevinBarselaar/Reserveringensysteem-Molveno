@@ -25,6 +25,8 @@ function postData() {
     var input_lastname = $("#lastName").val(); 
     var input_phonenumber = $("#telNo").val();
     var input_birthday =  $("#birthday").val();
+    var input_title =  $("#title").val();
+    console.log(input_title);
 
     var bdayYear = input_birthday.substring(6,10);
     var bdayMonth = input_birthday.substring(3,5);
@@ -61,6 +63,7 @@ function postData() {
         phoneNumber : input_phonenumber,
         birthDate : input_birthday,
         emailAddress : input_email,
+        title : input_title,
         address : guestAddress
     }
 
