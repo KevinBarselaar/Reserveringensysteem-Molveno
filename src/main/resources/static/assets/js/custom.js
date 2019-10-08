@@ -25,7 +25,17 @@ function postData() {
     var input_lastname = $("#lastName").val(); 
     var input_phonenumber = $("#telNo").val();
     var input_birthday =  $("#birthday").val();
-    var input_title =  $("#title").val();
+
+    var input_title;
+
+    if ($("#mr").prop('checked')) {
+      input_title = $("#mr").val();
+    } else if ($("#ms").prop('checked')) {
+      input_title = $("#ms").val();
+    } else if ($("#mrs").prop('checked')) {
+      input_title = $("#mrs").val();
+    }
+
     console.log(input_title);
 
     var bdayYear = input_birthday.substring(6,10);
