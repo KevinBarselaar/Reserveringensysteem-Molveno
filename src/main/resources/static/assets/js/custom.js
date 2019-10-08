@@ -204,18 +204,17 @@ $(document).ready(function() {
 });
 
 function deleteBooking(id) {
-    console.log("deleting booking " + id +"...");
-    // Get the data from endpoint.
+    console.log("Deleting Booking with ID: " + id + "...");
     $.ajax({
         url: host + "/api/bookings/delete/" + id,
         type:"delete",
         success: function(data) {
-            // On successful get, reload the datatable with new data.
-            console.log("This is the booking data from #" + data.id);
+
+            console.log("Succesfully deleted Booking with ID: " + data.id + ".");
             console.log(data);
         },
         error: function () {
-            console.log ("invalid Id?");
+            console.log ("Invalid Id?");
         }
     });
 }
