@@ -1,8 +1,11 @@
 package com.capgemini.molveno.bookingsystem.model;
 
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class contains information about a room. A room can be included in a {@link Booking booking} if
@@ -10,6 +13,7 @@ import javax.persistence.*;
  */
 @Entity(name = "room")
 @EqualsAndHashCode
+@ToString
 public class Room {
 
     @Id
@@ -24,6 +28,9 @@ public class Room {
     @ElementCollection(targetClass = BedType.class)
     @Enumerated(EnumType.STRING)
     private BedType[] bedTypes;
+
+    @ManyToMany(mappedBy = "rooms", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Booking> bookings = new ArrayList<>();
 
     private boolean disabledFriendly;
     private int floor;
@@ -125,5 +132,13 @@ public class Room {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

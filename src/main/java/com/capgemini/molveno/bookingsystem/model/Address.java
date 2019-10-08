@@ -1,5 +1,7 @@
 package com.capgemini.molveno.bookingsystem.model;
 
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +11,7 @@ import javax.persistence.Id;
  * Class where the address of a guest is stored.
  */
 @Entity(name = "address")
+@EqualsAndHashCode
 public class Address {
 
     @Id
