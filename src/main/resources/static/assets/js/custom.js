@@ -209,7 +209,6 @@ function deleteBooking(id) {
         url: host + "/api/bookings/delete/" + id,
         type:"delete",
         success: function(data) {
-
             console.log("Succesfully deleted Booking with ID: " + data.id + ".");
             console.log(data);
         },
