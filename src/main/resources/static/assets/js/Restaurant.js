@@ -1,6 +1,6 @@
 var host = "http://localhost:1010";
 
-function postData() {
+function postRestaurantData() {
     console.log("posting data...");
 
     // Get values from html.
@@ -75,27 +75,27 @@ function postData() {
             // On successful post, reload data to get the added one as well.
             console.log("API Success function");
             console.log(result);
-            //getData();
+            getRestaurantData();
         }
     });
 }
 
-function getData() {
+function getRestaurantData() {
     console.log("getting data...");
 
     // Get the data from endpoint.
     $.ajax({
         url: host + "/api/v1/restaurantbookings/overview",
         type:"get",
-        success: function(bookings) {
+        success: function(restaurantbookings) {
             // On successful get, reload the datatable with new data.
             console.log("This is the data: ");
-            bookings.forEach(element => {
+            restaurantbookings.forEach(element => {
                 console.log(element);
             });
-            $('#datatables').DataTable().clear();
-            $('#datatables').DataTable().rows.add(bookings);
-            $('#datatables').DataTable().columns.adjust().draw();
+            $('#restaurantDatatables').DataTable().clear();
+            $('#restaurantDatatables').DataTable().rows.add(restaurantbookings);
+            $('#restaurantDatatables').DataTable().columns.adjust().draw();
         }
     });
 }
