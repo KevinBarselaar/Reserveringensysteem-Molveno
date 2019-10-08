@@ -49,12 +49,12 @@ function postData() {
     }
     
     var guestAddress = {
-        streetName : $("[name='streetName']").val(),
-        houseNumber : $("[name='houseNumber']").val(),
-        houseNumberAddition : $("[name='addition']").val(),
-        postalCode : $("[name='zipcode']").val(),
-        city : $("[name='city']").val(),
-        country : $("[name='country']").val()
+        streetName : $("#streetName").val(),
+        houseNumber : $("#houseNumber").val(),
+        houseNumberAddition : $("#addition").val(),
+        postalCode : $("#zipcode").val(),
+        city : $("#city").val(),
+        country : $("#country").val()
     }
 
     var guest = {
