@@ -36,6 +36,11 @@ public class RoomController {
         return this.roomService.findAllAvailable();
     }
 
+//    @GetMapping("/overview/available")
+//    public List<Room> getAllAvailableRooms(String startDate, String endDate) {
+//        return null;
+//    }
+
     /**
      * Request to show the information of a single {@link Room room}
      *

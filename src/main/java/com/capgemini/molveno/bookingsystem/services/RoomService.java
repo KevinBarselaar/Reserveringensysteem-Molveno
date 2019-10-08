@@ -35,7 +35,7 @@ public class RoomService {
     public List<Room> findAllAvailableBetweenDates(Date startDate, Date endDate) {
         return this.findAll()
                 .stream()
-                .filter(room -> isRoomBookedBetweenDates(room, startDate, endDate))
+                .filter(room -> !isRoomBookedBetweenDates(room, startDate, endDate))
                 .collect(Collectors.toList());
     }
 
@@ -50,11 +50,11 @@ public class RoomService {
     private boolean isRoomBookedBetweenDates(Room room, Date startDate, Date endDate) {
         for (Booking booking : room.getBookings()) {
             if (dateGreatherThanOrEqualTo(startDate, booking.getStartBooking()) && dateLessThanOrEqualTo(endDate, booking.getEndBooking())) {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     private boolean dateGreatherThanOrEqualTo(Date date, Date compareDate) {
