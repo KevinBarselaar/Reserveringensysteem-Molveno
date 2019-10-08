@@ -1,4 +1,5 @@
-var host = "http://localhost:8080"; 
+var host = "http://localhost:8080";
+var currentBooking;
 
 var titleString = {
     "MR": "Mr.",
@@ -113,15 +114,27 @@ function getData() {
     $.ajax({
         url: host + "/api/bookings/overview",
         type:"get",
-        success: function(reservations) {
+        success: function(bookings) {
             // On successful get, reload the datatable with new data.
-            console.log("This is the data: ");
-            reservations.forEach(element => {
-                console.log(element);
-            });
+            console.log("GET success");
             $('#datatables').DataTable().clear();
-            $('#datatables').DataTable().rows.add(reservations);
+            $('#datatables').DataTable().rows.add(bookings);
             $('#datatables').DataTable().columns.adjust().draw();
+        }
+    });
+}
+
+function checkInOut(id, in_out, icon) {
+    var message = $('#bookingDetailsMainGuestName').html() + " has checked " + in_out + ".";
+    $.ajax({
+        url: host + "/api/bookings/check-in-out/" + id,
+        type:"put",
+        success: function(booking) {
+            // On successful get, reload the datatable with new data.
+            console.log("PUT success");
+            console.log(booking);
+            showNotification('top','right', icon, 'info',  message);
+            getData();
         }
     });
 }
@@ -134,10 +147,10 @@ function openBookingDetail(booking) {
     }
     
     // Set data
-    $('#bookingDetailsTitle').html("Booking (#" + booking.id + ")");
+    $('#bookingDetailsTitle').html("Booking #" + booking.id);
     $('#bookingDetailsSubtitle').html("Booked on " + booking.creationDate.substr(0,10));
-    $('#bookingDetailsCheckin').html(booking.startBooking);
-    $('#bookingDetailsCheckout').html(booking.endBooking);
+    $('#bookingDetailsCheckin').html(booking.startBooking.substr(0, booking.endBooking.indexOf('T')));
+    $('#bookingDetailsCheckout').html(booking.endBooking.substr(0, booking.endBooking.indexOf('T')));
     $('#bookingDetailsRooms').html(rooms.substring(0, rooms.length - 5));
     $('#bookingDetailsBoardType').html(boardTypes[booking.boardType]);
     $('#bookingDetailsMainGuestName').html(titleString[booking.mainGuest.title] + " " + booking.mainGuest.firstName + " " + booking.mainGuest.lastName);
@@ -155,7 +168,7 @@ function openBookingDetail(booking) {
     if (booking.guests.length > 0) {
         for (var i = 0; i < booking.guests.length; i++) {
             /***** INFO: Currently the dummy data contains no adults because of date creation *******/
-            if (currentYear - parseInt(booking.guests[i].birthDate.substring(0,4)) < 18) {
+            if (currentYear - parseInt(booking.guests[i].birthDate.substring(0,4)) < 10) {
                 children++;
             }
             $('#bookingDetailsGuestsTable tbody').append('<tr><td>' + titleString[booking.guests[i].title] + " " + booking.guests[i].firstName + " " + booking.guests[i].lastName + '</td><td>' + booking.guests[i].birthDate.substr(0,10) + '</td></tr>');
@@ -165,7 +178,20 @@ function openBookingDetail(booking) {
         $('#bookingDetailsGuests').html("No other guests");
     }
     
-
+    $('#checkInButton').removeClass();
+    $('#checkOutButton').removeClass();
+    
+    // Disable check out button if guest hasn't checked in yet
+    if (booking.checkedIn) {
+        $('#checkInButton').addClass('btn btn-secondary disabled mr-3').html('<i class="material-icons">check_circle</i> Checked in');
+        $('#checkOutButton').addClass('btn btn-primary');
+    } else if (Date.now() > Date.parse(booking.endBooking.substr(0, booking.endBooking.indexOf('T')))) { // Check if check out date is in the past, checking in after this should not be possible
+        $('#checkInButton').remove();
+        $('#checkOutButton').remove();
+    } else {
+        $('#checkInButton').addClass('btn btn-primary mr-3').html('<i class="material-icons">check_circle</i> Check in');
+        $('#checkOutButton').addClass('btn btn-secondary disabled');
+    }
 
     $('#bookingDetails').modal();
 }
@@ -180,6 +206,7 @@ function getBooking(id, modalRequested) {
             // On successful get, reload the datatable with new data.
             console.log("This is the booking data from #" + data.id);
             console.log(data);
+            currentBooking = data;
             if (modalRequested) { openBookingDetail(data); }
         },
         error: function () {
@@ -188,7 +215,22 @@ function getBooking(id, modalRequested) {
     });
 }
 
+function showNotification (from, align, icon, color, message) {
+    type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
 
+    $.notify({
+        icon: icon,
+        message: message
+
+    }, {
+        type: type[color],
+        timer: 2000,
+        placement: {
+            from: from,
+            align: align
+        }
+    });
+}
 
 $(document).ready(function() {
     /* Form validation init */

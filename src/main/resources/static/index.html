@@ -364,11 +364,11 @@
                   <div class="modal-body container">
 										<div class="row">
 												<div class="col-md-6 mt-3">
-													<h6 class="text-gray">Check in</h6>
+													<h6 class="text-gray">Check in date</h6>
 													<h4 id="bookingDetailsCheckin"></h4>
 												</div>
 												<div class="col-md-6 mt-3">
-													<h6 class="text-gray">Check out</h6>
+													<h6 class="text-gray">Check out date</h6>
 													<h4 id="bookingDetailsCheckout"></h4>
 												</div>
 										</div>
@@ -431,7 +431,11 @@
 											</div>
 										</div>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer d-flex justify-content-between mt-3">
+										<div class="btn-group">
+											<button type="button" class="btn btn-primary mr-3" data-dismiss="modal" id="checkInButton"><i class="material-icons">check_circle</i> Check in</button>
+											<button type="button" class="btn btn-secondary disabled" data-dismiss="modal" id="checkOutButton"><i class="material-icons">exit_to_app</i> Check out</button>
+										</div>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons">close</i> Close</button>
                   </div>
                 </div>
@@ -511,7 +515,8 @@
         $(this).find('form')[0].reset();
       });
       getData();
-    });
+		});
+		
     $("#datatables").DataTable({
         "pagingType": "full_numbers",
         "lengthMenu": [
@@ -532,11 +537,12 @@
             }},
             { "data": function(data) {
                 return data.startBooking.split("T")[0];
-            } },
-            { "data": "endBooking" },
+            }},
+            { "data": function(data) {
+                return data.endBooking.split("T")[0];
+            }},
             { "data": function ( data ) {
                 if(data) {
-                    console.log(data);
                     var rooms = "";
                     for (var i = 0; i < data.rooms.length; i++){
                         rooms += data.rooms[i].id + ", ";
@@ -581,7 +587,7 @@
     table.on('click', '.info', function() {
 			$tr = $(this).closest('tr');
 			var data = table.row($tr).data();
-      getBooking(data.id, true);x
+      getBooking(data.id, true);
 		});
 		
 		$('#newBookingModal').perfectScrollbar();
@@ -591,6 +597,14 @@
       $('#newBookingModal').modal({
         backdrop: 'static'
       });
+		});
+
+		$('#checkInButton').click( function() {
+			checkInOut(currentBooking.id, 'in', $(this).find('i').html());
+		});
+		
+		$('#checkOutButton').click( function() {
+			checkInOut(currentBooking.id, 'out', $(this).find('i').html());
 		});
   });
   </script>
