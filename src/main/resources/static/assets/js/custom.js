@@ -50,21 +50,21 @@ function postData() {
     var input_boardType;
 
 
-    if ($("#acc").prop('checked')) {
-      input_boardType = $("#acc").val();
-    } else if ($("#bnb").prop('checked')) {
-      input_boardType = $("#bnb").val(); 
-    } else if ($("#half").prop('checked')) {
-      input_boardType = $("#half").val(); 
+    if ($("#accommodations").prop('checked')) {
+      input_boardType = $("#accommodations").val();
+    } else if ($("#bedandbreakfast").prop('checked')) {
+      input_boardType = $("#bedandbreakfast").val();
+    } else if ($("#halfboard").prop('checked')) {
+      input_boardType = $("#halfboard").val();
     }
     
     var guestAddress = {
-        streetName : $("[name='streetName']").val(),
-        houseNumber : $("[name='houseNumber']").val(),
-        houseNumberAddition : $("[name='addition']").val(),
-        postalCode : $("[name='zipcode']").val(),
-        city : $("[name='city']").val(),
-        country : $("[name='country']").val()
+        streetName : $("#streetName").val(),
+        houseNumber : $("#houseNumber").val(),
+        houseNumberAddition : $("#addition").val(),
+        postalCode : $("#zipcode").val(),
+        city : $("#city").val(),
+        country : $("#country").val()
     }
 
     var guest = {
