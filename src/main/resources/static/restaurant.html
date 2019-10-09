@@ -115,8 +115,8 @@
                         <tr>
                           <th>First Name</th>
                           <th>Last name</th>
-                          <th>Dinner time</th>
-                          <th>Number of guests</th>
+                          <th>Dinner date & time</th>
+                          <th>Number of adults</th>
                           <th>Number of minors</th>
                           <th class="disabled-sorting text-right">Actions</th>
                         </tr>
@@ -126,8 +126,8 @@
                       <tfoot>
                         <th>First Name</th>
                         <th>Last name</th>
-                        <th>Dinner time</th>
-                        <th>Number of guests</th>
+                        <th>Dinner date & time</th>
+                        <th>Number of adults</th>
                         <th>Number of minors</th>
                         <th class="disabled-sorting text-right">Actions</th>
                       </tfoot>
@@ -329,9 +329,10 @@
       // initialise Datetimepicker and Sliders
       md.initFormExtendedDatetimepickers();
 
-      $('#date_time').datetimepicker({
-        minTime:'11:00'
-      });
+      // $('#time').datetimepicker({
+      //   disabledHours: [0, 1, 2, 3, 4, 5, 6, 7, 23, 24],
+      //   enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+      // });
 
       $('#newTableFormModal').perfectScrollbar();
       
@@ -372,7 +373,7 @@
           { "data": "firstName" },
           { "data": "lastName" },
           { "data": function(data) {
-            return data.bookingDate + " " + data.bookingTime;
+            return data.bookingDate + " @ " + data.bookingTime;
           }},
           { "data": "numberOfGuests" },
           { "data": "numberOfMinors" },

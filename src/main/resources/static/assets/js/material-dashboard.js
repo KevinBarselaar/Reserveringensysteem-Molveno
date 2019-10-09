@@ -329,8 +329,8 @@ md = {
     });
 
     $('.timepicker').datetimepicker({
-      //          format: 'H:mm',    // use this format if you want the 24hours timepicker
-      format: 'h:mm A', //use this format if you want the 12hours timpiecker with AM/PM toggle
+      format: 'H:mm',    // use this format if you want the 24hours timepicker
+      //format: 'h:mm A', //use this format if you want the 12hours timpiecker with AM/PM toggle
       icons: {
         time: "fa fa-clock-o",
         date: "fa fa-calendar",
@@ -338,11 +338,13 @@ md = {
         down: "fa fa-chevron-down",
         previous: 'fa fa-chevron-left',
         next: 'fa fa-chevron-right',
-        today: 'fa fa-screenshot',
+        // today: 'fa fa-screenshot',
         clear: 'fa fa-trash',
         close: 'fa fa-remove'
 
-      }
+      },
+      disabledHours: [0, 1, 2, 3, 4, 5, 6, 7, 23, 24],
+      enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
     });
   },
 
