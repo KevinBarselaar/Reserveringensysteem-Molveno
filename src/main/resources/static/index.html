@@ -610,7 +610,9 @@
     // Delete a record
     table.on('click', '.remove', function(e) {
       $tr = $(this).closest('tr');
+      var data = table.row($tr).data();
       table.row($tr).remove().draw();
+      deleteBooking(data.id);
       e.preventDefault();
     });
 
