@@ -64,12 +64,6 @@ public class BookingServiceIntegrationTest {
         assertThat(this.roomService.findById(secondRoomId).isAvailable(), is(false));
     }
 
-    //TODO booking start/einddatum zijn nu strings -> naar Date, anders kan je niet querieen.
-    //TODO Room krijgt een bidirectionele relatie met booking: booking heeft n rooms, room heeft 1 booking
-    //TODO select room r from Room where r.booking.startdatum and r.booking.enddatum NOT between :startDatum AND :einddatum
-    //TODO voeg de AND room.available = true; toe?
-    //TODO wat als je een kamer boekt op een 'beschikbare' datum?
-
     @Test
     void findAllAvailableBetweenDates_inputStartAndEndDate_returnsListOf2Rooms() {
         Room firstRoom = new Room(RoomType.SINGLE, 1, 0, new BedType[]{BedType.SINGLE}, false, 0, 95);
