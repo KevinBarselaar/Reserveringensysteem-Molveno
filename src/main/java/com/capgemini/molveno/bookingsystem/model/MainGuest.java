@@ -17,7 +17,7 @@ public class MainGuest extends Guest {
 
     public MainGuest () {}
 
-    public MainGuest(Title title, String firstName, String lastName, Date birthDate, String phoneNumber, String emailAddress, Address address) {
+    public MainGuest(Title title, String firstName, String lastName, String birthDate, String phoneNumber, String emailAddress, Address address) {
         super(title, firstName, lastName, birthDate);
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;

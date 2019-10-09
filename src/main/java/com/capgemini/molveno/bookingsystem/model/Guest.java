@@ -27,7 +27,7 @@ public class Guest {
 
     @NonNull
     private String lastName;
-    private Date birthDate;
+    private String birthDate;
 
     public Guest() {}
 
@@ -38,7 +38,7 @@ public class Guest {
      * @param lastName {@link String String} containing the last name of the guest
      * @param birthDate {@link Date Birth date} of the guest
      */
-    public Guest(Title title, String firstName, String lastName, Date birthDate) {
+    public Guest(Title title, String firstName, String lastName, String birthDate) {
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -77,11 +77,11 @@ public class Guest {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 }
