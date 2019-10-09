@@ -22,10 +22,10 @@ public class Booking {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Room> rooms;
 
-    @JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date startBooking;
 
-    @JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date endBooking;
 
     /**
