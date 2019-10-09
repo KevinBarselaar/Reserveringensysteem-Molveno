@@ -39,6 +39,34 @@
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
+<<<<<<< HEAD
+          Tip 2: you can also add an image using data-image tag
+      -->
+        <div class="logo">
+            <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+                M
+            </a>
+            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                Molveno
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">
+                        <i class="material-icons">view_list</i>
+                        <p>Booking overview</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="restaurant.html">
+                        <i class="material-icons">restaurant_menu</i>
+                        <p>Restaurant</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+=======
       Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
@@ -48,6 +76,7 @@
       <a href="http://www.creative-tim.com" class="simple-text logo-normal">
         Molveno
       </a>
+>>>>>>> 7862aae95471a8d0146fa660ff42f8582f9a13d3
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
@@ -621,7 +650,9 @@
     // Delete a record
     table.on('click', '.remove', function(e) {
       $tr = $(this).closest('tr');
+      var data = table.row($tr).data();
       table.row($tr).remove().draw();
+      deleteBooking(data.id);
       e.preventDefault();
     });
 
@@ -633,6 +664,14 @@
     });
 		
 		$('.modal').perfectScrollbar();
+
+        $('#newBookingButtonser').click( function() {
+            $('#newBookingModal').modal({
+                backdrop: 'static'
+            });
+        });
+
+        setFormValidation('#RegisterValidation');
 
     $('#newBookingButton').click( function() {
       $('#newBookingModal').modal({

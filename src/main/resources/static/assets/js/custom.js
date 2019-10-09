@@ -22,8 +22,8 @@ var roomTypes = {
 function postData() {
     console.log("posting data...");
 
-    var input_firstname = $("#firstName").val(); 
-    var input_lastname = $("#lastName").val(); 
+    var input_firstname = $("#firstName").val();
+    var input_lastname = $("#lastName").val();
     var input_phonenumber = $("#telNo").val();
 
     var input_birthday =  moment($("#birthday").val());
@@ -39,21 +39,23 @@ function postData() {
     var input_email =  $("#customerEmail").val();
     
     var input_boardType;
-    if ($("#acc").prop('checked')) {
-      input_boardType = $("#acc").val();
-    } else if ($("#bnb").prop('checked')) {
-      input_boardType = $("#bnb").val(); 
-    } else if ($("#half").prop('checked')) {
-      input_boardType = $("#half").val(); 
+
+
+    if ($("#accommodations").prop('checked')) {
+      input_boardType = $("#accommodations").val();
+    } else if ($("#bedandbreakfast").prop('checked')) {
+      input_boardType = $("#bedandbreakfast").val();
+    } else if ($("#halfboard").prop('checked')) {
+      input_boardType = $("#halfboard").val();
     }
-    
+
     var guestAddress = {
-        streetName : $("[name='streetName']").val(),
-        houseNumber : $("[name='houseNumber']").val(),
-        houseNumberAddition : $("[name='addition']").val(),
-        postalCode : $("[name='zipcode']").val(),
-        city : $("[name='city']").val(),
-        country : $("[name='country']").val()
+        streetName : $("#streetName").val(),
+        houseNumber : $("#houseNumber").val(),
+        houseNumberAddition : $("#addition").val(),
+        postalCode : $("#zipcode").val(),
+        city : $("#city").val(),
+        country : $("#country").val()
     }
 
     var guest = {
@@ -290,6 +292,21 @@ $(document).ready(function() {
         md.initSliders();
     }
 });
+
+function deleteBooking(id) {
+    console.log("Deleting Booking with ID: " + id + "...");
+    $.ajax({
+        url: host + "/api/bookings/delete/" + id,
+        type:"delete",
+        success: function(data) {
+            console.log("Succesfully deleted Booking with ID: " + data.id + ".");
+            console.log(data);
+        },
+        error: function () {
+            console.log ("Invalid Id?");
+        }
+    });
+}
 
 class Booking {  
 
