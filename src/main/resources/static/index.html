@@ -135,6 +135,7 @@
                   </div>
                   <div class="modal-body">
                     <form class="form" id="RegisterValidation" action="" method="">
+
                         <div class="form-row">
                             <div class="col">
                                 <div class="form-group">
@@ -149,13 +150,14 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="col">
                                 <div class="form-group">
                                     <label class="bmd-label-floating"> Board type</label>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="exampleRadios2" value="ACCOMMODATIONS" id="accommodations" checked=""> Accommodations
+                                        <input class="form-check-input" type="radio" name="boardtype-radio" value="ACCOMMODATIONS" id="accommodations" checked=""> Accommodations
                                         <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -163,7 +165,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="exampleRadios2" value="BED_AND_BREAKFAST" id="bedandbreakfast"> Bed &amp; Breakfast
+                                        <input class="form-check-input" type="radio" name="boardtype-radio" value="BED_AND_BREAKFAST" id="bedandbreakfast"> Bed &amp; Breakfast
                                         <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -171,7 +173,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="exampleRadios2" value="HALF_BOARD" id="halfboard"> Half-board
+                                        <input class="form-check-input" type="radio" name="boardtype-radio" value="HALF_BOARD" id="halfboard"> Half-board
                                         <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -184,7 +186,7 @@
                                     <label class="bmd-label-floating"> Room Type</label>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" value="Single" checked=""> Single
+                                            <input class="form-check-input" type="radio" name="roomtype-radio" value="Single" checked=""> Single
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -192,7 +194,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" value="Double"> Double
+                                            <input class="form-check-input" type="radio" name="roomtype-radio" value="Double"> Double
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -200,7 +202,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" value="2x Double"> 2x Double
+                                            <input class="form-check-input" type="radio" name="roomtype-radio" value="2x Double"> 2x Double
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -208,7 +210,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" value="option4"> Penthouse
+                                            <input class="form-check-input" type="radio" name="roomtype-radio" value="option4"> Penthouse
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -221,7 +223,7 @@
                                     <label class="bmd-label-floating"> Preference</label>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="exampleRadios1" value="noption1" checked=""> Seaview
+                                            <input class="form-check-input" type="radio" name="preference-radio" value="noption1" checked=""> Seaview
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -229,7 +231,7 @@
                                     </div>
                                     <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1" value="noption2"> Mountainview
+                                        <input class="form-check-input" type="radio" name="preference-radio" value="noption2"> Mountainview
                                         <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -237,7 +239,7 @@
                                     </div>
                                     <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1" value="noption3"> Close to restaurant
+                                        <input class="form-check-input" type="radio" name="preference-radio" value="noption3"> Close to restaurant
                                         <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -246,6 +248,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="col">
                                 <div class="form-group">
@@ -260,12 +263,46 @@
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
                         <h4 class="mt-3">Main booker information</h4>
                         <div class="form-row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label class="bmd-label-floating"> Title *</label>
-                                    <input type="text" class="form-control" id="title" required="true">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Title*</label>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="radio" name="title-radio" value="MR" id="mr" checked=""> Mr.
+                                                        <span class="circle">
+                                                            <span class="check"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="radio" name="title-radio" value="MS" id="ms"> Ms.
+                                                        <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="radio" name="title-radio" value="MRS" id="mrs"> Mrs.
+                                                        <span class="circle">
+                                                            <span class="check"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col">
@@ -573,7 +610,9 @@
     // Delete a record
     table.on('click', '.remove', function(e) {
       $tr = $(this).closest('tr');
+      var data = table.row($tr).data();
       table.row($tr).remove().draw();
+      deleteBooking(data.id);
       e.preventDefault();
     });
 
