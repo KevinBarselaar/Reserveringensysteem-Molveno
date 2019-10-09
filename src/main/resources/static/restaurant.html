@@ -145,13 +145,18 @@
                     </div>
                     <div class="modal-body">
                       <form class="form" id="newTableBookingForm" action="" method="">
-                        <h4 class="mt-3">Guest</h4>
+                        <h4 class="mt-3">Guest?</h4>
                         <div class="form-row">
                             <div class="col-md-4">
                               <div class="form-group">
-                                  <label class="bmd-label-floating"> Roomnumber (optional)</label>
-                                <input class="form-control" type="text" name="number2"
-                                  number="true"  id="roomNo">
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" value="Yes" id="isGuest"> I'm staying at Molveno.
+                                    <span class="form-check-sign">
+                                      <span class="check"></span>
+                                    </span>
+                                  </label>
+                                </div>
                               </div>
                             </div>
                           </div>
