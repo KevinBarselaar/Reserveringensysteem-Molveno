@@ -23,12 +23,10 @@
             &:hover,
             &:active,
             &[aria-expanded="true"]{
-                color: $brand-rose;
+                color: $brand-primary;
             }
 
             i{
-                float: right;
-                top: 4px;
                 position: relative;
             }
 

@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -116,6 +115,15 @@ public class BookingControllerTest {
         this.controller.deleteById(inputBookingId);
 
         verify(this.bookingService).deleteById(inputBookingId);
+    }
+
+    @Test
+    public void checkInOutBooking_longId1_togglesAvailableState() {
+        Long inputBookingId = 1L;
+
+        this.controller.checkInOutBooking(inputBookingId);
+
+        verify(this.bookingService).checkInOutBooking(inputBookingId);
     }
 
     private Room createMockedRoom(Long id) {

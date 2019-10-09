@@ -9,6 +9,7 @@ var Paths = {
   HERE: './',
   DIST: 'dist/',
   CSS: '../static/assets/css/',
+  DEVCSS: '../dev/assets/css/',
   SCSS_TOOLKIT_SOURCES: './assets/scss/material-dashboard.scss',
   SCSS: './assets/scss/**/**'
 };
@@ -19,7 +20,8 @@ gulp.task('compile-scss', function() {
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(sourcemaps.write(Paths.HERE))
-    .pipe(gulp.dest(Paths.CSS));
+    .pipe(gulp.dest(Paths.CSS))
+    .pipe(gulp.dest(Paths.DEVCSS));
 });
 
 gulp.task('watch', function() {

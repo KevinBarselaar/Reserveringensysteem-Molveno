@@ -6,7 +6,6 @@ import com.capgemini.molveno.bookingsystem.model.Room;
 import com.capgemini.molveno.bookingsystem.repository.BookingRepository;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Book;
 import java.time.LocalDateTime;
 import java.util.List;
 
