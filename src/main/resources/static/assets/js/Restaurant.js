@@ -12,6 +12,7 @@ function postRestaurantData() {
     var input_lastname = $("#lastName").val(); 
     var input_adults = parseInt($("#amountAd").val(), 0);
 
+    console.log("input datetime: "+ input_date + input_time);
     console.log("input adult" + input_adults);
 
     var input_children = parseInt($("#amountChild").val(), 0);
@@ -41,8 +42,8 @@ function postRestaurantData() {
     // Create JS object with data.
     var newBooking = {
         roomNo: input_roomNo,
-        date:input_date,
-        time: input_time, 
+        bookingDate: input_date,
+        bookingTime: input_time, 
         firstName:input_firstname,
         lastName: input_lastname,
         numberOfGuests: input_adults,
