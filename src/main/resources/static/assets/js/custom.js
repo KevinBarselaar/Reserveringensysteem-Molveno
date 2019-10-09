@@ -21,8 +21,8 @@ var roomTypes = {
 function postData() {
     console.log("posting data...");
 
-    var input_firstname = $("#firstName").val(); 
-    var input_lastname = $("#lastName").val(); 
+    var input_firstname = $("#firstName").val();
+    var input_lastname = $("#lastName").val();
     var input_phonenumber = $("#telNo").val();
     var input_birthday =  $("#birthday").val();
 
@@ -41,7 +41,7 @@ function postData() {
     var bdayYear = input_birthday.substring(6,10);
     var bdayMonth = input_birthday.substring(3,5);
     var bdayDay = input_birthday.substring(0,2);
-    
+
     input_birthday = new Date(bdayYear, bdayMonth, bdayDay);
 
     console.log(input_birthday);
@@ -57,7 +57,7 @@ function postData() {
     } else if ($("#halfboard").prop('checked')) {
       input_boardType = $("#halfboard").val();
     }
-    
+
     var guestAddress = {
         streetName : $("#streetName").val(),
         houseNumber : $("#houseNumber").val(),
