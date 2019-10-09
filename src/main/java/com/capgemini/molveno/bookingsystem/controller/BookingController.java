@@ -62,11 +62,13 @@ public class BookingController {
         this.bookingService.create(booking);
     }
 
+    @CrossOrigin
     @DeleteMapping("/{bookingId}/rooms/{roomId}")
     public void removeRooms(@PathVariable Long bookingId, @PathVariable Long roomId) {
         this.bookingService.removeRoomFromBooking(bookingId, roomId);
     }
 
+    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
         this.bookingService.deleteById(id);
@@ -77,6 +79,7 @@ public class BookingController {
      *
      * @param id {@link Long id} of the {@link Booking booking} in the database
      */
+    @CrossOrigin
     @PutMapping("/check-in-out/{id}")
     public void checkInOutBooking(@PathVariable Long id) {
         this.bookingService.checkInOutBooking(id);
