@@ -19,20 +19,20 @@ var roomTypes = {
 
 function addFields(){
     var container = document.getElementById("guest-container");
-
+    console.log(container);
     var template = document.querySelector('#guest-template');
 
     var clone = document.importNode(template.content, true);
     container.appendChild(clone);
 
     // Edit names & ID's
-    var guestCount = $('#guest-container > div.form-row').length;
-    
+    var guestCount = $('#guest-container > div.guest-input').length;
+    console.log(guestCount);
     // Get latest MainGuest
-    var lastGuest = $('#guest-container > div.form-row:last-child');
-
+    var lastGuest = $('#guest-container > div.guest-input:last-child');
+    console.log(lastGuest);
     var lastGuestInputs = lastGuest.find('input');
-
+    console.log(lastGuestInputs);
     //Set title radio buttons name attribute to title-radio-mainGuest{count}
     lastGuestTitleRadios = $.grep(lastGuestInputs, function( element, index ) {
         return $(element).attr('name') == 'title-radio-guest';
@@ -69,6 +69,10 @@ function addFields(){
     lastGuestBirthday.forEach(function (text) {
         $(text).attr('id', 'guest_birthday' + guestCount);
     });
+}
+
+function removeTemplate() {
+    $(".guest-input").remove();
 }
 
 function postData() {
@@ -132,7 +136,7 @@ function postData() {
     
     var guestList = [];
 
-    for (let index = 1; index <= $('#guest-container > div.form-row').length; index++) {
+    for (let index = 1; index <= $('#guest-container > div.guest-input').length; index++) {
         var bdayYear = $("#guest_birthday" + index).val().substring(6,10);
         var bdayMonth = $("#guest_birthday" + index).val().substring(3,5);
         var bdayDay = $("#guest_birthday" + index).val().substring(0,2);
@@ -146,7 +150,7 @@ function postData() {
         } else if ($("#guest_ms" + index).prop('checked')) {
             guestTitle = $("#guest_ms" + index).val();
         } else if ($("#guest_mrs" + index).prop('checked')) {
-            guestTitle = $("guest_#mrs" + index).val();
+            guestTitle = "MRS";
         }
 
         var guest = {
@@ -158,7 +162,7 @@ function postData() {
 
         console.log("This is the guest" + guest);
 
-        guestList.push(guest);
+        guestList.push(guest);     
     }
 
     console.log("This is the guest array" + guestList);
@@ -181,6 +185,7 @@ function postData() {
             // On successful post, reload data to get the added one as well.
             console.log("API Success function");
             console.log(result);
+            $("#guest-template").remove();
             getData();
         }
     });
@@ -224,6 +229,7 @@ function getData() {
 
 // Callback function from AJAX request if the model requests information
 function openBookingDetail(booking) {
+    console.log('open booking'); 
     var rooms = "";
     for (var i = 0; i < booking.rooms.length; i++){
         rooms += booking.rooms[i].id + " (" + roomTypes[booking.rooms[i].type] + ")" + "<br/>";
@@ -261,6 +267,7 @@ function openBookingDetail(booking) {
         $('#bookingDetailsGuests').html("No other guests");
     }
     
+    console.log('Pre modal show');
     $('#bookingDetails').modal();
 }
 
