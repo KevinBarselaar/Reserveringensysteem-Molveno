@@ -186,7 +186,7 @@ function postData() {
             // On successful post, reload data to get the added one as well.
             console.log("API Success function");
             console.log(result);
-            $("#guest-template").remove();
+            removeTemplate();
             getData();
         }
     });
