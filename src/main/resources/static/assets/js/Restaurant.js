@@ -101,6 +101,30 @@ function getRestaurantData() {
     });
 }
 
+function getRestaurantDetails(id) {
+    //TODO get doen naar de backend voor specifieke booking (1)
+    $.ajax({
+        url: host + "/api/v1/restaurantbookings/" + id,
+        type:"get",
+        success: function(data, status) {
+        console.log('Get booking ' + data.bookingId + ' success');
+        console.log(data);
+        var restaurant = data;
+
+        //retrieve personal data from back-end
+        $('#tableBookingDetailsTitle').html('Table booking #' + restaurant.bookingId);
+        $("#tableBookingsDetailsRoomNumber").text(restaurant.roomNo);
+        $("#tableBookingsDetailsFullName").text(restaurant.firstName + " " + restaurant.lastName);
+        $("#tableBookingDetailsDateAndTime").text(restaurant.bookingDate + " " + restaurant.bookingTime);
+        $("#tableBookingDetailsAdults").text(restaurant.numberOfGuests);
+        $("#tableBookingDetailsMinors").text(restaurant.numberOfMinors);
+        $("#tableBookingDetailsExtraItems").text(restaurant.extraitems);
+
+        $('#tableBookingDetails').modal();
+        }
+    });
+}
+
 function setFormValidation(id) {
     $(id).validate({
         highlight: function(element) {
