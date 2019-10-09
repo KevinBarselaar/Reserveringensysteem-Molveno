@@ -1,4 +1,4 @@
-var host = "http://localhost:1010";
+var host = "http://localhost:8080";
 var currentBooking;
 
 function postRestaurantData() {
@@ -119,9 +119,9 @@ function getRestaurantDetails(id) {
             //retrieve personal data from back-end
             $('#tableBookingDetailsTitle').html('Table booking #' + restaurant.bookingId);
             if (restaurant.isGuest) {
-                $("#tableBookingDetailsGuest").html(restaurant.firstName + ' is a guest at the hotel');
+                $("#tableBookingDetailsGuest").html(restaurant.firstName + ' is a guest at the hotel.');
             } else {
-                $("#tableBookingDetailsGuest").html(restaurant.firstName + ' isn\'t currently a guest');
+                $("#tableBookingDetailsGuest").html(restaurant.firstName + ' isn\'t currently a guest.');
             }
             $("#tableBookingDetailsFirstName").html(restaurant.firstName);
             $("#tableBookingDetailsLastName").html(restaurant.lastName);
