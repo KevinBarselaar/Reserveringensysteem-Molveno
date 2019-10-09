@@ -649,13 +649,12 @@
     table.on('click', '.info', function() {
 			$tr = $(this).closest('tr');
 			var data = table.row($tr).data();
-      getBooking(data.id, true);x
+      getBooking(data.id, true);
 		});
 		
 		$('#newBookingModal').perfectScrollbar();
 		$('#bookingDetails').perfectScrollbar();
 
-<<<<<<< HEAD
         $('#newBookingButtonser').click( function() {
             $('#newBookingModal').modal({
                 backdrop: 'static'
@@ -663,15 +662,13 @@
         });
 
         setFormValidation('#RegisterValidation');
-    });
-=======
+
     $('#newBookingButton').click( function() {
       $('#newBookingModal').modal({
         backdrop: 'static'
       });
 		});
   });
->>>>>>> 7862aae95471a8d0146fa660ff42f8582f9a13d3
   </script>
 </body> 
 </html>

@@ -1,4 +1,4 @@
-var host = "http://localhost:1010";
+var host = "http://localhost:8080";
 
 function postRestaurantData() {
     console.log("posting data...");
@@ -100,6 +100,30 @@ function getRestaurantData() {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log("Niet gelukt D:");
+        }
+    });
+}
+
+function getRestaurantDetails(id) {
+    //TODO get doen naar de backend voor specifieke booking (1)
+    $.ajax({
+        url: host + "/api/v1/restaurantbookings/" + id,
+        type:"get",
+        success: function(data, status) {
+        console.log('Get booking ' + data.bookingId + ' success');
+        console.log(data);
+        var restaurant = data;
+
+        //retrieve personal data from back-end
+        $('#tableBookingDetailsTitle').html('Table booking #' + restaurant.bookingId);
+        $("#tableBookingsDetailsGuest").text(restaurant.isGuest);
+        $("#tableBookingsDetailsFullName").text(restaurant.firstName + " " + restaurant.lastName);
+        $("#tableBookingDetailsDateAndTime").text(restaurant.bookingDate + " " + restaurant.bookingTime);
+        $("#tableBookingDetailsAdults").text(restaurant.numberOfGuests);
+        $("#tableBookingDetailsMinors").text(restaurant.numberOfMinors);
+        $("#tableBookingDetailsExtraItems").text(restaurant.extraitems);
+
+        $('#tableBookingDetails').modal();
         }
     });
 }

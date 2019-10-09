@@ -137,6 +137,7 @@
                 <!-- end content-->
               </div>
               <!--  end card  -->
+              <!-- start new table booking modal -->
               <div class="modal fade" tabindex="-1" id="newTableFormModal" aria-labelledby="newTableFormModal" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                   <div class="modal-content">
@@ -255,6 +256,53 @@
                         </div>
                       </div>
                     </div>
+                    <!-- end table booking modal -->
+                    <!-- Booking detail modal -->
+                    <div class="modal fade" tabindex="-1" id="tableBookingDetails" aria-labelledby="tableBookingDetails" aria-hidden="true">
+                      <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                        <div class="modal-content card">
+                          <div class="card-header card-header-primary card-header-text">
+                            <div class="card-text">
+                              <h2 class="card-title" id="tableBookingDetailsTitle">Booking details</h2>
+                              <!-- <p class="card-category" id="tableBookingDetailsSubtitle">Booked on</p> -->
+                            </div>
+                          </div>
+                          <div class="modal-body container">
+                            <div class="row">
+                                <div class="col-md-6 mt-3">
+                                  <h6 class="text-gray">Room Number</h6>
+                                  <h4 id="tableBookingDetailsRoomNumber"></h4>
+                                </div>
+                              <div class="row">
+                                <div class="col-md-6 mt-3">
+                                  <h6 class="text-gray">Name</h6>
+                                  <h4 id="tableBookingDetailsFullName"></h4>
+                                </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-md-6">
+                                  <h6 class="text-gray">Number of Adults</h6>
+                                  <h4 id="tableBookingDetailsAdults"></h4>
+                              </div>
+                              <div class="col-md-6">
+                                <h6 class="text-gray">Number of Minors</h6>
+                                <h4 id="tableBookingDetailsMinors"></h4>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12 mt-3">
+                                  <h6 class="text-gray">Extra Items</h6>
+                                  <h4 id="tableBookingDetailsExtraItems"></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons">close</i> Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end Booking detail modal -->
                   </div>
                 </div>
               </div>
@@ -335,6 +383,7 @@
       // });
 
       $('#newTableFormModal').perfectScrollbar();
+      $('#tableBookingDetails').perfectScrollbar();
       
       $('#newTableButton').click(function () {
         $('#newTableFormModal').modal({
@@ -410,9 +459,17 @@
       });
 
       //Get detail information
-      table.on('click', '.info', function () {
-        alert('You clicked on the info button');
-      });
+      table.on('click', '.info', function() {
+			$tr = $(this).closest('tr');
+      var data = table.row($tr).data();
+      
+      console.log(data.bookingId);
+      getRestaurantDetails(data.bookingId);
+		});
+      
+      // table.on('click', '.info', function () {
+      //   alert('You clicked on the info button');
+      // });
 
       setFormValidation('#newTableBookingForm');
     });
