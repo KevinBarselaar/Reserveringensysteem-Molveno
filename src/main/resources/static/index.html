@@ -36,11 +36,7 @@
 <body class="">
 <div class="wrapper ">
   <div class="sidebar" data-color="primary" data-background-color="white" data-image="assets/img/sidebar-2.jpg">
-  <!--
-    Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-    Tip 2: you can also add an image using data-image tag
-  -->
   <div class="logo">
     <a href="http://www.creative-tim.com" class="simple-text logo-mini">
     M
@@ -59,6 +55,48 @@
     </li>
     </ul>
   </div>
+        <div class="logo">
+            <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+                M
+            </a>
+            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                Molveno
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">
+                        <i class="material-icons">view_list</i>
+                        <p>Booking overview</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="restaurant.html">
+                        <i class="material-icons">restaurant_menu</i>
+                        <p>Restaurant</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    <div class="logo">
+      <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+        M
+      </a>
+      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        Molveno
+      </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">
+            <i class="material-icons">view_list</i>
+            <p>Booking overview</p>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="main-panel">
   <!-- Navbar -->
@@ -139,13 +177,13 @@
             <div class="form-row">
               <div class="col">
                 <div class="form-group">
-                  <label for="checkInDate" class="bmd-label-floating">Check-in date*</label>
+                  <label for="checkInDate">Check-in date*</label>
                   <input type="text" class="form-control datepicker" id="checkInDate" required="true">
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                <label for="checkOutDate" class="bmd-label-floating">Check-out date*</label>
+                <label for="checkOutDate">Check-out date*</label>
                 <input type="text" class="form-control datepicker" id="checkOutDate" required="true">
                 </div>
               </div>
@@ -249,25 +287,6 @@
               </div>
             </div>
 
-<!--            <div class="form-row">-->
-<!--              <div class="col">-->
-<!--                <div class="form-group">-->
-<!--                  <label class="bmd-label-floating"> Amount adults *</label>-->
-<!--                  <input class="form-control" type="text" name="number" number="true" required="true" id="adults">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="col">-->
-<!--                <div class="form-group">-->
-<!--                  <label class="bmd-label-floating"> Amount children *</label>-->
-<!--                  <input class="form-control" type="text" name="number2" number="true" required="true" id="minors">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-
-
-
-
-
             <h4 class="mt-3">Main booker information</h4>
             <div class="form-row">
               <div class="col">
@@ -329,7 +348,7 @@
               <input class="form-control" id="telNo" name="telNo" type="tel" size="20" minlength="12" maxlength="14">
             </div>
             <div class="form-group">
-              <label for="birthday" class="bmd-label-floating">Date of Birth</label>
+              <label for="birthday">Date of Birth</label>
               <input type="text" class="form-control datepicker" value="01/01/1980" id="birthday">
             </div>
             <h4 class="mt-3">Address</h4>
@@ -381,13 +400,6 @@
             </div>
 
 <!-- Guests -->
-<script type="text/javascript">
-  var id = 1;
-  function getNextId()
-  {
-    return ++id;
-  }
-</script>
 
             <a href="#" id="filldetails" onclick="addFields()">Add Guest to Booking</a>
 
@@ -444,7 +456,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="birthday" class="bmd-label-floating">Date of Birth</label>
+                    <label for="birthday">Date of Birth</label>
                     <input type="text" class="form-control datepicker" value="01/01/1980" id="guest_birthday">
                   </div>
                 </div>
@@ -680,18 +692,20 @@
     var data = table.row($tr).data();
   });
 
-  // Delete a record
-  table.on('click', '.remove', function(e) {
-    $tr = $(this).closest('tr');
-    table.row($tr).remove().draw();
-    e.preventDefault();
-  });
+    // Delete a record
+    table.on('click', '.remove', function(e) {
+      $tr = $(this).closest('tr');
+      var data = table.row($tr).data();
+      table.row($tr).remove().draw();
+      deleteBooking(data.id);
+      e.preventDefault();
+    });
 
   //Get detail information
   table.on('click', '.info', function() {
 			$tr = $(this).closest('tr');
 			var data = table.row($tr).data();
-    getBooking(data.id, true);x
+    getBooking(data.id, true);
 		});
 		
 		$('#newBookingModal').perfectScrollbar();
@@ -701,6 +715,7 @@
     $('#newBookingModal').modal({
     backdrop: 'static'
     });
+
 		});
   });
   </script>

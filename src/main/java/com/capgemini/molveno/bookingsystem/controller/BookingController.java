@@ -27,6 +27,7 @@ public class BookingController {
      *
      * @return JSON response of all {@link Booking bookings} in the database
      */
+
     @CrossOrigin
     @GetMapping("/overview")
     public List<Booking> getAllBookings() {

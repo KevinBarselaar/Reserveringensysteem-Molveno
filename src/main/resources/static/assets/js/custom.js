@@ -40,6 +40,7 @@ function addFields(){
 
     lastGuestTitleRadios.forEach(function (radio) {
         $(radio).attr('name', 'title-radio-guest' + guestCount);
+        $(radio).attr('id', $(radio).attr('id') + guestCount);
     });
 
     //Set firstName id attribute to guest_firstName{count}
@@ -73,8 +74,8 @@ function addFields(){
 function postData() {
     console.log("posting data...");
 
-    var input_firstname = $("#firstName").val(); 
-    var input_lastname = $("#lastName").val(); 
+    var input_firstname = $("#firstName").val();
+    var input_lastname = $("#lastName").val();
     var input_phonenumber = $("#telNo").val();
     var input_birthday =  $("#birthday").val();
 
@@ -93,7 +94,7 @@ function postData() {
     var bdayYear = input_birthday.substring(6,10);
     var bdayMonth = input_birthday.substring(3,5);
     var bdayDay = input_birthday.substring(0,2);
-    
+
     input_birthday = new Date(bdayYear, bdayMonth, bdayDay);
 
     console.log(input_birthday);
@@ -109,7 +110,7 @@ function postData() {
     } else if ($("#halfboard").prop('checked')) {
       input_boardType = $("#halfboard").val();
     }
-    
+
     var mainGuestAddress = {
         streetName : $("#streetName").val(),
         houseNumber : $("#houseNumber").val(),
@@ -126,17 +127,33 @@ function postData() {
         birthDate : input_birthday,
         emailAddress : input_email,
         title : input_title,
-        mainGuestAddress : mainGuestAddress
+        address : mainGuestAddress
     }
     
     var guestList = [];
 
     for (let index = 1; index <= $('#guest-container > div.form-row').length; index++) {
+        var bdayYear = $("#guest_birthday" + index).val().substring(6,10);
+        var bdayMonth = $("#guest_birthday" + index).val().substring(3,5);
+        var bdayDay = $("#guest_birthday" + index).val().substring(0,2);
+    
+        guestBirthday = new Date(bdayYear, bdayMonth, bdayDay);
+        
+        var guestTitle;
+
+        if ($("#guest_mr" + index).prop('checked')) {
+            guestTitle = $("#guest_mr" + index).val();
+        } else if ($("#guest_ms" + index).prop('checked')) {
+            guestTitle = $("#guest_ms" + index).val();
+        } else if ($("#guest_mrs" + index).prop('checked')) {
+            guestTitle = $("guest_#mrs" + index).val();
+        }
+
         var guest = {
-            "title" : "MR",
+            "title" : guestTitle,
             "firstName" : $("#guest_firstName" + index).val(),
             "lastName" : $("#guest_lastName" + index).val(),
-            "birthDate" : $("#guest_birthday" + index).val()
+            "birthDate" : guestBirthday
         }
 
         console.log("This is the guest" + guest);
@@ -222,7 +239,7 @@ function openBookingDetail(booking) {
     $('#bookingDetailsMainGuestName').html(titleString[booking.mainGuest.title] + " " + booking.mainGuest.firstName + " " + booking.mainGuest.lastName);
     $('#bookingDetailsMainGuestPhone').html(booking.mainGuest.phoneNumber);
     $('#bookingDetailsMainGuestEmail').html(booking.mainGuest.emailAddress);
-    $('#bookingDetailsMainGuestAddress').html(booking.mainGuest.mainGuestAddress.streetName + " " + booking.mainGuest.mainGuestAddress.houseNumber + " " + booking.mainGuest.mainGuestAddress.houseNumberAddition + "<br/>" + booking.mainGuest.mainGuestAddress.postalCode + ", " + booking.mainGuest.mainGuestAddress.city + "<br/>" + booking.mainGuest.mainGuestAddress.country);
+    $('#bookingDetailsMainGuestAddress').html(booking.mainGuest.address.streetName + " " + booking.mainGuest.address.houseNumber + " " + booking.mainGuest.address.houseNumberAddition + "<br/>" + booking.mainGuest.address.postalCode + ", " + booking.mainGuest.address.city + "<br/>" + booking.mainGuest.address.country);
     $('#bookingDetailsExtras').html(booking.extraItems);
 
     // MainGuest calculation Adults & Children
@@ -278,6 +295,21 @@ $(document).ready(function() {
     }
 });
 
+function deleteBooking(id) {
+    console.log("Deleting Booking with ID: " + id + "...");
+    $.ajax({
+        url: host + "/api/bookings/delete/" + id,
+        type:"delete",
+        success: function(data) {
+            console.log("Succesfully deleted Booking with ID: " + data.id + ".");
+            console.log(data);
+        },
+        error: function () {
+            console.log ("Invalid Id?");
+        }
+    });
+}
+
 class Booking {  
     constructor(mainGuest, guestList) {
         var input_start = $("#checkInDate").val();
@@ -287,11 +319,9 @@ class Booking {
         this.extraItems = "Hey";
         this.startBooking = input_start;
         this.endBooking = input_end;
-        this.numberOfAdults = $("[name='adults']").val();
-        this.numberOfMinors = $("[name='minors']").val();
         this.mainGuest = mainGuest;
         this.guests = guestList;
-        this.boardType = $("[name='exampleRadios2']:checked").val();
+        this.boardType = $("[name='boardtype-radio']:checked").val();
     }}
 
 class MainGuest {
@@ -300,14 +330,8 @@ class MainGuest {
     }
 }
 
-// class Guest {
-//     constructor(guest) {
-//         this.guest = guest;
-//     }
-// }
-
 class mainGuestAddress {
-    constructor(mainGuestAddress) {
-        this.mainGuestAddress = mainGuestAddress;
+    constructor(address) {
+        this.mainGuestAddress = address;
     }
 }
