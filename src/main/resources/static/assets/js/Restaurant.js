@@ -5,7 +5,7 @@ function postRestaurantData() {
 
     // Get values from html.
 
-    var input_roomNo = parseInt($("#roomNo").val(), 0);
+    var input_isGuest = $("#isGuest").prop('checked');
     var input_date = $("#date").val();
     var input_time = $("#time").val();
     var input_firstname = $("#firstName").val();
@@ -41,7 +41,7 @@ function postRestaurantData() {
 
     // Create JS object with data.
     var newBooking = {
-        roomNo: input_roomNo,
+        isGuest: input_isGuest,
         bookingDate: input_date,
         bookingTime: input_time, 
         firstName:input_firstname,
