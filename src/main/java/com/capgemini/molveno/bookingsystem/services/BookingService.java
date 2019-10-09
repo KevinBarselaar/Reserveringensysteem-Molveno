@@ -1,11 +1,14 @@
 package com.capgemini.molveno.bookingsystem.services;
 
+import com.capgemini.molveno.bookingsystem.exception.BookingNotFoundException;
 import com.capgemini.molveno.bookingsystem.exception.DeadlineExpiredException;
 import com.capgemini.molveno.bookingsystem.model.Booking;
 import com.capgemini.molveno.bookingsystem.model.Room;
 import com.capgemini.molveno.bookingsystem.repository.BookingRepository;
+import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,7 +22,7 @@ public class BookingService {
     }
 
     public Booking findById(Long id) {
-        return this.bookingRepository.findById(id).get();
+        return this.bookingRepository.findById(id).orElseThrow(BookingNotFoundException::new);
     }
 
     public List<Booking> findAll() {
@@ -79,5 +82,13 @@ public class BookingService {
         } else {
             throw new DeadlineExpiredException(booking);
         }
+    }
+
+    public Booking update(Booking booking) throws BookingNotFoundException {
+        // Find Booking in DB by Id
+        this.findById(booking.getId()); // Throws Exception when Id can't be found
+
+        // Save and flush data, return updated object
+        return this.bookingRepository.saveAndFlush(booking);
     }
 }
