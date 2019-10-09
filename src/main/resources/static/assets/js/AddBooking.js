@@ -54,6 +54,7 @@ function createBooking() {
         contentType: 'application/json',
         data: JSON.stringify(new Booking(guest)),
         success: function() {
+            window.selectedRooms = [];
         },
         dataType: 'json'
     });

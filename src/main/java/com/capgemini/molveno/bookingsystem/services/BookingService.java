@@ -33,6 +33,7 @@ public class BookingService {
     public Booking create(Booking booking) { //TODO set every room available to false
         booking.setCreationDate(LocalDateTime.now());
         System.out.println(booking.getStartBooking());
+
         return this.bookingRepository.saveAndFlush(booking);
     }
 

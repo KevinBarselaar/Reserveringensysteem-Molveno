@@ -30,16 +30,19 @@ public class RoomController {
      *
      * @return JSON response of all {@link Room rooms} in the database
      */
+    @CrossOrigin
     @GetMapping("/overview")
     public List<Room> getAllRooms() {
         return this.roomService.findAll();
     }
 
+    @CrossOrigin
     @GetMapping("/overview/available")
     public List<Room> getAllAvailableRooms() {
         return this.roomService.findAllAvailable();
     }
 
+    @CrossOrigin
     @GetMapping("/overview/available/between")
     public List<Room> getAllAvailableRoomsForDateRange(@RequestParam("startDate") Optional<String> startDate, @RequestParam("endDate") Optional<String> endDate) throws ParseException {
         if (startDate.isPresent() && endDate.isPresent()) {
@@ -57,11 +60,13 @@ public class RoomController {
      * @param id {@link Long Number} of the {@link Room room} in the database
      * @return JSON response containing the {@link Room room}
      */
+    @CrossOrigin
     @GetMapping("/{id}")
     public Room getRoomById(@PathVariable Long id) {
         return this.roomService.findById(id);
     }
 
+    @CrossOrigin
     @PostMapping("/create")
     public Room create(@RequestBody Room newRoom) {
         return this.roomService.create(newRoom);

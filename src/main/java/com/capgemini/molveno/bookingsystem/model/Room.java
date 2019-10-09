@@ -1,5 +1,6 @@
 package com.capgemini.molveno.bookingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -29,6 +30,7 @@ public class Room {
     @Enumerated(EnumType.STRING)
     private BedType[] bedTypes;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "rooms", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Booking> bookings = new ArrayList<>();
 

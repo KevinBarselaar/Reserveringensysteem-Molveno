@@ -17,6 +17,10 @@ var roomTypes = {
     "PENTHOUSE": "Penthouse"
 }
 
+var availableRoomsList = [];
+var selectedRooms = [];
+
+
 
 function postData() {
     console.log("posting data...");
@@ -79,6 +83,7 @@ function postData() {
 
     // Create JS object with data.
     var newReservation = new Booking(guest);
+    newReservation.rooms = window.selectedRooms;
     console.log(newReservation);
 
     // Convert JS object to JSON.
@@ -95,9 +100,19 @@ function postData() {
             // On successful post, reload data to get the added one as well.
             console.log("API Success function");
             console.log(result);
+
+            // Reset room dropdown
+            clearRoomSelect();
+
             getData();
         }
     });
+}
+
+function clearRoomSelect() {
+    window.selectedRooms = [];
+    $("#availableRooms").find('option').remove();
+    $("#availableRooms").selectpicker("refresh");
 }
 
 function setFormValidation(id) {
@@ -135,6 +150,31 @@ function getData() {
         }
     });
 }
+
+function getAvailableRoomsBetweenDates(startDate, endDate) {
+    console.log("getting all available rooms for ..." + startDate + " till " + endDate);
+    clearRoomSelect();
+    
+    // Get the data from endpoint.
+    $.ajax({
+        url: host + "/api/rooms/overview/available/between?startDate=" + startDate + "&endDate=" + endDate,
+        type: "get",
+        success: function(rooms) {
+            // On successful get, reload the datatable with new data.
+            console.log("This is the data: ");            
+            window.availableRoomsList = rooms;
+        
+
+            for(var index = 0; index < rooms.length; index++) {
+                var element = rooms[index];
+                $('#availableRooms').append(new Option("Room " + element.id + " (" + element.type + ")", index));
+            }
+            
+            $("#availableRooms").selectpicker("refresh");
+        }
+    });
+}
+
 
 // Callback function from AJAX request if the model requests information
 function openBookingDetail(booking) {
