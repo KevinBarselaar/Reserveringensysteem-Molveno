@@ -622,13 +622,13 @@
 
     //Get detail information
     table.on('click', '.info', function() {
-			$tr = $(this).closest('tr');
-			var data = table.row($tr).data();
-      getBooking(data.id, true);
-		});
-		
-		$('#newBookingModal').perfectScrollbar();
-		$('#bookingDetails').perfectScrollbar();
+        $tr = $(this).closest('tr');
+        var data = table.row($tr).data();
+        getBooking(data.id, 'detail');
+    });
+    
+    $('#newBookingModal').perfectScrollbar();
+    $('#bookingDetails').perfectScrollbar();
 
     $('#newBookingButton').click( function() {
       $('#newBookingModal').modal({
