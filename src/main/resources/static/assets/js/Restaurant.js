@@ -1,4 +1,4 @@
-var host = "http://localhost:1010";
+var host = "http://localhost:8080";
 
 function postRestaurantData() {
     console.log("posting data...");
