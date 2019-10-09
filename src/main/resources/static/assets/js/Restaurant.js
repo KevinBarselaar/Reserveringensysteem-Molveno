@@ -97,6 +97,9 @@ function getRestaurantData() {
             $('#restaurantDatatables').DataTable().clear();
             $('#restaurantDatatables').DataTable().rows.add(restaurantbookings);
             $('#restaurantDatatables').DataTable().columns.adjust().draw();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("Niet gelukt D:");
         }
     });
 }

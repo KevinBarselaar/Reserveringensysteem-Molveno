@@ -40,6 +40,19 @@ public class RestaurantBookingServiceTest {
     }
 
     @Test
+    void create_restaurantBookingWithIncorrectTime_throwsException() {
+        RestaurantBooking inputRestaurantBooking = new RestaurantBooking();
+        inputRestaurantBooking.setBookingTime("006:00");
+        when(repository.saveAndFlush(inputRestaurantBooking)).thenReturn(inputRestaurantBooking);
+
+        assertThrows(Exception.class, () -> {
+            this.service.create(inputRestaurantBooking);
+        });
+
+        verify(repository, never()).saveAndFlush(inputRestaurantBooking);
+    }
+
+    @Test
     void create_restaurantBookingWithTime1200_createsRestaurantBooking() {
         RestaurantBooking inputRestaurantBooking = new RestaurantBooking();
         inputRestaurantBooking.setBookingTime("12:00");
@@ -49,4 +62,5 @@ public class RestaurantBookingServiceTest {
 
         verify(repository).saveAndFlush(inputRestaurantBooking);
     }
+
 }
