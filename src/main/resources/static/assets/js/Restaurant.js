@@ -113,7 +113,7 @@ function getRestaurantDetails(id) {
 
         //retrieve personal data from back-end
         $('#tableBookingDetailsTitle').html('Table booking #' + restaurant.bookingId);
-        $("#tableBookingsDetailsRoomNumber").text(restaurant.roomNo);
+        $("#tableBookingsDetailsGuest").text(restaurant.isGuest);
         $("#tableBookingsDetailsFullName").text(restaurant.firstName + " " + restaurant.lastName);
         $("#tableBookingDetailsDateAndTime").text(restaurant.bookingDate + " " + restaurant.bookingTime);
         $("#tableBookingDetailsAdults").text(restaurant.numberOfGuests);
