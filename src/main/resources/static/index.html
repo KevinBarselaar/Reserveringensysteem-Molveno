@@ -34,51 +34,8 @@
 </head>
 
 <body class="">
-<div class="wrapper ">
+<div class="wrapper">
   <div class="sidebar" data-color="primary" data-background-color="white" data-image="assets/img/sidebar-2.jpg">
-
-  <div class="logo">
-    <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-    M
-    </a>
-    <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-    Molveno
-    </a>
-  </div>
-  <div class="sidebar-wrapper">
-    <ul class="nav">
-    <li class="nav-item active">
-      <a class="nav-link" href="index.html">
-      <i class="material-icons">view_list</i>
-      <p>Booking overview</p>
-      </a>
-    </li>
-    </ul>
-  </div>
-        <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                M
-            </a>
-            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                Molveno
-            </a>
-        </div>
-        <div class="sidebar-wrapper">
-            <ul class="nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">
-                        <i class="material-icons">view_list</i>
-                        <p>Booking overview</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="restaurant.html">
-                        <i class="material-icons">restaurant_menu</i>
-                        <p>Restaurant</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
     <div class="logo">
       <a href="http://www.creative-tim.com" class="simple-text logo-mini">
         M
@@ -93,6 +50,12 @@
           <a class="nav-link" href="index.html">
             <i class="material-icons">view_list</i>
             <p>Booking overview</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="restaurant.html">
+            <i class="material-icons">restaurant_menu</i>
+            <p>Restaurant</p>
           </a>
         </li>
       </ul>
@@ -167,259 +130,127 @@
       <!-- New Booking modal -->
       <div class="modal fade" tabindex="-1" id="newBookingModal" aria-labelledby="newBookingModal" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-          <h3>Create a new booking</h3>
-          </div>
-          <div class="modal-body">
-          <form class="form" id="RegisterValidation" action="" method="">
-
-            <div class="form-row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="checkInDate">Check-in date*</label>
-                  <input type="text" class="form-control datepicker" id="checkInDate" required="true">
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                <label for="checkOutDate">Check-out date*</label>
-                <input type="text" class="form-control datepicker" id="checkOutDate" required="true">
-                </div>
-              </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Create a new booking</h3>
             </div>
+            <div class="modal-body">
+              <form class="form" id="RegisterValidation" action="" method="">
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="checkInDate">Check-in date*</label>
+                      <input type="text" class="form-control datepicker" id="checkInDate" required="true">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                    <label for="checkOutDate">Check-out date*</label>
+                    <input type="text" class="form-control datepicker" id="checkOutDate" required="true">
+                    </div>
+                  </div>
+                </div>
 
-            <div class="form-row">
-              <div class="col">
-                <div class="form-group">
-                  <label class="bmd-label-floating"> Board type</label>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="boardtype-radio" value="ACCOMMODATIONS" id="accommodations" checked=""> Accommodations
-                    <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating"> Board type</label>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="boardtype-radio" value="ACCOMMODATIONS" id="accommodations" checked=""> Accommodations
+                        <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="boardtype-radio" value="BED_AND_BREAKFAST" id="bedandbreakfast"> Bed &amp; Breakfast
+                        <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="boardtype-radio" value="HALF_BOARD" id="halfboard"> Half-board
+                        <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="boardtype-radio" value="BED_AND_BREAKFAST" id="bedandbreakfast"> Bed &amp; Breakfast
-                    <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating"> Room Type</label>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="roomtype-radio" value="Single" checked=""> Single
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="roomtype-radio" value="Double"> Double
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="roomtype-radio" value="2x Double"> 2x Double
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="roomtype-radio" value="option4"> Penthouse
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="boardtype-radio" value="HALF_BOARD" id="halfboard"> Half-board
-                    <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label class="bmd-label-floating"> Room Type</label>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="radio" name="roomtype-radio" value="Single" checked=""> Single
-                      <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="radio" name="roomtype-radio" value="Double"> Double
-                      <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="radio" name="roomtype-radio" value="2x Double"> 2x Double
-                      <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="radio" name="roomtype-radio" value="option4"> Penthouse
-                      <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label class="bmd-label-floating"> Preference</label>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="radio" name="preference-radio" value="noption1" checked=""> Seaview
-                      <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
-                  <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="preference-radio" value="noption2"> Mountainview
-                    <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                  </label>
-                  </div>
-                  <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="preference-radio" value="noption3"> Close to restaurant
-                    <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                  </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <h4 class="mt-3">Main booker information</h4>
-            <div class="form-row">
-              <div class="col">
-                <div class="form-group">
-                  <div class="form-row">
-                    <div class="col">
-                      <div class="form-group">
-                        <label class="bmd-label-floating">Title*</label>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="title-radio" value="MR" id="mr" checked=""> Mr.
-                            <span class="circle">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="title-radio" value="MS" id="ms"> Ms.
-                            <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="title-radio" value="MRS" id="mrs"> Mrs.
-                            <span class="circle">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating"> Preference</label>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="preference-radio" value="noption1" checked=""> Seaview
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="preference-radio" value="noption2"> Mountainview
+                        <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                      </label>
+                      </div>
+                      <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="preference-radio" value="noption3"> Close to restaurant
+                        <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                      </label>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label class="bmd-label-floating"> First Name *</label>
-                  <input type="text" class="form-control" id="firstName" required="true">
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label class="bmd-label-floating"> Last Name *</label>
-                  <input type="text" class="form-control" id="lastName" required="true">
-                </div>
-              </div>
-            </div>
 
-            <div class="form-group">
-              <label for="customerEmail" class="bmd-label-floating"> Email Address *</label>
-              <input type="email" class="form-control" id="customerEmail" required="true">
-            </div>
-    
-            <div class="form-group">
-              <label class="bmd-label-floating"> Phone Number</label>
-              <input class="form-control" id="telNo" name="telNo" type="tel" size="20" minlength="12" maxlength="14">
-            </div>
-            <div class="form-group">
-              <label for="birthday">Date of Birth</label>
-              <input type="text" class="form-control datepicker" value="01/01/1980" id="birthday">
-            </div>
-            <h4 class="mt-3">Address</h4>
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="bmd-label-floating">Street Name</label>
-                  <input type="text" class="form-control" id="streetName">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="bmd-label-floating">Street No.</label>
-                  <input type="text" class="form-control" id="houseNumber">
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label class="bmd-label-floating">Addition</label>
-                  <input type="text" class="form-control" id="addition">
-                </div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col">
-                <div class="form-group">
-                  <label class="bmd-label-floating">Zip code</label>
-                  <input type="text" class="form-control" id="zipcode">
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label class="bmd-label-floating">City</label>
-                  <input type="text" class="form-control" id="city">
-                </div>
-              </div>
-      
-              <div class="col">
-                <div class="form-group select-wizard">
-                  <label>Country</label>
-                  <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" id="country">
-                    <option value="Netherlands"> Netherlands </option>
-                    <option value="Belgium"> Belgium </option>
-                    <option value="France"> France </option>
-                    <option value="Italy"> Italy </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <br>
-
-            <!-- Guests -->
-
-<style>
-body {
-  /* Set "my-sec-counter" to 0 */
-  counter-reset: my-sec-counter;
-}
-
-.guest-counter::before {
-  /* Increment "my-sec-counter" by 1 */
-  counter-increment: my-sec-counter;
-  content: "Guest #" counter(my-sec-counter);
-} 
-</style>
-            <div class="form-row">
-              <div id="guest-container">
-                <template id ="guest-template">
-                  <div class="guest-input">
-                    <h4 class="guest-counter"></h4>
-                  <div class="form-row">
+                <h4 class="mt-3">Main booker information</h4>
+                <div class="form-row">
                   <div class="col">
                     <div class="form-group">
                       <div class="form-row">
@@ -428,7 +259,7 @@ body {
                             <label class="bmd-label-floating">Title*</label>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="title-radio-guest" value="MR" id="guest_mr" checked=""> Mr.
+                                <input class="form-check-input" type="radio" name="title-radio" value="MR" id="mr" checked=""> Mr.
                                 <span class="circle">
                                   <span class="check"></span>
                                 </span>
@@ -436,15 +267,15 @@ body {
                             </div>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="title-radio-guest" value="MS" id="guest_ms"> Ms.
+                                <input class="form-check-input" type="radio" name="title-radio" value="MS" id="ms"> Ms.
                                 <span class="circle">
-                                <span class="check"></span>
-                                </span>
+                            <span class="check"></span>
+                          </span>
                               </label>
                             </div>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="title-radio-guest" value="MRS" id="guest_mrs"> Mrs.
+                                <input class="form-check-input" type="radio" name="title-radio" value="MRS" id="mrs"> Mrs.
                                 <span class="circle">
                                   <span class="check"></span>
                                 </span>
@@ -458,116 +289,233 @@ body {
                   <div class="col">
                     <div class="form-group">
                       <label class="bmd-label-floating"> First Name *</label>
-                      <input type="text" class="form-control" id="guest_firstName" required="true">
+                      <input type="text" class="form-control" id="firstName" required="true">
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
                       <label class="bmd-label-floating"> Last Name *</label>
-                      <input type="text" class="form-control" id="guest_lastName" required="true">
+                      <input type="text" class="form-control" id="lastName" required="true">
                     </div>
                   </div>
+                </div>
 
-                  <div class="form-group">
-                    <label for="birthday">Date of Birth</label>
-                    <input type="text" class="form-control datepicker" value="01/01/1980" id="guest_birthday">
+                <div class="form-group">
+                  <label for="customerEmail" class="bmd-label-floating"> Email Address *</label>
+                  <input type="email" class="form-control" id="customerEmail" required="true">
+                </div>
+        
+                <div class="form-group">
+                  <label class="bmd-label-floating"> Phone Number</label>
+                  <input class="form-control" id="telNo" name="telNo" type="tel" size="20" minlength="12" maxlength="14">
+                </div>
+                <div class="form-group">
+                  <label for="birthday">Date of Birth</label>
+                  <input type="text" class="form-control datepicker" value="01/01/1980" id="birthday">
+                </div>
+                <h4 class="mt-3">Address</h4>
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Street Name</label>
+                      <input type="text" class="form-control" id="streetName">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Street No.</label>
+                      <input type="text" class="form-control" id="houseNumber">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Addition</label>
+                      <input type="text" class="form-control" id="addition">
+                    </div>
                   </div>
                 </div>
-              </template>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Zip code</label>
+                      <input type="text" class="form-control" id="zipcode">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">City</label>
+                      <input type="text" class="form-control" id="city">
+                    </div>
+                  </div>
+          
+                  <div class="col">
+                    <div class="form-group select-wizard">
+                      <label>Country</label>
+                      <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" id="country">
+                        <option value="Netherlands"> Netherlands </option>
+                        <option value="Belgium"> Belgium </option>
+                        <option value="France"> France </option>
+                        <option value="Italy"> Italy </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <br>
+
+                <!-- Guests -->
+                <div class="form-row">
+                  <div id="guest-container">
+                    <template id ="guest-template">
+                      <div class="guest-input">
+                        <h4 class="guest-counter"></h4>
+                      <div class="form-row">
+                      <div class="col">
+                        <div class="form-group">
+                          <div class="form-row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Title*</label>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="title-radio-guest" value="MR" id="guest_mr" checked=""> Mr.
+                                    <span class="circle">
+                                      <span class="check"></span>
+                                    </span>
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="title-radio-guest" value="MS" id="guest_ms"> Ms.
+                                    <span class="circle">
+                                    <span class="check"></span>
+                                    </span>
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="title-radio-guest" value="MRS" id="guest_mrs"> Mrs.
+                                    <span class="circle">
+                                      <span class="check"></span>
+                                    </span>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label class="bmd-label-floating"> First Name *</label>
+                          <input type="text" class="form-control" id="guest_firstName" required="true">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label class="bmd-label-floating"> Last Name *</label>
+                          <input type="text" class="form-control" id="guest_lastName" required="true">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="birthday">Date of Birth</label>
+                        <input type="text" class="form-control datepicker" value="01/01/1980" id="guest_birthday">
+                      </div>
+                    </div>
+                  </template>
+                  </div>
+                </div>
+                <a href="#" id="filldetails" onclick="addFields()">Add Guest to Booking</a>
+              </form>
             </div>
-
-            <a href="#" id="filldetails" onclick="addFields()">Add Guest to Booking</a>
-
-          </form>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" onclick="removeTemplate()" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary ml-3" id="submitButton">Confirm</button>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" onclick="removeTemplate()" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary ml-3" id="submitButton">Confirm</button>
-          </div>
-        </div>
         </div>
       </div>
       <!-- end New Booking modal -->
       <!-- Booking detail modal -->
-      <div class="modal fade" tabindex="-1" id="bookingDetails" aria-labelledby="bookingDetails" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-          <div class="modal-content card">
-            <div class="card-header card-header-primary card-header-text">
-              <div class="card-text">
-                <h2 class="card-title" id="bookingDetailsTitle">Booking details</h2>
-                <p class="card-category" id="bookingDetailsSubtitle">Booked on</p>
-              </div>
-            </div>
-            <div class="modal-body container">
-              <div class="row">
-                <div class="col-md-6 mt-3">
-                  <h6 class="text-gray">Check in</h6>
-                  <h4 id="bookingDetailsCheckin"></h4>
-                </div>
-                <div class="col-md-6 mt-3">
-                  <h6 class="text-gray">Check out</h6>
-                  <h4 id="bookingDetailsCheckout"></h4>
+      <div class="modal fade" tabindex="-1" id="bookingDetail" aria-labelledby="bookingDetail" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <div class="modal-content card">
+              <div class="card-header card-header-primary card-header-text">
+                <div class="card-text">
+                  <h2 class="card-title" id="bookingDetailTitle">Booking details</h2>
+                  <p class="card-category" id="bookingDetailSubtitle">Booked on</p>
                 </div>
               </div>
-              <div class="row">
-                  <div class="col-md-6 mt-3">
-                    <h6 class="text-gray">Selected rooms</h6>
-                    <h4 id="bookingDetailsRooms"></h4>
+              <div class="modal-body container">
+                <div class="row">
+                    <div class="col-md-6 mt-3">
+                      <h6 class="text-gray">Check in</h6>
+                      <h4 id="bookingDetailCheckin"></h4>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                      <h6 class="text-gray">Check out</h6>
+                      <h4 id="bookingDetailCheckout"></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-3">
+                      <h6 class="text-gray">Selected rooms</h6>
+                      <h4 id="bookingDetailRooms"></h4>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                      <h6 class="text-gray">BoardType</h6>
+                      <h4 id="bookingDetailBoardType"></h4>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-md-6">
+                      <h6 class="text-gray">Main booker</h6>
+                      <h4 id="bookingDetailMainGuestName"></h4>
+                      <h4 id="bookingDetailMainGuestPhone"></h4>
+                      <h4 id="bookingDetailMainGuestEmail"></h4>
                   </div>
-                  <div class="col-md-6 mt-3">
-                    <h6 class="text-gray">BoardType</h6>
-                    <h4 id="bookingDetailsBoardType"></h4>
+                  <div class="col-md-6">
+                    <h6 class="text-gray">Address</h6>
+                    <h4 id="bookingDetailMainGuestAddress"></h4>
                   </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-md-6">
-                    <h6 class="text-gray">Main booker</h6>
-                    <h4 id="bookingDetailsMainGuestName"></h4>
-                    <h4 id="bookingDetailsMainGuestPhone"></h4>
-                    <h4 id="bookingDetailsMainGuestEmail"></h4>
                 </div>
-                <div class="col-md-6">
-                  <h6 class="text-gray">Address</h6>
-                  <h4 id="bookingDetailsMainGuestAddress"></h4>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12 mt-3">
-                  <h6 class="text-gray">Other guests</h6>
-                  <div id="accordion" role="tablist">
-                    <div class="card-collapse">
-                        <h5 class="mb-0">
-                          <a data-toggle="collapse" href="#collapseOne" aria-controls="collapseOne" class="collapsed">
-                            <span id="bookingDetailsGuests">number of guests</span>
-                            <i class="material-icons">keyboard_arrow_down</i>
-                          </a>
-                        </h5>
-                      <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                          <div class="table-responsive">
-                            <table class="table" id="bookingDetailsGuestsTable">
-                              <thead>
-                                <th><h6 class="text-gray">Guest name</h6></th>
-                                <th><h6 class="text-gray">Birthday</h6></th>
-                              </thead>
-                              <tbody>
-                              </tbody>
-                            </table>
+                <div class="row">
+                  <div class="col-md-12 mt-3">
+                    <h6 class="text-gray">Other guests</h6>
+                      <div id="accordion" role="tablist">
+                        <div class="card-collapse">
+                            <h5 class="mb-0">
+                              <a data-toggle="collapse" href="#collapseOne" aria-controls="collapseOne" class="collapsed">
+                                <span id="bookingDetailGuests">number of guests</span>
+                                <i class="material-icons">keyboard_arrow_down</i>
+                              </a>
+                            </h5>
+                          <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table class="table" id="bookingDetailGuestsTable">
+                                  <thead>
+                                    <th><h6 class="text-gray">Guest name</h6></th>
+                                    <th><h6 class="text-gray">Birthday</h6></th>
+                                  </thead>
+                                  <tbody>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 mt-3">
+                      <h6 class="text-gray">Extra items</h6>
+                      <h4 id="bookingDetailExtras"></h4>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12 mt-3">
-                  <h6 class="text-gray">Extra items</h6>
-                  <h4 id="bookingDetailsExtras"></h4>
-                </div>
-              </div>
-            </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons">close</i> Close</button>
               </div>
@@ -594,6 +542,18 @@ body {
   </footer>
   </div>
 </div>
+<style>
+  body {
+    /* Set "my-sec-counter" to 0 */
+    counter-reset: my-sec-counter;
+  }
+
+  .guest-counter::before {
+    /* Increment "my-sec-counter" by 1 */
+    counter-increment: my-sec-counter;
+    content: "Guest #" counter(my-sec-counter);
+  } 
+  </style>
 <!--   Core JS Files   -->
 <script src="assets/js/core/jquery.min.js"></script>
 <script src="assets/js/core/popper.min.js"></script>
@@ -647,7 +607,8 @@ body {
         $(this).find('form')[0].reset();
       });
       getData();
-    });
+		});
+		
     $("#datatables").DataTable({
         "pagingType": "full_numbers",
         "lengthMenu": [
@@ -668,11 +629,12 @@ body {
             }},
             { "data": function(data) {
                 return data.startBooking.split("T")[0];
-            } },
-            { "data": "endBooking" },
+            }},
+            { "data": function(data) {
+                return data.endBooking.split("T")[0];
+            }},
             { "data": function ( data ) {
                 if(data) {
-                    console.log(data);
                     var rooms = "";
                     for (var i = 0; i < data.rooms.length; i++){
                         rooms += data.rooms[i].id + ", ";
@@ -712,23 +674,26 @@ body {
     });
     //Get detail information
     table.on('click', '.info', function() {
-			$tr = $(this).closest('tr');
-			var data = table.row($tr).data();
-      getBooking(data.id, true);
-		});
-		
-		$('#newBookingModal').perfectScrollbar();
-		$('#bookingDetails').perfectScrollbar();
-        $('#newBookingButtonser').click( function() {
-            $('#newBookingModal').modal({
-                backdrop: 'static'
-            });
-        });
-        setFormValidation('#RegisterValidation');
+        $tr = $(this).closest('tr');
+        var data = table.row($tr).data();
+        getBooking(data.id, 'detail');
+    });
+    
+    $('#newBookingModal').perfectScrollbar();
+    $('#bookingDetail').perfectScrollbar();
+
     $('#newBookingButton').click( function() {
       $('#newBookingModal').modal({
         backdrop: 'static'
       });
+		});
+
+		$('#checkInButton').click( function() {
+			checkInOut(currentBooking.id, 'in', $(this).find('i').html());
+		});
+		
+		$('#checkOutButton').click( function() {
+			checkInOut(currentBooking.id, 'out', $(this).find('i').html());
 		});
   });
   </script>
