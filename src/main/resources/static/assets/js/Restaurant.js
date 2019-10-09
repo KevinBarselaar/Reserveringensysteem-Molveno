@@ -1,4 +1,5 @@
-var host = "http://localhost:8080";
+var host = "http://localhost:1010";
+var currentBooking;
 
 function postRestaurantData() {
     console.log("posting data...");
@@ -110,20 +111,42 @@ function getRestaurantDetails(id) {
         url: host + "/api/v1/restaurantbookings/" + id,
         type:"get",
         success: function(data, status) {
-        console.log('Get booking ' + data.bookingId + ' success');
-        console.log(data);
-        var restaurant = data;
+            console.log('Get booking ' + data.bookingId + ' success');
+            console.log(data);
+            currentBooking = data;
+            var restaurant = data;
 
-        //retrieve personal data from back-end
-        $('#tableBookingDetailsTitle').html('Table booking #' + restaurant.bookingId);
-        $("#tableBookingsDetailsGuest").text(restaurant.isGuest);
-        $("#tableBookingsDetailsFullName").text(restaurant.firstName + " " + restaurant.lastName);
-        $("#tableBookingDetailsDateAndTime").text(restaurant.bookingDate + " " + restaurant.bookingTime);
-        $("#tableBookingDetailsAdults").text(restaurant.numberOfGuests);
-        $("#tableBookingDetailsMinors").text(restaurant.numberOfMinors);
-        $("#tableBookingDetailsExtraItems").text(restaurant.extraitems);
+            //retrieve personal data from back-end
+            $('#tableBookingDetailsTitle').html('Table booking #' + restaurant.bookingId);
+            if (restaurant.isGuest) {
+                $("#tableBookingDetailsGuest").html(restaurant.firstName + ' is a guest at the hotel');
+            } else {
+                $("#tableBookingDetailsGuest").html(restaurant.firstName + ' isn\'t currently a guest');
+            }
+            $("#tableBookingDetailsFirstName").html(restaurant.firstName);
+            $("#tableBookingDetailsLastName").html(restaurant.lastName);
 
-        $('#tableBookingDetails').modal();
+            $("#tableBookingDetailsChildChair").html(restaurant.extraItems[0].numberOfChildChairs);
+            $("#tableBookingDetailsBoosterSeat").html(restaurant.extraItems[0].numberOfBoosterSeats);
+
+            $("#tableBookingDetailsDate").html(restaurant.bookingDate);
+            $("#tableBookingDetailsTime").html(restaurant.bookingTime);
+
+            $("#tableBookingDetailsAdults").html(restaurant.numberOfGuests);
+            $("#tableBookingDetailsMinors").html(restaurant.numberOfMinors);
+
+            $('.extra-item-title').remove();
+            // Show extra items if present
+            if (restaurant.extraItems[0].terrace) {
+                $("#tableBookingDetailsExtraItems").after("<h4 class='extra-item-title'>Terrace table preferred.</h4>");
+            }
+
+            if (restaurant.extraItems[0].disabledFriendly) {
+                $("#tableBookingDetailsExtraItems").after("<h4 class='extra-item-title'>Accommodation needed for physically disadvantaged.</h4>");
+            }
+            //$("#tableBookingDetailsExtraItems").html(restaurant.extraitems);
+
+            $('#tableBookingDetails').modal();
         }
     });
 }
