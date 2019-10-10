@@ -13,10 +13,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -134,7 +131,7 @@ public class BookingControllerTest {
     }
 
     private Booking createMockedBooking(Long bookingId, LocalDateTime bookingCreationDate, List<Room> rooms) {
-        Booking booking = new Booking(rooms, "Butterflies", "01/01/2000", "01/08/2000");
+        Booking booking = new Booking(rooms, "Butterflies", new Date(), new Date());
         booking.setId(bookingId);
         booking.setCreationDate(bookingCreationDate);
 
