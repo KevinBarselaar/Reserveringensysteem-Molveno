@@ -96,12 +96,6 @@ function postData() {
 
     console.log(input_title);
 
-    // var bdayYear = input_birthday.substring(6,10);
-    // var bdayMonth = input_birthday.substring(3,5);
-    // var bdayDay = input_birthday.substring(0,2);
-
-    // input_birthday = new Date(bdayYear, bdayMonth, bdayDay);
-
     console.log(input_birthday);
 
     var input_email =  $("#customerEmail").val();
@@ -431,7 +425,7 @@ class MainGuest {
     }
 }
 
-class mainGuestAddress {
+class MainGuestAddress {
     constructor(address) {
         this.mainGuestAddress = address;
     }
