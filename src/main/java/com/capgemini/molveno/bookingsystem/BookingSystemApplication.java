@@ -36,7 +36,31 @@ public class BookingSystemApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationStart() throws IOException {
+        File excelFile = new File("Hotel kamers plus prices v0.2.xlsx");
 
+        List<Room> roomsFromExcelSheet = this.excelDeserializer.deserialize(excelFile);
+
+        this.roomRepository.saveAll(roomsFromExcelSheet);
+        Booking testBooking = new Booking(new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(roomsFromExcelSheet.size() -1), roomsFromExcelSheet.get(17))),
+                "Extra badhandoeken en een invalide kamer","05/10/2019T10:00", "06/10/2019T13:00");
+        testBooking.setBoardType(BoardType.BED_AND_BREAKFAST);
+        testBooking.setCheckedIn(false);
+
+        Address address = new Address("Bondstreet", 11, "B", "6007 JB", "Ruhr Valley", "United Kingdom");
+        MainGuest mainGuest = new MainGuest(Title.MR, "James", "Bond", new Date(), "+44-700700707", "james.bond@007.com", address);
+
+        Guest guest1 = new Guest(Title.MR, "Conny", "Veer", new Date());
+        Guest guest2 = new Guest(Title.MS, "Peter", "Selie", new Date());
+        Guest guest3 = new Guest(Title.MR, "Beau", "Ter Ham", new Date());
+        List<Guest> guests = new ArrayList<>();
+        guests.add(guest1);
+        guests.add(guest2);
+        guests.add(guest3);
+        testBooking.setGuests(guests);
+        testBooking.setMainGuest(mainGuest);
+        testBooking.setCreationDate(LocalDateTime.now());
+
+        this.bookingRepository.saveAndFlush(testBooking); //TODO this is test code, replace with a POST request!
     }
 
     public static void main(String[] args) {
