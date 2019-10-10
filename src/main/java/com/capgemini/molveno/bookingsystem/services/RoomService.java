@@ -49,7 +49,14 @@ public class RoomService {
 
     private boolean isRoomBookedBetweenDates(Room room, Date startDate, Date endDate) {
         for (Booking booking : room.getBookings()) {
-            if (dateGreatherThanOrEqualTo(startDate, booking.getStartBooking()) && dateLessThanOrEqualTo(endDate, booking.getEndBooking())) {
+
+            boolean roomIsToBeBookedOnAvailableDates = dateGreatherThanOrEqualTo(startDate, booking.getStartBooking()) && dateGreatherThanOrEqualTo(endDate, booking.getEndBooking());
+            if(roomIsToBeBookedOnAvailableDates) {
+                return false;
+            }
+
+            boolean roomIsBookedBetweenDates = dateGreatherThanOrEqualTo(startDate, booking.getStartBooking()) && dateLessThanOrEqualTo(endDate, booking.getEndBooking());
+            if (roomIsBookedBetweenDates) {
                 return true;
             }
         }
