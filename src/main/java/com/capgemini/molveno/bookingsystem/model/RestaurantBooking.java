@@ -33,9 +33,9 @@ public class RestaurantBooking {
      * Constructor for a RestaurantBooking
      * @param isGuest           {@link Boolean Boolean} determining whether the booker is also a hotel guest
      * @param firstName         {@link String String} containing the first name of the booker
-     * @param lastName          {@link String String} containing the first name of the booker
-     * @param bookingDate       {@link String String} containing the first name of the booker
-     * @param bookingTime       {@link String String} containing the first name of the booker
+     * @param lastName          {@link String String} containing the last name of the booker
+     * @param bookingDate       {@link String String} containing the booking date
+     * @param bookingTime       {@link String String} containing the time of booking
      * @param numberOfGuests    {@link Integer Number of guests}
      * @param numberOfMinors    {@link Integer Number of minors}
      * @param roomId            {@link Long Identifier} if the booker is a hotel guest
