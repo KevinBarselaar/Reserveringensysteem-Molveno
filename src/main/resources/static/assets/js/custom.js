@@ -337,6 +337,7 @@ function openBookingDetail(booking) {
     $('#bookingDetailMainGuestEmail').html(booking.mainGuest.emailAddress);
     $('#bookingDetailMainGuestAddress').html(booking.mainGuest.address.streetName + " " + booking.mainGuest.address.houseNumber + " " + booking.mainGuest.address.houseNumberAddition + "<br/>" + booking.mainGuest.address.postalCode + ", " + booking.mainGuest.address.city + "<br/>" + booking.mainGuest.address.country);
     $('#bookingDetailExtras').html(booking.extraItems);
+    $('#bookingDetailPreference').html(booking.preference);
 
     // MainGuest calculation Adults & Children
     var children = 0;
@@ -457,6 +458,7 @@ class Booking {
         this.mainGuest = mainGuest;
         this.guests = guestList;
         this.boardType = $("[name='boardtype-radio']:checked").val();
+        this.preference = $("[name='preference-radio']:checked").val();
     }}
 
 class MainGuest {

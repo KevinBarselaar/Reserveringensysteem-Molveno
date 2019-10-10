@@ -43,6 +43,7 @@ public class Booking {
     private List<Guest> guests;
 
     private String extraItems;
+    private String preference;
 
     @Enumerated(EnumType.STRING)
     private BoardType boardType;
@@ -68,13 +69,15 @@ public class Booking {
         this.startBooking = start;
         this.endBooking = end;
     }
-    public Booking(List<Room> rooms, String extraItems, Date start, Date end, MainGuest mainGuest, List<Guest> guests) {
+
+    public Booking(List<Room> rooms, String extraItems, Date start, Date end, MainGuest mainGuest, List<Guest> guests, String preference) {
         this.rooms = rooms;
         this.extraItems = extraItems;
         this.startBooking = start;
         this.endBooking = end;
         this.mainGuest = mainGuest;
         this.guests = guests;
+        this.preference = preference;
     }
 
     public Long getId() {
@@ -155,6 +158,14 @@ public class Booking {
 
     public void setCheckedIn(boolean checkedIn) {
         isCheckedIn = checkedIn;
+    }
+
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
     }
 
     @Override

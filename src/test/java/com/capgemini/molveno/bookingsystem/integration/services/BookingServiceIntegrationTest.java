@@ -72,7 +72,7 @@ public class BookingServiceIntegrationTest {
         MainGuest guest = new MainGuest(Title.MR, "James", "Bond", new Date(), "0123456789", "maybe@yes.no", guestAddress);
         Date inputStartDate = this.createDate(8, 10, 2019);
         Date inputEndDate = this.createDate(12, 10, 2019);
-        Booking inputBooking = new Booking(Arrays.asList(firstRoom, secondRoom), "", inputStartDate, inputEndDate, guest, new ArrayList<>());
+        Booking inputBooking = new Booking(Arrays.asList(firstRoom, secondRoom), "", inputStartDate, inputEndDate, guest, new ArrayList<>(), "Mountain View");
         this.bookingService.create(inputBooking);
         Room firstAvailableRoom = this.roomService.create(new Room(RoomType.PENTHOUSE, 2, 0, new BedType[]{BedType.DOUBLE}, true, 0, 180));
         Room secondAvailableRoom = this.roomService.create(new Room(RoomType.TWO_DOUBLE, 2, 0, new BedType[]{BedType.DOUBLE}, true, 0, 180));
