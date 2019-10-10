@@ -16,8 +16,6 @@ function postRestaurantData() {
     console.log("input adult" + input_adults);
 
     var input_children = parseInt($("#amountChild").val(), 0);
-
-    // var input_extraItems;
     
     var input_booster = parseInt($("#booster").val(), 0);
     var input_childChair = parseInt($("#childChair").val(), 0);
