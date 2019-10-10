@@ -42,7 +42,7 @@ public class BookingSystemApplication {
 
         this.roomRepository.saveAll(roomsFromExcelSheet);
         Booking testBooking = new Booking(new ArrayList<>(Arrays.asList(roomsFromExcelSheet.get(roomsFromExcelSheet.size() -1), roomsFromExcelSheet.get(17))),
-                "Extra badhandoeken en een invalide kamer","05/10/2019T10:00", "06/10/2019T13:00");
+                "Extra badhandoeken en een invalide kamer",new Date(), new Date());
         testBooking.setBoardType(BoardType.BED_AND_BREAKFAST);
         testBooking.setCheckedIn(false);
 

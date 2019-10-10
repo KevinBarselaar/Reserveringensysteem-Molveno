@@ -1,11 +1,14 @@
 package com.capgemini.molveno.bookingsystem.services;
 
+import com.capgemini.molveno.bookingsystem.model.Booking;
 import com.capgemini.molveno.bookingsystem.model.Room;
 import com.capgemini.molveno.bookingsystem.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomService {
@@ -29,11 +32,43 @@ public class RoomService {
         return this.repository.findAllAvailable();
     }
 
+    public List<Room> findAllAvailableBetweenDates(Date startDate, Date endDate) {
+        return this.findAll()
+                .stream()
+                .filter(room -> !isRoomBookedBetweenDates(room, startDate, endDate))
+                .collect(Collectors.toList());
+    }
+
     public Room create(Room room) {
         return this.repository.saveAndFlush(room);
     }
 
     public void deleteById(Long id) {
         this.repository.deleteById(id);
+    }
+
+    private boolean isRoomBookedBetweenDates(Room room, Date startDate, Date endDate) {
+        for (Booking booking : room.getBookings()) {
+
+            boolean roomIsToBeBookedOnAvailableDates = dateGreatherThanOrEqualTo(startDate, booking.getStartBooking()) && dateGreatherThanOrEqualTo(endDate, booking.getEndBooking());
+            if(roomIsToBeBookedOnAvailableDates) {
+                return false;
+            }
+
+            boolean roomIsBookedBetweenDates = dateGreatherThanOrEqualTo(startDate, booking.getStartBooking()) && dateLessThanOrEqualTo(endDate, booking.getEndBooking());
+            if (roomIsBookedBetweenDates) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean dateGreatherThanOrEqualTo(Date date, Date compareDate) {
+        return date.after(compareDate) || date.equals(compareDate);
+    }
+
+    private boolean dateLessThanOrEqualTo(Date date, Date compareDate) {
+        return date.before(compareDate) || date.equals(compareDate);
     }
 }

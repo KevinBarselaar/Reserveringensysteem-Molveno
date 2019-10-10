@@ -17,49 +17,52 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-  Bookingsystem - Molveno
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!--   Fonts and icons   -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700&display=swap" rel="stylesheet">
-  <!-- CSS Files -->
-  <link href="assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>
+        Bookingsystem - Molveno
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!--   Fonts and icons   -->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700&display=swap" rel="stylesheet">
+    <!-- CSS Files -->
+    <link href="assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet"/>
 </head>
 
 <body class="">
-<div class="wrapper">
+<div class="wrapper ">
+
   <div class="sidebar" data-color="primary" data-background-color="white" data-image="assets/img/sidebar-2.jpg">
-    <div class="logo">
-      <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-        M
-      </a>
-      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-        Molveno
-      </a>
-    </div>
-    <div class="sidebar-wrapper">
-      <ul class="nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.html">
-            <i class="material-icons">view_list</i>
-            <p>Booking overview</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="restaurant.html">
-            <i class="material-icons">restaurant_menu</i>
-            <p>Restaurant</p>
-          </a>
-        </li>
-      </ul>
-    </div>
+        <div class="logo">
+            <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+                M
+            </a>
+            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                Molveno
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">
+                        <i class="material-icons">view_list</i>
+                        <p>Booking overview</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="restaurant.html">
+                        <i class="material-icons">restaurant_menu</i>
+                        <p>Restaurant</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
   </div>
   <div class="main-panel">
   <!-- Navbar -->
@@ -247,6 +250,14 @@
                       </div>
                     </div>
                   </div>
+                </div>
+
+                <div class="form-group select-wizard">
+                    <label>Select a room</label>
+                    <select class="selectpicker" data-size="7"
+                            data-style="select-with-transition"
+                            title="Single Select" id="availableRooms">
+                    </select>
                 </div>
 
                 <h4 class="mt-3">Main booker information</h4>
@@ -608,7 +619,7 @@
       postData();
       $("#newBookingModal").modal('hide');
       $('.modal').on('hidden.bs.modal', function(){
-        $(this).find('form')[0].reset();
+        $('.modal').find('form')[0].reset();
       });
       getData();
 		});
@@ -692,14 +703,43 @@
       });
 		});
 
-		$('#checkInButton').click( function() {
-			checkInOut(currentBooking.id, 'in', $(this).find('i').html());
-		});
-		
-		$('#checkOutButton').click( function() {
-			checkInOut(currentBooking.id, 'out', $(this).find('i').html());
-		});
+	$('#checkOutDate').datetimepicker().on('dp.change', function (ev) {
+        var startDate = $("#checkInDate").val();
+        var endDate = $("#checkOutDate").val();
+
+        if(startDate && endDate) {
+            getAvailableRoomsBetweenDates(startDate, endDate);
+        }
+
+        console.log("Set the end-date");
+    });
+
+    $('.dropdown-menu a').click(function(){
+        console.log("Clicked");
+        $('#selected').text($(this).text());
+    });
+
+    $('#availableRooms').change(function () {
+        var selectedItemIndex = $('#availableRooms').val();
+
+        var selectedRoom = window.availableRoomsList[selectedItemIndex];
+        window.selectedRooms.push(selectedRoom);
+
+        console.log(window.selectedRooms);
+    });
+
+    $('#checkInButton').click( function() {
+        checkInOut(currentBooking.id, 'in', $(this).find('i').html());
+    });
+    
+    $('#checkOutButton').click( function() {
+        checkInOut(currentBooking.id, 'out', $(this).find('i').html());
+    });
   });
-  </script>
-</body> 
+
+
+
+
+</script>
+</body>
 </html>

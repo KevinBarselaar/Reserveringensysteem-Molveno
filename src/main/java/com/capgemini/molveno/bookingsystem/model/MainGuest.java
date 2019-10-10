@@ -1,5 +1,7 @@
 package com.capgemini.molveno.bookingsystem.model;
 
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +9,7 @@ import javax.persistence.OneToOne;
 import java.util.Date;
 
 @Entity(name = "main_guest")
+@EqualsAndHashCode(callSuper = false)
 public class MainGuest extends Guest {
 
     private String phoneNumber;
