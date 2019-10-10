@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity(name = "restaurantbooking")
 public class RestaurantBooking {
-    private int roomNo;
+    private boolean isGuest;
     private String firstName;
     private String lastName;
     private String bookingDate;
@@ -22,13 +22,11 @@ public class RestaurantBooking {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long bookingId;
 
-
-
     public RestaurantBooking() {
     }
 
-    public RestaurantBooking(int roomNo, String firstName, String lastName, String bookingDate, String bookingTime, int numberOfGuests, int numberOfMinors, long roomId, List<ExtraItems> extraItems, long bookingId) {
-        this.roomNo = roomNo;
+    public RestaurantBooking(boolean isGuest, String firstName, String lastName, String bookingDate, String bookingTime, int numberOfGuests, int numberOfMinors, long roomId, List<ExtraItems> extraItems, long bookingId) {
+        this.isGuest = isGuest;
         this.firstName = firstName;
         this.lastName = lastName;
         this.bookingDate = bookingDate;
@@ -96,13 +94,12 @@ public class RestaurantBooking {
         this.bookingId = bookingId;
     }
 
-
-    public int getRoomNo() {
-        return roomNo;
+    public boolean isGuest() {
+        return isGuest;
     }
 
-    public void setRoomNo(int roomNo) {
-        this.roomNo = roomNo;
+    public void setGuest(boolean guest) {
+        isGuest = guest;
     }
 
     public String getFirstName() {
