@@ -19,7 +19,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private List<Room> rooms;
 
     @JsonFormat(pattern="dd/MM/yyyy")
@@ -43,6 +43,7 @@ public class Booking {
     private List<Guest> guests;
 
     private String extraItems;
+    private String preference;
 
     @Enumerated(EnumType.STRING)
     private BoardType boardType;
@@ -69,13 +70,25 @@ public class Booking {
         this.endBooking = end;
     }
 
-    public Booking(List<Room> rooms, String extraItems, Date start, Date end, MainGuest mainGuest, List<Guest> guests) {
+    /**
+     * Constructor for the Booking class
+     *
+     * @param rooms         List of {@link Room rooms} linked to the booking
+     * @param extraItems    {@link String String} containing any additional comments
+     * @param start         {@link Date Start date} of the booking
+     * @param end           {@link Date End date} of the booking
+     * @param mainGuest     {@link MainGuest Main guest} of the booking
+     * @param guests        List of {@link Guest guests} accompanying the main guest
+     * @param preference    {@link String String} containing {@link Room room preference}
+     */
+    public Booking(List<Room> rooms, String extraItems, Date start, Date end, MainGuest mainGuest, List<Guest> guests, String preference) {
         this.rooms = rooms;
         this.extraItems = extraItems;
         this.startBooking = start;
         this.endBooking = end;
         this.mainGuest = mainGuest;
         this.guests = guests;
+        this.preference = preference;
     }
 
     public Long getId() {
@@ -156,6 +169,14 @@ public class Booking {
 
     public void setCheckedIn(boolean checkedIn) {
         isCheckedIn = checkedIn;
+    }
+
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
     }
 
     @Override
