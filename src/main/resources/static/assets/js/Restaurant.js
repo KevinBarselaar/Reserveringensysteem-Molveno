@@ -93,11 +93,10 @@ function getRestaurantData() {
 function deleteBooking(id) {
     console.log("Deleting Booking with ID: " + id + "...");
     $.ajax({
-        url: host + "/api/bookings/delete/" + id,
+        url: host + "/api/v1/restaurantbookings/delete/" + id,
         type:"delete",
-        success: function(data) {
-            console.log("Succesfully deleted Booking with ID: " + data.id + ".");
-            console.log(data);
+        success: function() {
+            console.log("Succesfully deleted");
         },
         error: function () {
             console.log ("Invalid Id?");
