@@ -18,6 +18,67 @@ var roomTypes = {
     "PENTHOUSE": "Penthouse"
 }
 
+function addFields(){
+    var container = document.getElementById("guest-container");
+    console.log(container);
+    var template = document.querySelector('#guest-template');
+
+    var clone = document.importNode(template.content, true);
+    container.appendChild(clone);
+
+    // Edit names & ID's
+    var guestCount = $('#guest-container > div.guest-input').length;
+    console.log(guestCount);
+    // Get latest MainGuest
+    var lastGuest = $('#guest-container > div.guest-input:last-child');
+    console.log(lastGuest);
+    var lastGuestInputs = lastGuest.find('input');
+    console.log(lastGuestInputs);
+    //Set title radio buttons name attribute to title-radio-mainGuest{count}
+    lastGuestTitleRadios = $.grep(lastGuestInputs, function( element, index ) {
+        return $(element).attr('name') == 'title-radio-guest';
+    });
+
+    lastGuestTitleRadios.forEach(function (radio) {
+        $(radio).attr('name', 'title-radio-guest' + guestCount);
+        $(radio).attr('id', $(radio).attr('id') + guestCount);
+    });
+
+    //Set firstName id attribute to guest_firstName{count}
+    lastGuestFirstName = $.grep(lastGuestInputs, function( element, index ) {
+        return $(element).attr('id') == "guest_firstName";
+    });
+
+    lastGuestFirstName.forEach(function (text) {
+        $(text).attr('id', 'guest_firstName' + guestCount);
+    });
+
+    //Set lastName id attribute to guest_lastName{count}
+    lastGuestLastName = $.grep(lastGuestInputs, function( element, index ) {
+        return $(element).attr('id') == "guest_lastName";
+    });
+
+    lastGuestLastName.forEach(function (text) {
+        $(text).attr('id', 'guest_lastName' + guestCount);
+    });
+
+    //Set birthday id attribute to guest_birthday{count}
+    lastGuestBirthday = $.grep(lastGuestInputs, function( element, index ) {
+        return $(element).attr('id') == "guest_birthday";
+    });
+
+    lastGuestBirthday.forEach(function (text) {
+        $(text).attr('id', 'guest_birthday' + guestCount);
+    });
+}
+
+function removeTemplate() {
+    $(".guest-input").remove();
+}
+
+function removeSingleGuestInput() {
+    $(".guest-input").last().remove();
+}
 
 function postData() {
     console.log("posting data...");
@@ -37,19 +98,8 @@ function postData() {
       input_title = $("#mrs").val();
     }
     var input_email =  $("#customerEmail").val();
-    
-    var input_boardType;
 
-
-    if ($("#accommodations").prop('checked')) {
-      input_boardType = $("#accommodations").val();
-    } else if ($("#bedandbreakfast").prop('checked')) {
-      input_boardType = $("#bedandbreakfast").val();
-    } else if ($("#halfboard").prop('checked')) {
-      input_boardType = $("#halfboard").val();
-    }
-
-    var guestAddress = {
+    var mainGuestAddress = {
         streetName : $("#streetName").val(),
         houseNumber : $("#houseNumber").val(),
         houseNumberAddition : $("#addition").val(),
@@ -58,18 +108,51 @@ function postData() {
         country : $("#country").val()
     }
 
-    var guest = {
+    var mainGuest = {
         firstName : input_firstname,
         lastName : input_lastname,
         phoneNumber : input_phonenumber,
         birthDate : input_birthday,
         emailAddress : input_email,
         title : input_title,
-        address : guestAddress
+        address : mainGuestAddress
+    }
+    
+    var guestList = [];
+
+    for (let index = 1; index <= $('#guest-container > div.guest-input').length; index++) {
+        var bdayYear = $("#guest_birthday" + index).val().substring(6,10);
+        var bdayMonth = $("#guest_birthday" + index).val().substring(3,5);
+        var bdayDay = $("#guest_birthday" + index).val().substring(0,2);
+    
+        guestBirthday = new Date(bdayYear, bdayMonth, bdayDay);
+        
+        var guestTitle;
+
+        if ($("#guest_mr" + index).prop('checked')) {
+            guestTitle = $("#guest_mr" + index).val();
+        } else if ($("#guest_ms" + index).prop('checked')) {
+            guestTitle = $("#guest_ms" + index).val();
+        } else if ($("#guest_mrs" + index).prop('checked')) {
+            guestTitle = "MRS";
+        }
+
+        var guest = {
+            "title" : guestTitle,
+            "firstName" : $("#guest_firstName" + index).val(),
+            "lastName" : $("#guest_lastName" + index).val(),
+            "birthDate" : guestBirthday
+        }
+
+        console.log("This is the guest" + guest);
+
+        guestList.push(guest);     
     }
 
+    console.log("This is the guest array" + guestList);
+
     // Create JS object with data.
-    var newBooking = new Booking(guest);
+    var newBooking = new Booking(mainGuest, guestList);
     console.log(newBooking);
 
     // Convert JS object to JSON.
@@ -86,6 +169,7 @@ function postData() {
             // On successful post, reload data to get the added one as well.
             console.log("API Success function");
             console.log(result);
+            removeTemplate();
             getData();
         }
     });
@@ -125,7 +209,7 @@ function getData() {
 }
 
 function checkInOut(id, in_out, icon) {
-    var message = $('#bookingDetailsMainGuestName').html() + " has checked " + in_out + ".";
+    var message = $('#bookingDetailMainGuestName').html() + " has checked " + in_out + ".";
     $.ajax({
         url: host + "/api/bookings/check-in-out/" + id,
         type:"put",
@@ -141,61 +225,64 @@ function checkInOut(id, in_out, icon) {
 
 // Callback function from AJAX request if the model requests information
 function openBookingDetail(booking) {
+    console.log('open booking'); 
     var rooms = "";
     for (var i = 0; i < booking.rooms.length; i++){
         rooms += booking.rooms[i].id + " (" + roomTypes[booking.rooms[i].type] + ")" + "<br/>";
     }
     
     // Set data
-    $('#bookingDetailsTitle').html("Booking #" + booking.id);
-    $('#bookingDetailsSubtitle').html("Booked on " + moment(booking.creationDate).format('DD-MM-YYYY'));
-    $('#bookingDetailsCheckin').html(moment(booking.startBooking).format('DD-MM-YYYY'));
-    $('#bookingDetailsCheckout').html(moment(booking.endBooking).format('DD-MM-YYYY'));
-    $('#bookingDetailsRooms').html(rooms.substring(0, rooms.length - 5));
-    $('#bookingDetailsBoardType').html(boardTypes[booking.boardType]);
-    $('#bookingDetailsMainGuestName').html(titleString[booking.mainGuest.title] + " " + booking.mainGuest.firstName + " " + booking.mainGuest.lastName);
-    $('#bookingDetailsMainGuestPhone').html(booking.mainGuest.phoneNumber);
-    $('#bookingDetailsMainGuestEmail').html(booking.mainGuest.emailAddress);
-    $('#bookingDetailsMainGuestAddress').html(booking.mainGuest.address.streetName + " " + booking.mainGuest.address.houseNumber + " " + booking.mainGuest.address.houseNumberAddition + "<br/>" + booking.mainGuest.address.postalCode + ", " + booking.mainGuest.address.city + "<br/>" + booking.mainGuest.address.country);
-    $('#bookingDetailsExtras').html(booking.extraItems);
+    $('#bookingDetailTitle').html("Booking #" + booking.id);
+    $('#bookingDetailSubtitle').html("Booked on " + moment(booking.creationDate).format('DD-MM-YYYY'));
+    $('#bookingDetailCheckin').html(moment(booking.startBooking).format('DD-MM-YYYY'));
+    $('#bookingDetailCheckout').html(moment(booking.endBooking).format('DD-MM-YYYY'));
+    $('#bookingDetailRooms').html(rooms.substring(0, rooms.length - 5));
+    $('#bookingDetailBoardType').html(boardTypes[booking.boardType]);
+    $('#bookingDetailMainGuestName').html(titleString[booking.mainGuest.title] + " " + booking.mainGuest.firstName + " " + booking.mainGuest.lastName);
+    $('#bookingDetailMainGuestPhone').html(booking.mainGuest.phoneNumber);
+    $('#bookingDetailMainGuestEmail').html(booking.mainGuest.emailAddress);
+    $('#bookingDetailMainGuestAddress').html(booking.mainGuest.address.streetName + " " + booking.mainGuest.address.houseNumber + " " + booking.mainGuest.address.houseNumberAddition + "<br/>" + booking.mainGuest.address.postalCode + ", " + booking.mainGuest.address.city + "<br/>" + booking.mainGuest.address.country);
+    $('#bookingDetailExtras').html(booking.extraItems);
 
-    // Guest calculation Adults & Children
+    // MainGuest calculation Adults & Children
     var children = 0;
-    $('#bookingDetailsGuestsTable tbody').html('');
+    $('#bookingDetailGuestsTable tbody').html('');
 
-    // Parse year to int and check if there's a 10 year difference, this should be done with Date objects after we parse these correctly from the Back End
+    // Parse year to int and check if there's an 18 year difference, this should be done with Date objects after we parse these correctly from the Back End
     if (booking.guests.length > 0) {
         for (var i = 0; i < booking.guests.length; i++) {
-            var birthdateMoment = moment(booking.guests[i].birthDate);
-            var checkinMoment = moment(booking.startBooking);
+            var birthdateMoment = moment(booking.guests[i].birthDate); // Parse birth date to Moment JS Date object
+            var checkinMoment = moment(booking.startBooking); // Parse check in date to Moment JS Date object
             var difference = moment.duration(checkinMoment.diff(birthdateMoment, 'years', true)); // Check difference between birth date and check in date
             console.log(difference);
             if (difference < 10) {
                 children++;
             }
-            $('#bookingDetailsGuestsTable tbody').append('<tr><td>' + titleString[booking.guests[i].title] + " " + booking.guests[i].firstName + " " + booking.guests[i].lastName + '</td><td>' + booking.guests[i].birthDate.substr(0,10) + '</td></tr>');
+            $('#bookingDetailGuestsTable tbody').append('<tr><td>' + titleString[booking.guests[i].title] + " " + booking.guests[i].firstName + " " + booking.guests[i].lastName + '</td><td>' + booking.guests[i].birthDate.substr(0,10) + '</td></tr>');
         }  
-        $('#bookingDetailsGuests').html(booking.guests.length - children + " adults, " + children + " children");
+        $('#bookingDetailGuests').html(booking.guests.length - children + " adults, " + children + " children");
     } else {
-        $('#bookingDetailsGuests').html("No other guests");
+        $('#bookingDetailGuests').html("No other guests");
     }
     
     $('#checkInButton').removeClass();
     $('#checkOutButton').removeClass();
+    $('#checkInButton').show();
+    $('#checkOutButton').show();
 
     // Disable check out button if guest hasn't checked in yet
     if (booking.checkedIn) {
         $('#checkInButton').addClass('btn btn-secondary disabled mr-3').html('<i class="material-icons">check_circle</i> Checked in');
         $('#checkOutButton').addClass('btn btn-primary');
-    } else if (Date.now() > Date.parse(booking.endBooking.substr(0, booking.endBooking.indexOf('T')))) { // Check if check out date is in the past, checking in after this should not be possible
-        $('#checkInButton').remove();
-        $('#checkOutButton').remove();
+    } else if (moment().isAfter(moment(booking.endDate))) { // Check if check out date is in the past, checking in after this should not be possible
+        $('#checkInButton').hide();
+        $('#checkOutButton').hide();
     } else {
         $('#checkInButton').addClass('btn btn-primary mr-3').html('<i class="material-icons">check_circle</i> Check in');
         $('#checkOutButton').addClass('btn btn-secondary disabled');
     }
 
-    $('#bookingDetails').modal();
+    $('#bookingDetail').modal();
 }
 
 function getBooking(id, modalRequested) {
@@ -211,9 +298,9 @@ function getBooking(id, modalRequested) {
             currentBooking = data;
             switch (modalRequested) {
                 case 'detail':
-                    openBookingDetail(data);\
+                    openBookingDetail(data);
                     break;
-                default: break;
+                default: return getData();
             }
         },
         error: function () {
@@ -263,9 +350,7 @@ function deleteBooking(id) {
 }
 
 class Booking {  
-
-    constructor(guest) {
-
+    constructor(mainGuest, guestList) {
         var input_start = $("#checkInDate").val();
         var input_end = $("#checkOutDate").val();
 
@@ -273,20 +358,19 @@ class Booking {
         this.extraItems = "Hey";
         this.startBooking = input_start;
         this.endBooking = input_end;
-        this.numberOfAdults = $("[name='adults']").val();
-        this.numberOfMinors = $("[name='minors']").val();
-        this.mainGuest = guest;
-        this.boardType = $("[name='exampleRadios2']:checked").val();
+        this.mainGuest = mainGuest;
+        this.guests = guestList;
+        this.boardType = $("[name='boardtype-radio']:checked").val();
     }}
 
-class Guest {
-    constructor(guest) {
-        this.guest = guest;
+class MainGuest {
+    constructor(mainGuest) {
+        this.mainGuest = mainGuest;
     }
 }
 
-class GuestAddress {
+class MainGuestAddress {
     constructor(address) {
-        this.guestAddress = address;
+        this.mainGuestAddress = address;
     }
 }
