@@ -4,6 +4,9 @@ import com.capgemini.molveno.bookingsystem.model.Booking;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Custom exception to display that you cannot cancel the booking anymore due to time constraints
+ */
 @ResponseStatus(code = HttpStatus.FORBIDDEN)
 public class DeadlineExpiredException extends IllegalStateException {
 

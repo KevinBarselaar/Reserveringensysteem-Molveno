@@ -1,5 +1,8 @@
 package com.capgemini.molveno.bookingsystem.model;
 
+/**
+ * Enumeration containing the different types of boarding accommodations offered.
+ */
 public enum BoardType {
 
     BED_AND_BREAKFAST("Bed and Breakfast"),

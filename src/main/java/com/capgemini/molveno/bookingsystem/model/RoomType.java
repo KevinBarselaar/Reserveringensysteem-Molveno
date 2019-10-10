@@ -11,8 +11,8 @@ public enum RoomType {
 
     /**
      * Determines type of room
-     * @param roomType {@link String String} containing data about the room type
-     * @return {@link RoomType Type} of room
+     * @param roomType  {@link String String} containing data about the room type
+     * @return          {@link RoomType Type} of room
      */
     public static RoomType from(String roomType) {
         roomType = roomType.toLowerCase().replace(" ", "");

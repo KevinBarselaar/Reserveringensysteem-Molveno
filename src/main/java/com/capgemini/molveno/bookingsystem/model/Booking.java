@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class contains a single booking, with all the info required to link bookings to a guest.
+ * This class contains a single hotel booking, with all the info required to link an hotel booking to a guest.
  */
 @Entity(name = "booking")
 @EqualsAndHashCode
@@ -68,6 +68,7 @@ public class Booking {
         this.startBooking = start;
         this.endBooking = end;
     }
+
     public Booking(List<Room> rooms, String extraItems, Date start, Date end, MainGuest mainGuest, List<Guest> guests) {
         this.rooms = rooms;
         this.extraItems = extraItems;

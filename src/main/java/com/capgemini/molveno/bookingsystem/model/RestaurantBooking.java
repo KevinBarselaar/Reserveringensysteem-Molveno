@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class contains a single restaurant booking, with information required to link a restaurant booking to a guest
+ * if applicable.
+ */
 @Entity(name = "restaurantbooking")
 public class RestaurantBooking {
     private boolean isGuest;
@@ -25,6 +29,19 @@ public class RestaurantBooking {
     public RestaurantBooking() {
     }
 
+    /**
+     * Constructor for a RestaurantBooking
+     * @param isGuest           {@link Boolean Boolean} determining whether the booker is also a hotel guest
+     * @param firstName         {@link String String} containing the first name of the booker
+     * @param lastName          {@link String String} containing the first name of the booker
+     * @param bookingDate       {@link String String} containing the first name of the booker
+     * @param bookingTime       {@link String String} containing the first name of the booker
+     * @param numberOfGuests    {@link Integer Number of guests}
+     * @param numberOfMinors    {@link Integer Number of minors}
+     * @param roomId            {@link Long Identifier} if the booker is a hotel guest
+     * @param extraItems        {@link String String} containing any extra information
+     * @param bookingId         {@link Long Unique identifier for each restaurant booking}
+     */
     public RestaurantBooking(boolean isGuest, String firstName, String lastName, String bookingDate, String bookingTime, int numberOfGuests, int numberOfMinors, long roomId, List<ExtraItems> extraItems, long bookingId) {
         this.isGuest = isGuest;
         this.firstName = firstName;

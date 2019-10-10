@@ -27,7 +27,6 @@ public class BookingController {
      *
      * @return JSON response of all {@link Booking bookings} in the database
      */
-    @CrossOrigin
     @GetMapping("/overview")
     public List<Booking> getAllBookings() {
         return this.bookingService.findAll();
@@ -36,8 +35,8 @@ public class BookingController {
     /**
      * Gets a specific {@link Booking booking} and its information
      *
-     * @param id {@link Long Number} of the {@link Booking booking} in the database
-     * @return JSON response containing the {@link Booking booking}
+     * @param id    {@link Long Number} of the {@link Booking booking} in the database
+     * @return      JSON response containing the {@link Booking booking}
      */
     @CrossOrigin
     @GetMapping("/{id}")
@@ -54,21 +53,18 @@ public class BookingController {
     /**
      * Request to create a new {@link Booking booking} and add it to the database
      *
-     * @param {@link Booking booking} object containing all the data from the front-end form
+     * @param booking   {@link Booking booking} object containing all the data from the front-end form
      */
-    @CrossOrigin
     @PostMapping("/create")
     public void createBooking(@RequestBody Booking booking) {
         this.bookingService.create(booking);
     }
 
-    @CrossOrigin
     @DeleteMapping("/{bookingId}/rooms/{roomId}")
     public void removeRooms(@PathVariable Long bookingId, @PathVariable Long roomId) {
         this.bookingService.removeRoomFromBooking(bookingId, roomId);
     }
 
-    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
         this.bookingService.deleteById(id);
@@ -77,9 +73,8 @@ public class BookingController {
     /**
      * Check in or out a booking and set the availabillity of the rooms in the booking to true or false.
      *
-     * @param id {@link Long id} of the {@link Booking booking} in the database
+     * @param id    {@link Long id} of the {@link Booking booking} in the database
      */
-    @CrossOrigin
     @PutMapping("/check-in-out/{id}")
     public void checkInOutBooking(@PathVariable Long id) {
         this.bookingService.checkInOutBooking(id);

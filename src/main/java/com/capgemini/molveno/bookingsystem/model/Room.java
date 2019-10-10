@@ -45,13 +45,13 @@ public class Room {
 
     /**
      * Constructor for the class
-     * @param type {@link RoomType Type} of the room
-     * @param adultCapacity {@link Integer Number} containing maximum capacity of adults for the room
-     * @param minorCapacity {@link Integer Number} containing maximum capacity of minors for the room
-     * @param bedTypes List of {@link BedType types of beds} found in the room
-     * @param disabledFriendly {@link Boolean Bool} determining if disabled people can stay in the room
-     * @param floor {@link Integer Number} of the floor room
-     * @param roomPrice {@link Double Price of the room}
+     * @param type              {@link RoomType Type} of the room
+     * @param adultCapacity     {@link Integer Number} containing maximum capacity of adults for the room
+     * @param minorCapacity     {@link Integer Number} containing maximum capacity of minors for the room
+     * @param bedTypes List of  {@link BedType types of beds} found in the room
+     * @param disabledFriendly  {@link Boolean Bool} determining if disabled people can stay in the room
+     * @param floor             {@link Integer Number} of the floor room
+     * @param roomPrice         {@link Double Price of the room}
      */
     public Room(RoomType type, int adultCapacity, int minorCapacity, BedType[] bedTypes, boolean disabledFriendly, int floor, double roomPrice) {
         this.type = type;
