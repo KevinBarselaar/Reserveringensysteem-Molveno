@@ -90,6 +90,21 @@ function getRestaurantData() {
     });
 }
 
+function deleteBooking(id) {
+    console.log("Deleting Booking with ID: " + id + "...");
+    $.ajax({
+        url: host + "/api/bookings/delete/" + id,
+        type:"delete",
+        success: function(data) {
+            console.log("Succesfully deleted Booking with ID: " + data.id + ".");
+            console.log(data);
+        },
+        error: function () {
+            console.log ("Invalid Id?");
+        }
+    });
+}
+
 function getRestaurantDetails(id) {
     
     $.ajax({
