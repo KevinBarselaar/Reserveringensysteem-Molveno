@@ -43,13 +43,9 @@ public class RestaurantBookingService {
 
         //extracts numeric value from the chars
         int a = Character.getNumericValue(c1);
-        System.out.println(a);
         int b = Character.getNumericValue(c2);
-        System.out.println(b);
         int c = Character.getNumericValue(c3);
-        System.out.println(c);
         int d = Character.getNumericValue(c4);
-        System.out.println(d);
 
         String str;
 
@@ -64,8 +60,6 @@ public class RestaurantBookingService {
 
         //converts string to one integer
         int timeBooking = Integer.parseInt(str);
-        System.out.println(timeBooking);
-
 
         if (timeBooking < minAllowedTime || timeBooking > maxAllowedTime) {
             throw new RuntimeException("Times are not within allowed bounds");

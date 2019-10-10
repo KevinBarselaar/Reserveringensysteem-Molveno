@@ -97,7 +97,6 @@ function getRestaurantDetails(id) {
         type:"get",
         success: function(data, status) {
             console.log('Get booking ' + data.bookingId + ' success');
-            console.log(data);
             var restaurant = data;
 
             //retrieve personal data from back-end
