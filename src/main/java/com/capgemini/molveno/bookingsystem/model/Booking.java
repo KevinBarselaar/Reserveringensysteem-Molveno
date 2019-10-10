@@ -59,8 +59,8 @@ public class Booking {
      *
      * @param rooms      List of {@link Room rooms} linked to the booking
      * @param extraItems {@link String String} containing any additional comments
-     * @param start      {@link LocalDateTime Start date} of the booking
-     * @param end        {@link LocalDateTime End date} of the booking
+     * @param start      {@link Date Start date} of the booking
+     * @param end        {@link Date End date} of the booking
      */
     public Booking(List<Room> rooms, String extraItems, Date start, Date end) {
         this.rooms = rooms;
