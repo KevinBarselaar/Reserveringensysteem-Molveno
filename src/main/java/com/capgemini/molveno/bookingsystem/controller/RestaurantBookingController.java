@@ -22,8 +22,9 @@ public class RestaurantBookingController {
     }
 
     /**
+     * Get all {@link RestaurantBooking restaurant bookings}
      *
-     * @return
+     * @return  JSON response of all {@link RestaurantBooking restaurant bookings}
      */
     @GetMapping("/overview")
     public List<RestaurantBooking> getAllBookings() {
@@ -31,9 +32,10 @@ public class RestaurantBookingController {
     }
 
     /**
+     * Get a {@link RestaurantBooking restaurant booking} based on its id
      *
-     * @param id
-     * @return
+     * @param id    {@link Long Id} of the {@link RestaurantBooking restaurant booking} to be found
+     * @return      JSON response of a {@link RestaurantBooking restaurant booking} with the given id
      */
     @GetMapping("/{id}")
     public RestaurantBooking getBookingById(@PathVariable Long id) {
@@ -41,8 +43,9 @@ public class RestaurantBookingController {
     }
 
     /**
+     * Create a new {@link RestaurantBooking restaurant booking}
      *
-     * @param booking
+     * @param booking   {@link RestaurantBooking Restaurant booking} to be made
      */
     @PostMapping("/create")
     public void createBooking(@RequestBody RestaurantBooking booking) {
@@ -50,8 +53,9 @@ public class RestaurantBookingController {
     }
 
     /**
+     * Deletes a {@link RestaurantBooking restaurant booking} based on its id
      *
-     * @param id
+     * @param id    {@link Long Id} of the {@link RestaurantBooking restaurant booking} to be deleted
      */
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
