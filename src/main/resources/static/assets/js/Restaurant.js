@@ -16,26 +16,14 @@ function postRestaurantData() {
     console.log("input adult" + input_adults);
 
     var input_children = parseInt($("#amountChild").val(), 0);
-    
-    
+
     // var input_extraItems;
     
     var input_booster = parseInt($("#booster").val(), 0);
     var input_childChair = parseInt($("#childChair").val(), 0);
 
-
     var isDisabled = $("#disabled").prop('checked');
-
     var isTerrace = $("#terrace").prop('checked');
-
-    // if ($("#disabled").prop('checked')) {
-    //   input_extraItems = $("#disabled").val();
-    // }
-    // if ($("#terrace").prop('checked')) {
-    //     input_extraItems = $("#terrace").val(); 
-    // }
-
-
 
     var input_reservationDate = new Date();
 

@@ -22,8 +22,6 @@ public class RestaurantBooking {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long bookingId;
 
-
-
     public RestaurantBooking() {
     }
 
