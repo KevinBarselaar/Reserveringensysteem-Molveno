@@ -23,9 +23,11 @@ public class Booking {
     private List<Room> rooms;
 
     @JsonFormat(pattern="dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
     private Date startBooking;
 
     @JsonFormat(pattern="dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
     private Date endBooking;
 
     /**
