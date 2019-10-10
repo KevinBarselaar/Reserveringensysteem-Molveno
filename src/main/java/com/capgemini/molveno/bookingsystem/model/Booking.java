@@ -19,7 +19,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private List<Room> rooms;
 
     @JsonFormat(pattern="dd/MM/yyyy")

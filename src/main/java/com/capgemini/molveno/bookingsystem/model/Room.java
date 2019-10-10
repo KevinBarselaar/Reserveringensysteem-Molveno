@@ -31,7 +31,7 @@ public class Room {
     private BedType[] bedTypes;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "rooms", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "rooms", cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     private List<Booking> bookings = new ArrayList<>();
 
     private boolean disabledFriendly;
