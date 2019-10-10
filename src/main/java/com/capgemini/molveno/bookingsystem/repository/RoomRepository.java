@@ -14,7 +14,4 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
 
     @Query("SELECT r from room r WHERE r.available = true")
     public List<Room> findAllAvailable();
-
-//    @Query("SELECT r from room WHERE NOT (r.bookings.startBooking >= :startDate AND r.bookings.endBooking >= :endDate)")
-//    public List<Room> findAllAvailableBetweenDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }
