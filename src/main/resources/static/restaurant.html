@@ -277,13 +277,13 @@
                               <div class="form-row">
                                 <div class="col">
                                   <div class="form-group">
-                                    <h6 class="text-gray"> Number of Adults</h6>
+                                    <h6 class="text-gray">Number of Adults</h6>
                                     <h4 id="tableBookingDetailsAdults"></h4>
                                   </div>
                                 </div>
                                 <div class="col">
                                   <div class="form-group">
-                                    <h6 class="text-gray"> Number of Minors</h6>
+                                    <h6 class="text-gray">Number of Minors</h6>
                                       <h4 id="tableBookingDetailsMinors"></h4>
                                   </div>
                                 </div>
@@ -291,13 +291,13 @@
                               <div class="form-row">
                                 <div class="col">
                                   <div class="form-group">
-                                    <h6 class="text-gray"> Booking Date</h6>
+                                    <h6 class="text-gray">Booking Date</h6>
                                     <h4 id="tableBookingDetailsDate">asdf</h4>
                                   </div>
                                 </div>
                                 <div class="col">
                                   <div class="form-group">
-                                    <h6 class="text-gray"> Booking Time</h6>
+                                    <h6 class="text-gray">Booking Time</h6>
                                     <h4 id="tableBookingDetailsTime"></h4>
                                   </div>
                                 </div>
@@ -305,13 +305,13 @@
                               <div class="form-row">
                                 <div class="col">
                                   <div class="form-group">
-                                    <h6 class="text-gray"> First Name</h6>
+                                    <h6 class="text-gray">First Name</h6>
                                     <h4 id="tableBookingDetailsFirstName"></h4>
                                   </div>
                                 </div>
                                 <div class="col">
                                   <div class="form-group">
-                                    <h6 class="text-gray"> Last Name</h6>
+                                    <h6 class="text-gray">Last Name</h6>
                                     <h4 id="tableBookingDetailsLastName"></h4>
                                   </div>
                                 </div>
@@ -319,13 +319,13 @@
                               <div class="form-row">
                                   <div class="col">
                                     <div class="form-group">
-                                      <h6 class="text-gray"> Child Chairs</h6>
+                                      <h6 class="text-gray">Child Chairs</h6>
                                       <h4 id="tableBookingDetailsChildChair"></h4>
                                     </div>
                                   </div>
                                   <div class="col">
                                     <div class="form-group">
-                                      <h6 class="text-gray"> Booster Seats</h6>
+                                      <h6 class="text-gray">Booster Seats</h6>
                                       <h4 id="tableBookingDetailsBoosterSeat"></h4>
                                     </div>
                                   </div>
@@ -499,8 +499,7 @@
       table.on('click', '.info', function() {
 			$tr = $(this).closest('tr');
       var data = table.row($tr).data();
-      
-      console.log(data.bookingId);
+
       getRestaurantDetails(data.bookingId);
 		});
       

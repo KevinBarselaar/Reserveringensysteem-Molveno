@@ -3,7 +3,6 @@ function getRestaurantDetails(id) {
         url: host + "/api/v1/restaurantbookings/" + id,
         type:"get",
         success: function(data, status) {
-        console.log('Get booking ' + data.id + ' success');
         var restaurant = data;
 
         //retrieve personal data from back-end
