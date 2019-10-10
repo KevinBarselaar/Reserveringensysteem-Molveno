@@ -1,9 +1,11 @@
 package com.capgemini.molveno.bookingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,8 +22,13 @@ public class Booking {
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private List<Room> rooms;
 
-    private String startBooking;
-    private String endBooking;
+    @JsonFormat(pattern="dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    private Date startBooking;
+
+    @JsonFormat(pattern="dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    private Date endBooking;
 
     /**
      * The main booker
@@ -52,16 +59,16 @@ public class Booking {
      *
      * @param rooms      List of {@link Room rooms} linked to the booking
      * @param extraItems {@link String String} containing any additional comments
-     * @param start      {@link LocalDateTime Start date} of the booking
-     * @param end        {@link LocalDateTime End date} of the booking
+     * @param start      {@link Date Start date} of the booking
+     * @param end        {@link Date End date} of the booking
      */
-    public Booking(List<Room> rooms, String extraItems, String start, String end) {
+    public Booking(List<Room> rooms, String extraItems, Date start, Date end) {
         this.rooms = rooms;
         this.extraItems = extraItems;
         this.startBooking = start;
         this.endBooking = end;
     }
-    public Booking(List<Room> rooms, String extraItems, String start, String end, MainGuest mainGuest, List<Guest> guests) {
+    public Booking(List<Room> rooms, String extraItems, Date start, Date end, MainGuest mainGuest, List<Guest> guests) {
         this.rooms = rooms;
         this.extraItems = extraItems;
         this.startBooking = start;
@@ -86,19 +93,19 @@ public class Booking {
         this.rooms = rooms;
     }
 
-    public String getStartBooking() {
+    public Date getStartBooking() {
         return startBooking;
     }
 
-    public void setStartBooking(String startBooking) {
+    public void setStartBooking(Date startBooking) {
         this.startBooking = startBooking;
     }
 
-    public String getEndBooking() {
+    public Date getEndBooking() {
         return endBooking;
     }
 
-    public void setEndBooking(String endBooking) {
+    public void setEndBooking(Date endBooking) {
         this.endBooking = endBooking;
     }
 

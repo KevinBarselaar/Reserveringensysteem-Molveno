@@ -18,6 +18,9 @@ var roomTypes = {
     "PENTHOUSE": "Penthouse"
 }
 
+var availableRoomsList = [];
+var selectedRooms = [];
+
 function addFields(){
     var container = document.getElementById("guest-container");
     console.log(container);
@@ -83,8 +86,8 @@ function removeSingleGuestInput() {
 function postData() {
     console.log("posting data...");
 
-    var input_firstname = $("#firstName").val();
-    var input_lastname = $("#lastName").val();
+    var input_firstname = $("#firstName").val(); 
+    var input_lastname = $("#lastName").val(); 
     var input_phonenumber = $("#telNo").val();
 
     var input_birthday =  moment($("#birthday").val());
@@ -153,6 +156,7 @@ function postData() {
 
     // Create JS object with data.
     var newBooking = new Booking(mainGuest, guestList);
+    newBooking.rooms = window.selectedRooms;
     console.log(newBooking);
 
     // Convert JS object to JSON.
@@ -169,10 +173,18 @@ function postData() {
             // On successful post, reload data to get the added one as well.
             console.log("API Success function");
             console.log(result);
+            // Reset room dropdown
+            clearRoomSelect();
             removeTemplate();
             getData();
         }
     });
+}
+
+function clearRoomSelect() {
+    window.selectedRooms = [];
+    $("#availableRooms").find('option').remove();
+    $("#availableRooms").selectpicker("refresh");
 }
 
 function setFormValidation(id) {
@@ -207,6 +219,30 @@ function getData() {
         }
     });
 }
+
+function getAvailableRoomsBetweenDates(startDate, endDate) {
+    console.log("getting all available rooms for ..." + startDate + " till " + endDate);
+    clearRoomSelect();
+
+    // Get the data from endpoint.
+    $.ajax({
+        url: host + "/api/rooms/overview/available/between?startDate=" + startDate + "&endDate=" + endDate,
+        type: "get",
+        success: function(rooms) {
+            // On successful get, reload the datatable with new data.
+            console.log("This is the data: " + rooms);            
+            window.availableRoomsList = rooms;
+        
+            for(var index = 0; index < rooms.length; index++) {
+                var element = rooms[index];
+                $('#availableRooms').append(new Option("Room " + element.id + " (" + element.type + ")", index));
+            }
+            
+            $("#availableRooms").selectpicker("refresh");
+        }
+    });
+}
+
 
 function checkInOut(id, in_out, icon) {
     var message = $('#bookingDetailMainGuestName').html() + " has checked " + in_out + ".";

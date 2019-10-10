@@ -11,7 +11,6 @@ import java.io.IOException;
 public class BookingSystemApplication {
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationStart() throws IOException {}
-
     public static void main(String[] args) {
         SpringApplication.run(BookingSystemApplication.class, args);
     }

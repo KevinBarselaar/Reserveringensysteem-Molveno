@@ -5,7 +5,12 @@ import com.capgemini.molveno.bookingsystem.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class handling all the endpoint requests from the application regarding rooms
@@ -34,6 +39,18 @@ public class RoomController {
     @GetMapping("/overview/available")
     public List<Room> getAllAvailableRooms() {
         return this.roomService.findAllAvailable();
+    }
+
+    @GetMapping("/overview/available/between")
+    public List<Room> getAllAvailableRoomsForDateRange(@RequestParam("startDate") Optional<String> startDate, @RequestParam("endDate") Optional<String> endDate) throws ParseException {
+        if (startDate.isPresent() && endDate.isPresent()) {
+            Date start = new SimpleDateFormat("MM/dd/yyyy").parse(startDate.get());
+            Date end = new SimpleDateFormat("MM/dd/yyyy").parse(endDate.get());
+
+            return this.roomService.findAllAvailableBetweenDates(start, end);
+        }
+
+        return new ArrayList<>();
     }
 
     /**
