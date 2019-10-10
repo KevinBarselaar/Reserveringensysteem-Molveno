@@ -27,13 +27,13 @@ public class Address {
 
     /**
      * Constructor for address
-     * @param streetName {@link String String} containing address
-     * @param houseNumber {@link Integer Integer} containing house number
-     * @param houseNumberAddition {@link String String} containing addition to house number
+     * @param streetName            {@link String String} containing address
+     * @param houseNumber           {@link Integer Integer} containing house number
+     * @param houseNumberAddition   {@link String String} containing addition to house number
      *                                                 (e.g. "B" if complete house number is "2B")
-     * @param postalCode {@link String String} containing zip code
-     * @param city {@link String String} containing city
-     * @param country {@link String String} containing country
+     * @param postalCode            {@link String String} containing zip code
+     * @param city                  {@link String String} containing city
+     * @param country               {@link String String} containing country
      */
     public Address(String streetName, int houseNumber, String houseNumberAddition, String postalCode, String city, String country) {
         this.streetName = streetName;

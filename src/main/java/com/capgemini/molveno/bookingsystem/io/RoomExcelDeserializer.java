@@ -26,7 +26,7 @@ public class RoomExcelDeserializer {
     /**
      * Extracts all the room data from an excel sheet
      * @param excelFile Excel file containing room data
-     * @return List of Room objects
+     * @return          List of Room objects
      */
     public List<Room> deserialize(File excelFile) {
         List<Room> rooms = new ArrayList<>();
@@ -75,8 +75,8 @@ public class RoomExcelDeserializer {
 
     /**
      * Gets all the different beds found in a room
-     * @param bedTypes Raw string containing number and types of bed
-     * @return Array containing the types of bed found in a room
+     * @param bedTypes  Raw string containing number and types of bed
+     * @return          Array containing the types of bed found in a room
      */
     public BedType[] getBedTypesFromString(String bedTypes) {
         if (bedTypes == null || bedTypes.isEmpty()) {
@@ -113,8 +113,8 @@ public class RoomExcelDeserializer {
 
     /**
      * Gets the BedType contained in a String
-     * @param bedType String containing info about BedType
-     * @return BedType found in String
+     * @param bedType   {@link String String} containing info about the {@link BedType bed type}
+     * @return          BedType found in String
      */
     public BedType getType(String bedType) {
         String[] split = bedType.split("");
@@ -135,7 +135,7 @@ public class RoomExcelDeserializer {
     /**
      * Removes empty entries in an array
      * @param array Array containing strings
-     * @return Array that was given, with the empty values removed
+     * @return      Array that was given, with the empty values removed
      */
     public String[] deleteEmpty(String[] array) {
         ArrayList<String> result = new ArrayList<String>();

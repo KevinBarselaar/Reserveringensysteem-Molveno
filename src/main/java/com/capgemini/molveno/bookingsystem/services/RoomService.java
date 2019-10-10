@@ -50,12 +50,12 @@ public class RoomService {
     private boolean isRoomBookedBetweenDates(Room room, Date startDate, Date endDate) {
         for (Booking booking : room.getBookings()) {
 
-            boolean roomIsToBeBookedOnAvailableDates = dateGreatherThanOrEqualTo(startDate, booking.getStartBooking()) && dateGreatherThanOrEqualTo(endDate, booking.getEndBooking());
+            boolean roomIsToBeBookedOnAvailableDates = dateGreaterThanOrEqualTo(startDate, booking.getStartBooking()) && dateGreaterThanOrEqualTo(endDate, booking.getEndBooking());
             if(roomIsToBeBookedOnAvailableDates) {
                 return false;
             }
 
-            boolean roomIsBookedBetweenDates = dateGreatherThanOrEqualTo(startDate, booking.getStartBooking()) && dateLessThanOrEqualTo(endDate, booking.getEndBooking());
+            boolean roomIsBookedBetweenDates = dateGreaterThanOrEqualTo(startDate, booking.getStartBooking()) && dateLessThanOrEqualTo(endDate, booking.getEndBooking());
             if (roomIsBookedBetweenDates) {
                 return true;
             }
@@ -64,7 +64,7 @@ public class RoomService {
         return false;
     }
 
-    private boolean dateGreatherThanOrEqualTo(Date date, Date compareDate) {
+    private boolean dateGreaterThanOrEqualTo(Date date, Date compareDate) {
         return date.after(compareDate) || date.equals(compareDate);
     }
 
