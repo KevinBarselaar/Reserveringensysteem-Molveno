@@ -79,6 +79,10 @@ function removeTemplate() {
     $(".guest-input").remove();
 }
 
+function removeSingleGuestInput() {
+    $(".guest-input").last().remove();
+}
+
 function postData() {
     console.log("posting data...");
 
