@@ -85,10 +85,7 @@ public class BookingService {
     }
 
     public Booking update(Booking booking) throws BookingNotFoundException {
-        // Find Booking in DB by Id
         this.findById(booking.getId()); // Throws Exception when Id can't be found
-
-        // Save and flush data, return updated object
         return this.bookingRepository.saveAndFlush(booking);
     }
 }

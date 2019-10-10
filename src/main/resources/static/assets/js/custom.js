@@ -130,56 +130,13 @@ function checkInOut(id, in_out, icon) {
         url: host + "/api/bookings/check-in-out/" + id,
         type:"put",
         success: function(booking) {
-            // On successful oPUT, reload the datatable with new data.
+            // On successful PUT, reload the datatable with new data.
             console.log("PUT success");
             console.log(booking);
             showNotification('top','right', icon, 'info',  message);
             getData();
         }
     });
-}
-
-function editBooking(booking) {
-    console.log('edit booking ' + booking.id);
-    var rooms = "";
-    for (var i = 0; i < booking.rooms.length; i++){
-        rooms += booking.rooms[i].id + " (" + roomTypes[booking.rooms[i].type] + ")" + "<br/>";
-    }
-    
-    // Fixed data
-    $('#editBookingTitle').html("Booking #" + booking.id);
-    $('#editBookingSubtitle').html("Booked on " + booking.creationDate.substr(0,10));
-
-    $('#editBookingCheckin').val(booking.startBooking.substr(0, booking.endBooking.indexOf('T')));
-    $('#editBookingCheckout').val(booking.endBooking.substr(0, booking.endBooking.indexOf('T')));
-    $('#editBookingRooms').val(rooms.substring(0, rooms.length - 5));
-    $('#editBookingBoardType').val(boardTypes[booking.boardType]);
-    $('#editBookingMainGuestName').val(titleString[booking.mainGuest.title] + " " + booking.mainGuest.firstName + " " + booking.mainGuest.lastName);
-    $('#editBookingMainGuestPhone').val(booking.mainGuest.phoneNumber);
-    $('#editBookingMainGuestEmail').val(booking.mainGuest.emailAddress);
-    $('#editBookingMainGuestAddress').val(booking.mainGuest.address.streetName + " " + booking.mainGuest.address.houseNumber + " " + booking.mainGuest.address.houseNumberAddition + "<br/>" + booking.mainGuest.address.postalCode + ", " + booking.mainGuest.address.city + "<br/>" + booking.mainGuest.address.country);
-    $('#editBookingExtras').val(booking.extraItems);
-
-    // Guest calculation Adults & Children
-    var children = 0;
-    var currentYear = new Date().getFullYear();
-
-    $('#editBookingGuestsTable tbody').val('');
-    // Parse year to int and check if there's an 18 year difference, this should be done with Date objects after we parse these correctly from the Back End
-    if (booking.guests.length > 0) {
-        for (var i = 0; i < booking.guests.length; i++) {
-            /***** INFO: Currently the dummy data contains no adults because of date creation *******/
-            if (currentYear - parseInt(booking.guests[i].birthDate.substring(0,4)) < 10) {
-                children++;
-            }
-            $('#editBookingGuestsTable tbody').append('<tr><td>' + titleString[booking.guests[i].title] + " " + booking.guests[i].firstName + " " + booking.guests[i].lastName + '</td><td>' + booking.guests[i].birthDate.substr(0,10) + '</td></tr>');
-        }
-        $('#editBookingGuests').val(booking.guests.length - children + " adults, " + children + " children");
-    } else {
-        $('#editBookingGuests').val("No other guests");
-    }
-
-    $('#editBookingModal').modal();
 }
 
 // Callback function from AJAX request if the model requests information
@@ -206,11 +163,11 @@ function openBookingDetail(booking) {
     var children = 0;
     $('#bookingDetailsGuestsTable tbody').html('');
 
-    // Parse year to int and check if there's an 18 year difference, this should be done with Date objects after we parse these correctly from the Back End
+    // Parse year to int and check if there's a 10 year difference, this should be done with Date objects after we parse these correctly from the Back End
     if (booking.guests.length > 0) {
         for (var i = 0; i < booking.guests.length; i++) {
-            var birthdateMoment = moment(booking.guests[i].birthDate); // Parse birth date to Moment JS Date object
-            var checkinMoment = moment(booking.startBooking); // Parse check in date to Moment JS Date object
+            var birthdateMoment = moment(booking.guests[i].birthDate);
+            var checkinMoment = moment(booking.startBooking);
             var difference = moment.duration(checkinMoment.diff(birthdateMoment, 'years', true)); // Check difference between birth date and check in date
             console.log(difference);
             if (difference < 10) {
@@ -254,10 +211,7 @@ function getBooking(id, modalRequested) {
             currentBooking = data;
             switch (modalRequested) {
                 case 'detail':
-                    openBookingDetail(data);
-                    break;
-                case 'edit':
-                    editBooking(data);
+                    openBookingDetail(data);\
                     break;
                 default: break;
             }

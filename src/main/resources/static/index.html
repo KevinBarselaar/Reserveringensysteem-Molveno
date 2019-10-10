@@ -39,7 +39,6 @@
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-<<<<<<< HEAD
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo">
@@ -66,17 +65,6 @@
                 </li>
             </ul>
         </div>
-=======
-      Tip 2: you can also add an image using data-image tag
-    -->
-    <div class="logo">
-      <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-        M
-      </a>
-      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-        Molveno
-      </a>
->>>>>>> 7862aae95471a8d0146fa660ff42f8582f9a13d3
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
@@ -639,14 +627,6 @@
     // Load first data.
     getData();
 
-    // Edit record
-    table.on('click', '.edit', function() {
-      $tr = $(this).closest('tr');
-      var data = table.row($tr).data();
-      console.log(data);
-      getBooking(data.id, 'edit');
-    });
-
     // Delete a record
     table.on('click', '.remove', function(e) {
       $tr = $(this).closest('tr');
@@ -663,15 +643,15 @@
         getBooking(data.id, 'detail');
     });
 		
-		$('.modal').perfectScrollbar();
+    $('.modal').perfectScrollbar();
 
-        $('#newBookingButtonser').click( function() {
-            $('#newBookingModal').modal({
-                backdrop: 'static'
-            });
+    $('#newBookingButtonser').click( function() {
+        $('#newBookingModal').modal({
+            backdrop: 'static'
         });
+    });
 
-        setFormValidation('#RegisterValidation');
+    setFormValidation('#RegisterValidation');
 
     $('#newBookingButton').click( function() {
       $('#newBookingModal').modal({
@@ -679,13 +659,13 @@
       });
     });
 
-		$('#checkInButton').click( function() {
-			checkInOut(currentBooking.id, 'in', $(this).find('i').html());
-		});
-		
-		$('#checkOutButton').click( function() {
-			checkInOut(currentBooking.id, 'out', $(this).find('i').html());
-		});
+    $('#checkInButton').click( function() {
+        checkInOut(currentBooking.id, 'in', $(this).find('i').html());
+    });
+    
+    $('#checkOutButton').click( function() {
+        checkInOut(currentBooking.id, 'out', $(this).find('i').html());
+    });
   });
   </script>
 </body> 
