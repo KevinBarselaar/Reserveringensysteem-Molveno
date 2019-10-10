@@ -1,5 +1,4 @@
 var host = "http://localhost:8080";
-var currentBooking;
 
 function postRestaurantData() {
     console.log("posting data...");
@@ -100,20 +99,19 @@ function getRestaurantData() {
             $('#restaurantDatatables').DataTable().columns.adjust().draw();
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log("Niet gelukt D:");
+            console.log("Booking was unsuccessful.");
         }
     });
 }
 
 function getRestaurantDetails(id) {
-    //TODO get doen naar de backend voor specifieke booking (1)
+    
     $.ajax({
         url: host + "/api/v1/restaurantbookings/" + id,
         type:"get",
         success: function(data, status) {
             console.log('Get booking ' + data.bookingId + ' success');
             console.log(data);
-            currentBooking = data;
             var restaurant = data;
 
             //retrieve personal data from back-end
@@ -144,7 +142,6 @@ function getRestaurantDetails(id) {
             if (restaurant.extraItems[0].disabledFriendly) {
                 $("#tableBookingDetailsExtraItems").after("<h4 class='extra-item-title'>Accommodation needed for physically disadvantaged.</h4>");
             }
-            //$("#tableBookingDetailsExtraItems").html(restaurant.extraitems);
 
             $('#tableBookingDetails').modal();
         }

@@ -264,7 +264,6 @@
                           <div class="card-header card-header-primary card-header-text">
                             <div class="card-text">
                               <h2 class="card-title" id="tableBookingDetailsTitle">Booking details</h2>
-                              <!-- <p class="card-category" id="tableBookingDetailsSubtitle">Booked on</p> -->
                             </div>
                           </div>
                           <div class="modal-body container">
@@ -278,13 +277,13 @@
                               <div class="form-row">
                                 <div class="col">
                                   <div class="form-group">
-                                    <h6 class="text-gray">No. of Adults</h6>
+                                    <h6 class="text-gray"> Number of Adults</h6>
                                     <h4 id="tableBookingDetailsAdults"></h4>
                                   </div>
                                 </div>
                                 <div class="col">
                                   <div class="form-group">
-                                    <h6 class="text-gray">No. of Minors</h6>
+                                    <h6 class="text-gray"> Number of Minors</h6>
                                       <h4 id="tableBookingDetailsMinors"></h4>
                                   </div>
                                 </div>
@@ -312,7 +311,7 @@
                                 </div>
                                 <div class="col">
                                   <div class="form-group">
-                                    <h6 class="text-gray">Last Name</h6>
+                                    <h6 class="text-gray"> Last Name</h6>
                                     <h4 id="tableBookingDetailsLastName"></h4>
                                   </div>
                                 </div>
@@ -326,7 +325,7 @@
                                   </div>
                                   <div class="col">
                                     <div class="form-group">
-                                      <h6 class="text-gray">Booster Seats</h6>
+                                      <h6 class="text-gray"> Booster Seats</h6>
                                       <h4 id="tableBookingDetailsBoosterSeat"></h4>
                                     </div>
                                   </div>
@@ -420,11 +419,6 @@
       // initialise Datetimepicker and Sliders
       md.initFormExtendedDatetimepickers();
 
-      // $('#time').datetimepicker({
-      //   disabledHours: [0, 1, 2, 3, 4, 5, 6, 7, 23, 24],
-      //   enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
-      // });
-
       $('#newTableFormModal').perfectScrollbar();
       $('#tableBookingDetails').perfectScrollbar();
       
@@ -510,9 +504,6 @@
       getRestaurantDetails(data.bookingId);
 		});
       
-      // table.on('click', '.info', function () {
-      //   alert('You clicked on the info button');
-      // });
 
       setFormValidation('#newTableBookingForm');
     });
