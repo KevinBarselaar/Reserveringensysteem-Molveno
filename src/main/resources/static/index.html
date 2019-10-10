@@ -531,7 +531,11 @@
                   </div>
                 </div>
               </div>
-              <div class="modal-footer">
+              <div class="modal-footer d-flex justify-content-between mt-3">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary mr-3" data-dismiss="modal" id="checkInButton"><i class="material-icons">check_circle</i> Check in</button>
+                    <button type="button" class="btn btn-secondary disabled" data-dismiss="modal" id="checkOutButton"><i class="material-icons">exit_to_app</i> Check out</button>
+                </div>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons">close</i> Close</button>
               </div>
             </div>
@@ -643,10 +647,10 @@
                 return titleString[data.mainGuest.title] + " " + data.mainGuest.firstName + " " + data.mainGuest.lastName;
             }},
             { "data": function(data) {
-                return data.startBooking.split("T")[0];
+                return moment(data.startBooking).format('DD-MM-YYYY');
             }},
             { "data": function(data) {
-                return data.endBooking.split("T")[0];
+                return moment(data.endBooking).format('DD-MM-YYYY');
             }},
             { "data": function ( data ) {
                 if(data) {
@@ -663,7 +667,6 @@
             { data: null,
                 render: function ( data, type, row ) {
                     return '<a href="#" class="btn btn-link btn-info btn-just-icon info"><i class="material-icons">info</i></a>' +
-                            '<a href="#" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">edit</i></a>' +
                             '<a href="#" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a>';
                 }
             }
@@ -674,11 +677,6 @@
     var table = $("#datatables").DataTable();
     // Load first data.
     getData();
-    // Edit record
-    table.on('click', '.edit', function() {
-      $tr = $(this).closest('tr');
-      var data = table.row($tr).data();
-    });
     // Delete a record
     table.on('click', '.remove', function(e) {
       $tr = $(this).closest('tr');
@@ -693,15 +691,14 @@
         var data = table.row($tr).data();
         getBooking(data.id, 'detail');
     });
-    
-    $('#newBookingModal').perfectScrollbar();
-    $('#bookingDetail').perfectScrollbar();
+		
+    $('.modal').perfectScrollbar();
 
     $('#newBookingButton').click( function() {
       $('#newBookingModal').modal({
         backdrop: 'static'
       });
-		});
+    });
 
 	$('#checkOutDate').datetimepicker().on('dp.change', function (ev) {
         var startDate = $("#checkInDate").val();
