@@ -20,25 +20,21 @@ public class RestaurantBookingController {
         this.restaurantBookingService = restaurantBookingService;
     }
 
-    @CrossOrigin
     @GetMapping("/overview")
     public List<RestaurantBooking> getAllBookings() {
         return this.restaurantBookingService.findAll();
     }
 
-    @CrossOrigin
     @GetMapping("/{id}")
     public RestaurantBooking getBookingById(@PathVariable Long id) {
         return this.restaurantBookingService.findById(id);
     }
 
-    @CrossOrigin
     @PostMapping("/create")
     public void createBooking(@RequestBody RestaurantBooking booking) {
         this.restaurantBookingService.create(booking);
     }
 
-    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
         this.restaurantBookingService.deleteById(id);
