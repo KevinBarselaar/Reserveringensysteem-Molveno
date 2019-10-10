@@ -620,7 +620,6 @@
       $('.modal').on('hidden.bs.modal', function(){
         $(this).find('form')[0].reset();
       });
-      getData();
     });
     $("#datatables").DataTable({
         "pagingType": "full_numbers",
@@ -720,6 +719,8 @@
         if(startDate && endDate) {
             getAvailableRoomsBetweenDates(startDate, endDate);
         }
+
+        console.log("Set the end-date");
     });
 
     $('.dropdown-menu a').click(function(){

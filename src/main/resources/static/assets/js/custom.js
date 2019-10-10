@@ -113,6 +113,10 @@ function clearRoomSelect() {
     window.selectedRooms = [];
     $("#availableRooms").find('option').remove();
     $("#availableRooms").selectpicker("refresh");
+
+    //clear the date selection forms
+    $("#checkInDate").reset();
+    $("#checkOutDate").reset();    
 }
 
 function setFormValidation(id) {
