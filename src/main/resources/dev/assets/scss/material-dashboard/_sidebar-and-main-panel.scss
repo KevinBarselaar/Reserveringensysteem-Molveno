@@ -208,6 +208,7 @@
         left: 0;
         background-size: cover;
         background-position: center center;
+        filter: grayscale(1);
 
         &:after{
             position: absolute;
@@ -236,10 +237,9 @@
         a.logo-mini{
             opacity: 1;
             float: left;
-            width: 30px;
+            width: 50px;
             text-align: center;
-            margin-left: 23px;
-            margin-right: 15px;
+            margin: 0 15px;
         }
 
         a.logo-normal{
@@ -360,6 +360,19 @@
 
         .nav li .dropdown-menu .dropdown-item{
           color: $white-color;
+        }
+    }
+
+    &[data-background-color="primary"]{
+        @include sidebar-background-color($gray-base, $white-color);
+
+        .nav li .dropdown-menu .dropdown-item{
+          color: $white-color;
+        }
+
+        &:after {
+            background: $brand-primary;
+            opacity: .8;
         }
     }
 
