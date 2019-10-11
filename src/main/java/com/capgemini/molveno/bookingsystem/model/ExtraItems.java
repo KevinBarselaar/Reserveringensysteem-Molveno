@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Class for displaying any extra info regarding a restaurant booking
+ */
 @Entity(name = "extraitems")
 public class ExtraItems {
 
@@ -18,11 +21,17 @@ public class ExtraItems {
     private int numberOfChildChairs;
     private int numberOfBoosterSeats;
 
-
-
     public ExtraItems() {
     }
 
+    /**
+     *
+     * @param disabledFriendly      {@link Boolean Boolean} to determine if the table needs to be accessible for people
+     *                                                     with a handicap
+     * @param isTerrace             {@link Boolean Boolean} to determine if the guests want to eat on the terrace
+     * @param numberOfChildChairs   {@link Integer Number} of child chairs needed
+     * @param numberOfBoosterSeats  {@link Integer Number} of booster seats needed
+     */
     public ExtraItems(boolean disabledFriendly, boolean isTerrace, int numberOfChildChairs, int numberOfBoosterSeats) {
         this.disabledFriendly = disabledFriendly;
         this.isTerrace = isTerrace;
