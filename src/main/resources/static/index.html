@@ -1,0 +1,859 @@
+<!--
+ =========================================================
+ Material Dashboard PRO - v2.1.0
+ =========================================================
+
+ Product Page: https://www.creative-tim.com/product/material-dashboard-pro
+ Copyright 2019 Molveno (https://www.creative-tim.com)
+
+ Coded by Molveno
+
+ =========================================================
+
+ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>
+        Bookingsystem - Molveno
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!--   Fonts and icons   -->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700&display=swap" rel="stylesheet">
+    <!-- CSS Files -->
+    <link href="assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet"/>
+</head>
+
+<body class="">
+<div class="wrapper ">
+
+  <div class="sidebar" data-color="primary" data-background-color="primary" data-image="assets/img/sidebar-2.jpg">
+        <div class="logo">
+            <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+              <img src="./assets/img/CompanyLogo.png" style="height:33px; width:33px;">
+            </a>
+            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                Molveno
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">
+                        <i class="material-icons">view_list</i>
+                        <p>Hotel Overview</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="restaurant.html">
+                        <i class="material-icons">restaurant_menu</i>
+                        <p>Restaurant Overview</p>
+                    </a>
+                </li>
+              </li>  
+            </ul>
+        </div>
+  </div>
+  <div class="main-panel">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+    <div class="container-fluid">
+    <div class="collapse navbar-collapse justify-content-end">
+      <div class="navbar-wrapper">
+      <div class="navbar-minimize">
+        <button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
+        <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
+        <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
+        </button>
+      </div>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+      </button>
+    </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+  <div class="content">
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-primary card-header-icon">
+        <div class="card-icon">
+          <i class="material-icons">view_list</i>
+        </div>
+        <h4 class="card-title">Hotel Bookings</h4>
+        </div>
+        <div class="card-body">
+        <div class="toolbar">
+          <button type="button" class="btn btn-primary" id="newBookingButton">Book a Room</button>
+        </div>
+        <div class="material-datatables">
+          <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+          <thead>
+            <tr>
+            <th>Main Guest Name</th>
+            <th>Check-In Date</th>
+            <th>Check-Out Date</th>
+            <th>Rooms</th>
+            <th>Board Type</th>
+            <th class="disabled-sorting text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+            <th>Main Guest Name</th>
+            <th>Check-In Date</th>
+            <th>Check-Out Date</th>
+            <th>Rooms</th>
+            <th>Board Type</th>
+            <th class="disabled-sorting text-right">Actions</th>
+          </tfoot>
+          </table>
+        </div>
+        </div>
+        <!-- end content-->
+      </div>
+      <!--  end card  -->
+      <!-- New Booking modal -->
+      <div class="modal fade" tabindex="-1" id="newBookingModal" aria-labelledby="newBookingModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Create a new booking</h3>
+            </div>
+            <div class="modal-body">
+              <form class="form" id="RegisterValidation" action="" method="">
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="checkInDate">Check-in Date*</label>
+                      <input type="text" class="form-control datepicker" id="checkInDate" name="checkInDate" required="true">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="checkOutDate">Check-out Date*</label>
+                      <input type="text" class="form-control datepicker" id="checkOutDate" name="checkOutDate" required="true">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating"> Board Type*</label>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="boardtype-radio" value="ACCOMMODATIONS" id="accommodations" checked=""  required="true"> Accommodations
+                        <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="boardtype-radio" value="BED_AND_BREAKFAST" id="bedandbreakfast"> Bed &amp; Breakfast
+                        <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="boardtype-radio" value="HALF_BOARD" id="halfboard"> Half-board
+                        <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating"> Room Type*</label>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="roomtype-radio" value="Single" checked="" required="true"> Single
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="roomtype-radio" value="Double"> Double
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="roomtype-radio" value="2x Double"> 2x Double
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="roomtype-radio" value="option4"> Penthouse
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Preference</label>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="preference-radio" value="Sea View" id="seaview" checked="">Sea View
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="preference-radio" value="Mountain View" id="mountainview">Mountain View
+                        <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                      </label>
+                      </div>
+                      <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="preference-radio" value="Close to Restaurant" id="restaurant">Close to Restaurant
+                        <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                      </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group select-wizard">
+                    <label>Room</label><br>
+                    <select class="selectpicker" data-size="7"
+                            data-style="select-with-transition"
+                            title="Select a Room" id="availableRooms" name="availableRooms" required="true">
+                    </select>
+                </div>
+
+                <h4 class="mt-3">Main booker information</h4>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <div class="form-row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Title*</label>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="title-radio" value="MR" id="mr" checked="" required="true"> Mr.
+                                <span class="circle">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="title-radio" value="MS" id="ms"> Ms.
+                                <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="title-radio" value="MRS" id="mrs"> Mrs.
+                                <span class="circle">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">First Name*</label>
+                      <input type="text" class="form-control" id="firstName" name="firstName" required="true">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Last Name*</label>
+                      <input type="text" class="form-control" id="lastName" name="lastName" required="true">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="customerEmail" class="bmd-label-floating">Email Address*</label>
+                  <input type="email" class="form-control" id="customerEmail" name="customerEmail" required="true">
+                </div>
+        
+                <div class="form-group">
+                  <label class="bmd-label-floating">Phone Number*</label>
+                  <input class="form-control" id="telNo" name="telNo" type="tel" size="20" minlength="12" maxlength="14" required="true">
+                </div>
+                <div class="form-group">
+                  <label for="birthday">Date of Birth*</label>
+                  <input type="text" class="form-control datepicker" id="birthday" name="birthday" required="true">
+                </div>
+                <h4 class="mt-3">Address</h4>
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Street Name*</label>
+                      <input type="text" class="form-control" id="streetName" name="streetName" required="true">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Street No.*</label>
+                      <input type="number" class="form-control" id="houseNumber" name="houseNumber" required="true">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Addition</label>
+                      <input type="text" class="form-control" id="addition">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Zip Code*</label>
+                      <input type="text" class="form-control" id="zipcode" required="true" name="zipcode">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">City*</label>
+                      <input type="text" class="form-control" id="city" required="true" name="city">
+                    </div>
+                  </div>
+          
+                  <div class="col">
+                    <div class="form-group select-wizard">
+                      <label>Country*</label>
+                      <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Select a Country" name="country" id="country" required="true">
+                        <option value="Netherlands">Netherlands </option>
+                        <option value="Belgium">Belgium </option>
+                        <option value="France">France </option>
+                        <option value="Italy">Italy </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <br>
+
+                <!-- Guests -->
+                <div class="form-row">
+                  <div id="guest-container">
+                    <template id ="guest-template">
+                      <div class="guest-input" id="guest-input-id">
+                        <h4 class="guest-counter"><a href="#" onclick="removeSingleGuestInput()" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a></h4>
+                      <div class="form-row">
+                      <div class="col">
+                        <div class="form-group">
+                          <div class="form-row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Title*</label>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="title-radio-guest" value="MR" id="guest_mr" checked="" required="true"> Mr.
+                                    <span class="circle">
+                                      <span class="check"></span>
+                                    </span>
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="title-radio-guest" value="MS" id="guest_ms"> Ms.
+                                    <span class="circle">
+                                    <span class="check"></span>
+                                    </span>
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="title-radio-guest" value="MRS" id="guest_mrs"> Mrs.
+                                    <span class="circle">
+                                      <span class="check"></span>
+                                    </span>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">First Name*</label>
+                          <input type="text" class="form-control" id="guest_firstName" name="guest_firstName" required="true">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Last Name*</label>
+                          <input type="text" class="form-control" id="guest_lastName" name="guest_lastName" required="true">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="birthday">Date of Birth</label>
+                        <input type="text" class="form-control datepicker" id="guest_birthday" name="guest_birthday" required="true">
+                      </div>
+                    </div>
+                  </template>
+                  </div>
+                </div>
+                <a href="#" id="filldetails" onclick="addFields()">Add Guest to Booking</a>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" onclick="removeTemplate()" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary ml-3" id="submitButton">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end New Booking modal -->
+      <!-- Booking detail modal -->
+      <div class="modal fade" tabindex="-1" id="bookingDetail" aria-labelledby="bookingDetail" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <div class="modal-content card">
+              <div class="card-header card-header-primary card-header-text">
+                <div class="card-text">
+                  <h2 class="card-title" id="bookingDetailTitle">Booking details</h2>
+                  <p class="card-category" id="bookingDetailSubtitle">Booked on</p>
+                </div>
+              </div>
+              <div class="modal-body container">
+                <div class="row">
+                    <div class="col-md-6 mt-3">
+                      <h6 class="text-gray">Check in</h6>
+                      <h4 id="bookingDetailCheckin"></h4>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                      <h6 class="text-gray">Check out</h6>
+                      <h4 id="bookingDetailCheckout"></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-3">
+                      <h6 class="text-gray">Selected rooms</h6>
+                      <h4 id="bookingDetailRooms"></h4>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                      <h6 class="text-gray">BoardType</h6>
+                      <h4 id="bookingDetailBoardType"></h4>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-md-6">
+                      <h6 class="text-gray">Main booker</h6>
+                      <h4 id="bookingDetailMainGuestName"></h4>
+                      <h4 id="bookingDetailMainGuestPhone"></h4>
+                      <h4 id="bookingDetailMainGuestEmail"></h4>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="text-gray">Address</h6>
+                    <h4 id="bookingDetailMainGuestAddress"></h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 mt-3">
+                    <h6 class="text-gray">Other guests</h6>
+                      <div id="accordion" role="tablist">
+                        <div class="card-collapse">
+                            <h5 class="mb-0">
+                              <a data-toggle="collapse" href="#collapseOne" aria-controls="collapseOne" class="collapsed">
+                                <span id="bookingDetailGuests">number of guests</span>
+                                <i class="material-icons">keyboard_arrow_down</i>
+                              </a>
+                            </h5>
+                          <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table class="table" id="bookingDetailGuestsTable">
+                                  <thead>
+                                    <th><h6 class="text-gray">Guest name</h6></th>
+                                    <th><h6 class="text-gray">Birthday</h6></th>
+                                  </thead>
+                                  <tbody>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 mt-3">
+                      <h6 class="text-gray">Extra items</h6>
+                      <h4 id="bookingDetailExtras"></h4>
+                  </div>
+                  <div class="col-md-12 mt-3">
+                      <h6 class="text-gray">Preference</h6>
+                      <h4 id="bookingDetailPreference"></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-between mt-3">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary mr-3" data-dismiss="modal" id="checkInButton"><i class="material-icons">check_circle</i> Check in</button>
+                    <button type="button" class="btn btn-secondary disabled" data-dismiss="modal" id="checkOutButton"><i class="material-icons">exit_to_app</i> Check out</button>
+                </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons">close</i> Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end Booking detail modal -->
+        <!-- Delete confirmation modal -->
+        <div class="modal fade" tabindex="-1" id="deleteConfirmation" aria-labelledby="deleteConfirmation" aria-hidden="true">
+          <div class="modal-dialog modal-md ">
+            <div class="modal-content card">
+              <div class="card-header card-header-danger card-header-text">
+                <div class="card-text">
+                  <h2 class="card-title" id="deleteTitle">Delete booking #<span id='deleteBookingNumber'></span></h2>
+                </div>
+              </div>
+              <div class="modal-body container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6 class="text-gray">Are you sure you want to delete booking #<span id='deleteBookingName'></span>?</h6>
+                  </div>
+                </div>
+              <div class="modal-footer d-flex justify-content-between mt-3">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons">close</i> Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete"><i class="material-icons">remove_circle</i> Yes, delete it</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end Delete confirmation modal -->
+      </div>
+      <!-- end col-md-12 -->
+    </div>
+    <!-- end row -->
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container-fluid">
+    <div class="copyright float-right">
+      &copy;
+      <script>
+      document.write(new Date().getFullYear())
+      </script>, made with <i class="material-icons">favorite</i> by
+      <a href="" target="_blank">Molveno</a>.
+    </div>
+    </div>
+  </footer>
+  </div>
+</div>
+<style>
+  body {
+    /* Set "my-sec-counter" to 0 */
+    counter-reset: my-sec-counter;
+  }
+
+  .guest-counter::before {
+    /* Increment "my-sec-counter" by 1 */
+    counter-increment: my-sec-counter;
+    content: "Guest #" counter(my-sec-counter);
+  } 
+  </style>
+<!--   Core JS Files   -->
+<script src="assets/js/core/jquery.min.js"></script>
+<script src="assets/js/core/popper.min.js"></script>
+<script src="assets/js/core/bootstrap-material-design.min.js"></script>
+<script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!-- Plugin for the momentJs  -->
+<script src="assets/js/plugins/moment.min.js"></script>
+<!--  Plugin for Sweet Alert -->
+<script src="assets/js/plugins/sweetalert2.js"></script>
+<!-- Forms Validations Plugin -->
+<script src="assets/js/plugins/jquery.validate.min.js"></script>
+<!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+<script src="assets/js/plugins/jquery.bootstrap-wizard.js"></script>
+<!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+<script src="assets/js/plugins/bootstrap-selectpicker.js"></script>
+<!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+<script src="assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+<!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+<script src="assets/js/plugins/jquery.dataTables.min.js"></script>
+<!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+<script src="assets/js/plugins/bootstrap-tagsinput.js"></script>
+<!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
+<!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar  -->
+<script src="assets/js/plugins/fullcalendar.min.js"></script>
+<!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+<script src="assets/js/plugins/jquery-jvectormap.js"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="assets/js/plugins/nouislider.min.js"></script>
+<!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+<!-- Library for adding dinamically elements -->
+<script src="assets/js/plugins/arrive.min.js"></script>
+<!--  Google Maps Plugin  -->
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
+<!-- Chartist JS -->
+<script src="assets/js/plugins/chartist.min.js"></script>
+<!--  Notifications Plugin  -->
+<script src="assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="assets/js/material-dashboard.js?v=2.1.0" type="text/javascript"></script>
+<script src="assets/js/custom.js"></script>
+<script>
+  $(document).ready(function() {
+    console.log("Document ready");
+
+    $("#submitButton").click( function (e) {
+      e.preventDefault();
+      var validator = $( "#RegisterValidation" ).validate({
+        rules: {
+          checkInDate: {
+            required: true
+          },
+          checkOutDate: {
+            required: true
+          },
+          'boardtype-radio': {
+            required: true
+          },
+          'roomtype-radio': {
+            required: true
+          },
+          'preference-radio': {
+            required: true
+          },
+          availableRooms: {
+            required: true
+          },
+          'title-radio': {
+            required: true
+          },
+          firstName: {
+            required: true
+          },
+          lastName: {
+            required: true
+          },
+          customerEmail: {
+            required: true
+          },
+          telNo: {
+            required: true
+          },
+          birthday: {
+            required: true
+          },
+          streetName: {
+            required: true
+          },
+          houseNumber: {
+            required: true
+          },
+          zipcode: {
+            required: true
+          },
+          city: {
+            required: true
+          },
+          country: {
+            required: true
+          },
+          'title-radio-guest': {
+            required: true
+          },
+          guest_firstName: {
+            required: true
+          },
+          guest_lastName: {
+            required: true
+          }
+        }
+      });
+      console.log(validator);
+      if(validator.form()) {
+        postData();
+        $("#newBookingModal").modal('hide');
+        $('.modal').on('hidden.bs.modal', function(){
+          $('.modal').find('form')[0].reset();
+        });
+        getData();
+      } else {
+        $("#RegisterValidation").showErrors();
+      }
+    });
+
+    //   postData();
+    //   $("#newBookingModal").modal('hide');
+    //   $('.modal').on('hidden.bs.modal', function(){
+    //     $('.modal').find('form')[0].reset();
+    //   });
+    //   getData();
+    // });
+		
+    $("#datatables").DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search",
+        },
+        "columnDefs": [
+            { className: "text-right", "targets": [ 5 ] }
+        ],
+        columns: [
+            { "data": function ( data ) {
+                return titleString[data.mainGuest.title] + " " + data.mainGuest.firstName + " " + data.mainGuest.lastName;
+            }},
+            { "data": function(data) {
+                return moment(data.startBooking).format('DD-MM-YYYY');
+            }},
+            { "data": function(data) {
+                return moment(data.endBooking).format('DD-MM-YYYY');
+            }},
+            { "data": function ( data ) {
+                if(data) {
+                    var rooms = "";
+                    for (var i = 0; i < data.rooms.length; i++){
+                        rooms += data.rooms[i].id + ", ";
+                    }
+                    return rooms.substring(0, rooms.length - 2);
+                }
+            }},
+            { "data": function (data) {
+                return boardTypes[data.boardType];
+            }},
+            { data: null,
+                render: function ( data, type, row ) {
+                    return '<a href="#" class="btn btn-link btn-info btn-just-icon info"><i class="material-icons">info</i></a>' +
+                            '<a href="#" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a>';
+                }
+            }
+        ]
+    });
+
+    console.log("DataTable init");
+    // Load DataTable with data format.
+    var table = $("#datatables").DataTable();
+
+    // Load first data.
+    getData();
+
+    // Delete a record
+    table.on('click', '.remove', function(e) {
+      $tr = $(this).closest('tr');
+      $('#deleteConfirmation').modal('show', $tr);
+    });
+
+    $('#delete').on('click', function(e) {
+      var booking = table.row(e.relatedTarget).data();
+      console.log(e);
+      deleteBooking(booking.id);
+      var row = table.row(e.relatedTarget);
+      row.remove().draw();
+    });
+
+    $('#deleteConfirmation').on('show.bs.modal', function (e) {
+      console.log('on modal show');
+      var booking = table.row(e.relatedTarget).data();
+      console.log(booking);
+      $('#deleteBookingNumber').html(booking.id);
+      $('#deleteBookingName').html(booking.id + " by " + titleString[booking.mainGuest.title] + " " + booking.mainGuest.firstName + " " + booking.mainGuest.lastName);
+    });
+
+    //Get detail information
+    table.on('click', '.info', function() {
+        $tr = $(this).closest('tr');
+        var data = table.row($tr).data();
+        getBooking(data.id, 'detail');
+    });
+		
+    $('.modal').perfectScrollbar();
+
+    $('#newBookingButton').click( function() {
+      $('#newBookingModal').modal({
+        backdrop: 'static'
+      });
+    });
+
+	$('#checkOutDate').datetimepicker().on('dp.change', function (ev) {
+        var startDate = $("#checkInDate").val();
+        var endDate = $("#checkOutDate").val();
+
+        if(startDate && endDate) {
+            getAvailableRoomsBetweenDates(startDate, endDate);
+        }
+
+        console.log("Set the end-date");
+    });
+
+    $('.dropdown-menu a').click(function(){
+        console.log("Clicked");
+        $('#selected').text($(this).text());
+    });
+
+    $('#availableRooms').change(function () {
+        var selectedItemIndex = $('#availableRooms').val();
+
+        var selectedRoom = window.availableRoomsList[selectedItemIndex];
+        window.selectedRooms.push(selectedRoom);
+    });
+
+    $('#checkInButton').click( function() {
+        checkInOut(currentBooking.id, 'in', $(this).find('i').html());
+    });
+    
+    $('#checkOutButton').click( function() {
+        checkInOut(currentBooking.id, 'out', $(this).find('i').html());
+    });
+  });
+
+
+
+
+</script>
+</body>
+</html>
