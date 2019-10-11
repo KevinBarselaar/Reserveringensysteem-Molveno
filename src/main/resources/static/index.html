@@ -144,13 +144,13 @@
                   <div class="col">
                     <div class="form-group">
                       <label for="checkInDate">Check-in Date*</label>
-                      <input type="text" class="form-control datepicker" id="checkInDate" required="true">
+                      <input type="text" class="form-control datepicker" id="checkInDate" name="checkInDate" required="true">
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
-                    <label for="checkOutDate">Check-out Date*</label>
-                    <input type="text" class="form-control datepicker" id="checkOutDate" required="true">
+                      <label for="checkOutDate">Check-out Date*</label>
+                      <input type="text" class="form-control datepicker" id="checkOutDate" name="checkOutDate" required="true">
                     </div>
                   </div>
                 </div>
@@ -187,10 +187,10 @@
                   </div>
                   <div class="col">
                     <div class="form-group">
-                      <label class="bmd-label-floating"> Room Type</label>
+                      <label class="bmd-label-floating"> Room Type*</label>
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input class="form-check-input" type="radio" name="roomtype-radio" value="Single" checked=""> Single
+                          <input class="form-check-input" type="radio" name="roomtype-radio" value="Single" checked="" required="true"> Single
                           <span class="circle">
                             <span class="check"></span>
                           </span>
@@ -224,10 +224,10 @@
                   </div>
                   <div class="col">
                     <div class="form-group">
-                      <label class="bmd-label-floating"> Preference</label>
+                      <label class="bmd-label-floating">Preference</label>
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input class="form-check-input" type="radio" name="preference-radio" value="Sea View" id="seaview" checked=""> Seaview
+                          <input class="form-check-input" type="radio" name="preference-radio" value="Sea View" id="seaview" checked="">Sea View
                           <span class="circle">
                             <span class="check"></span>
                           </span>
@@ -235,7 +235,7 @@
                       </div>
                       <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="preference-radio" value="Mountain View" id="mountainview"> Mountainview
+                        <input class="form-check-input" type="radio" name="preference-radio" value="Mountain View" id="mountainview">Mountain View
                         <span class="circle">
                             <span class="check"></span>
                           </span>
@@ -243,7 +243,7 @@
                       </div>
                       <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="preference-radio" value="Close to Restaurant" id="restaurant"> Close to restaurant
+                        <input class="form-check-input" type="radio" name="preference-radio" value="Close to Restaurant" id="restaurant">Close to Restaurant
                         <span class="circle">
                             <span class="check"></span>
                           </span>
@@ -257,7 +257,7 @@
                     <label>Room</label><br>
                     <select class="selectpicker" data-size="7"
                             data-style="select-with-transition"
-                            title="Select a Room" id="availableRooms">
+                            title="Select a Room" id="availableRooms" name="availableRooms" required="true">
                     </select>
                 </div>
 
@@ -271,7 +271,7 @@
                             <label class="bmd-label-floating">Title*</label>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="title-radio" value="MR" id="mr" checked=""> Mr.
+                                <input class="form-check-input" type="radio" name="title-radio" value="MR" id="mr" checked="" required="true"> Mr.
                                 <span class="circle">
                                   <span class="check"></span>
                                 </span>
@@ -301,42 +301,42 @@
                   <div class="col">
                     <div class="form-group">
                       <label class="bmd-label-floating">First Name*</label>
-                      <input type="text" class="form-control" id="firstName" required="true">
+                      <input type="text" class="form-control" id="firstName" name="firstName" required="true">
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
                       <label class="bmd-label-floating">Last Name*</label>
-                      <input type="text" class="form-control" id="lastName" required="true">
+                      <input type="text" class="form-control" id="lastName" name="lastName" required="true">
                     </div>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="customerEmail" class="bmd-label-floating">Email Address*</label>
-                  <input type="email" class="form-control" id="customerEmail" required="true">
+                  <input type="email" class="form-control" id="customerEmail" name="customerEmail" required="true">
                 </div>
         
                 <div class="form-group">
-                  <label class="bmd-label-floating">Phone Number</label>
-                  <input class="form-control" id="telNo" name="telNo" type="tel" size="20" minlength="12" maxlength="14">
+                  <label class="bmd-label-floating">Phone Number*</label>
+                  <input class="form-control" id="telNo" name="telNo" type="tel" size="20" minlength="12" maxlength="14" required="true">
                 </div>
                 <div class="form-group">
-                  <label for="birthday">Date of Birth</label>
-                  <input type="text" class="form-control datepicker" value="01/01/1980" id="birthday">
+                  <label for="birthday">Date of Birth*</label>
+                  <input type="text" class="form-control datepicker" id="birthday" name="birthday" required="true">
                 </div>
                 <h4 class="mt-3">Address</h4>
                 <div class="form-row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label class="bmd-label-floating">Street Name</label>
-                      <input type="text" class="form-control" id="streetName">
+                      <label class="bmd-label-floating">Street Name*</label>
+                      <input type="text" class="form-control" id="streetName" name="streetName" required="true">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label class="bmd-label-floating">Street No.</label>
-                      <input type="number" class="form-control" id="houseNumber">
+                      <label class="bmd-label-floating">Street No.*</label>
+                      <input type="number" class="form-control" id="houseNumber" name="houseNumber" required="true">
                     </div>
                   </div>
                   <div class="col-md-2">
@@ -349,21 +349,21 @@
                 <div class="form-row">
                   <div class="col">
                     <div class="form-group">
-                      <label class="bmd-label-floating">Zip Code</label>
-                      <input type="text" class="form-control" id="zipcode">
+                      <label class="bmd-label-floating">Zip Code*</label>
+                      <input type="text" class="form-control" id="zipcode" required="true" name="zipcode">
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
-                      <label class="bmd-label-floating">City</label>
-                      <input type="text" class="form-control" id="city">
+                      <label class="bmd-label-floating">City*</label>
+                      <input type="text" class="form-control" id="city" required="true" name="city">
                     </div>
                   </div>
           
                   <div class="col">
                     <div class="form-group select-wizard">
-                      <label>Country</label>
-                      <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Select a Country" id="country">
+                      <label>Country*</label>
+                      <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Select a Country" name="country" id="country" required="true">
                         <option value="Netherlands">Netherlands </option>
                         <option value="Belgium">Belgium </option>
                         <option value="France">France </option>
@@ -389,7 +389,7 @@
                                 <label class="bmd-label-floating">Title*</label>
                                 <div class="form-check">
                                   <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="title-radio-guest" value="MR" id="guest_mr" checked=""> Mr.
+                                    <input class="form-check-input" type="radio" name="title-radio-guest" value="MR" id="guest_mr" checked="" required="true"> Mr.
                                     <span class="circle">
                                       <span class="check"></span>
                                     </span>
@@ -419,19 +419,19 @@
                       <div class="col">
                         <div class="form-group">
                           <label class="bmd-label-floating">First Name*</label>
-                          <input type="text" class="form-control" id="guest_firstName" required="true">
+                          <input type="text" class="form-control" id="guest_firstName" name="guest_firstName" required="true">
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label class="bmd-label-floating">Last Name*</label>
-                          <input type="text" class="form-control" id="guest_lastName" required="true">
+                          <input type="text" class="form-control" id="guest_lastName" name="guest_lastName" required="true">
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label for="birthday">Date of Birth</label>
-                        <input type="text" class="form-control datepicker" value="01/01/1980" id="guest_birthday">
+                        <input type="text" class="form-control datepicker" id="guest_birthday" name="guest_birthday" required="true">
                       </div>
                     </div>
                   </template>
@@ -619,15 +619,93 @@
 <script>
   $(document).ready(function() {
     console.log("Document ready");
+
     $("#submitButton").click( function (e) {
       e.preventDefault();
-      postData();
-      $("#newBookingModal").modal('hide');
-      $('.modal').on('hidden.bs.modal', function(){
-        $('.modal').find('form')[0].reset();
+      var validator = $( "#RegisterValidation" ).validate({
+        rules: {
+          checkInDate: {
+            required: true
+          },
+          checkOutDate: {
+            required: true
+          },
+          'boardtype-radio': {
+            required: true
+          },
+          'roomtype-radio': {
+            required: true
+          },
+          'preference-radio': {
+            required: true
+          },
+          availableRooms: {
+            required: true
+          },
+          'title-radio': {
+            required: true
+          },
+          firstName: {
+            required: true
+          },
+          lastName: {
+            required: true
+          },
+          customerEmail: {
+            required: true
+          },
+          telNo: {
+            required: true
+          },
+          birthday: {
+            required: true
+          },
+          streetName: {
+            required: true
+          },
+          houseNumber: {
+            required: true
+          },
+          zipcode: {
+            required: true
+          },
+          city: {
+            required: true
+          },
+          country: {
+            required: true
+          },
+          'title-radio-guest': {
+            required: true
+          },
+          guest_firstName: {
+            required: true
+          },
+          guest_lastName: {
+            required: true
+          }
+        }
       });
-      getData();
-		});
+      console.log(validator);
+      if(validator.form()) {
+        postData();
+        $("#newBookingModal").modal('hide');
+        $('.modal').on('hidden.bs.modal', function(){
+          $('.modal').find('form')[0].reset();
+        });
+        getData();
+      } else {
+        $("#RegisterValidation").showErrors();
+      }
+    });
+
+    //   postData();
+    //   $("#newBookingModal").modal('hide');
+    //   $('.modal').on('hidden.bs.modal', function(){
+    //     $('.modal').find('form')[0].reset();
+    //   });
+    //   getData();
+    // });
 		
     $("#datatables").DataTable({
         "pagingType": "full_numbers",

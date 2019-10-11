@@ -73,6 +73,8 @@ function addFields(){
     lastGuestBirthday.forEach(function (text) {
         $(text).attr('id', 'guest_birthday' + guestCount);
     });
+
+    md.initFormExtendedDatetimepickers();
 }
 
 function removeTemplate() {
@@ -392,7 +394,7 @@ class Booking {
         var input_end = $("#checkOutDate").val();
 
         this.rooms = [];
-        this.extraItems = "Hey";
+        this.extraItems = "None";
         this.startBooking = input_start;
         this.endBooking = input_end;
         this.mainGuest = mainGuest;
