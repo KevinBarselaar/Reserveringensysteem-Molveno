@@ -73,6 +73,8 @@ function addFields(){
     lastGuestBirthday.forEach(function (text) {
         $(text).attr('id', 'guest_birthday' + guestCount);
     });
+
+    md.initFormExtendedDatetimepickers();
 }
 
 function removeTemplate() {
