@@ -124,7 +124,7 @@
                       <tbody>
                       </tbody>
                       <tfoot>
-                        <th>Firstn Name</th>
+                        <th>First Name</th>
                         <th>Last Name</th>
                         <th>Dinner Date & Time</th>
                         <th>Number of Adults</th>
@@ -165,12 +165,12 @@
                         <div class="form-row">
                           <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control datepicker" value="10/01/2019" id="date">
+                                <input type="text" class="form-control datepicker" value="10/01/2019" id="date" name="date">
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control timepicker" value="11:00" id="time">
+                                <input type="text" class="form-control timepicker" value="11:00" id="time" name="time">
                             </div>
                           </div>
                         </div>
@@ -180,14 +180,14 @@
                             <div class="form-group">
                                 <label class="bmd-label-floating">First Name*</label>
                                 <input type="text" class="form-control" id="firstName"
-                                required="true">
+                                name="firstName" required="true">
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Last Name*</label>
                                 <input type="text" class="form-control" id="lastName"
-                                required="true">
+                                name="lastName" required="true">
                             </div>
                           </div>
                         </div>
@@ -195,7 +195,7 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                   <label class="bmd-label-floating">Number of adults*</label>
-                                  <input class="form-control" type="number" name="number"
+                                  <input class="form-control" type="number" name="amountAd"
                                     number="true" required="true" id="amountAd">
                               </div>
                             </div>
@@ -204,7 +204,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Number of children*</label>
-                                <input class="form-control" type="number" name="number2"
+                                <input class="form-control" type="number" name="amountChild"
                                   number="true" required="true" id="amountChild">
                             </div>
                           </div>
@@ -215,7 +215,7 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                   <label class="bmd-label-floating">Number of booster seats*</label>
-                                <input class="form-control" type="number" name="number2"
+                                <input class="form-control" type="number" name="booster"
                                   number="true" required="true" id="booster">
                               </div>
                             </div>
@@ -224,7 +224,7 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                   <label class="bmd-label-floating">Number of child chairs*</label>
-                                <input class="form-control" type="number" name="number2"
+                                <input class="form-control" type="number" name="childChair"
                                   number="true" required="true" id="childChair">
                               </div>
                             </div>
@@ -431,7 +431,38 @@
 
       $("#submitButton").click(function (e) {
         e.preventDefault();
-        if($("#newTableBookingForm").valid()) {
+        var validator = $( "#newTableBookingForm" ).validate({
+          rules: {
+            date: {
+              required: true
+            },
+            firstName: {
+              required: true
+            },
+            lastName: {
+              required: true
+            },
+            amountAd: {
+              required: true
+            },
+            amountChild: {
+              required: true
+            },
+            booster: {
+              required: true
+            },
+            childChair: {
+              required: true
+            },
+            optionsCheckboxes1: {
+              required: true
+            },
+            optionsCheckboxes4: {
+              required: true
+            },
+          }
+        });
+        if(validator.form()) {
           postRestaurantData();
           $("#newTableFormModal").modal('hide');
           $('.modal').on('hidden.bs.modal', function () {
