@@ -33,9 +33,11 @@ public class BookingService {
         return this.bookingRepository.findAllCheckedOut();
     }
 
-    public Booking create(Booking booking) { //TODO set every room available to false
+    public Booking create(Booking booking) {
         booking.setCreationDate(LocalDateTime.now());
-        System.out.println(booking.getStartBooking());
+
+        for (Room room : booking.getRooms())
+            room.setAvailable(false);
 
         return this.bookingRepository.saveAndFlush(booking);
     }
