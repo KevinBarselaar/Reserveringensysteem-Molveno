@@ -543,6 +543,29 @@
           </div>
         </div>
         <!-- end Booking detail modal -->
+        <!-- Delete confirmation modal -->
+        <div class="modal fade" tabindex="-1" id="deleteConfirmation" aria-labelledby="deleteConfirmation" aria-hidden="true">
+          <div class="modal-dialog modal-md ">
+            <div class="modal-content card">
+              <div class="card-header card-header-danger card-header-text">
+                <div class="card-text">
+                  <h2 class="card-title" id="deleteTitle">Delete booking #<span id='deleteBookingNumber'></span></h2>
+                </div>
+              </div>
+              <div class="modal-body container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6 class="text-gray">Are you sure you want to delete booking #<span id='deleteBookingName'></span>?</h6>
+                  </div>
+                </div>
+              <div class="modal-footer d-flex justify-content-between mt-3">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons">close</i> Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete"><i class="material-icons">remove_circle</i> Yes, delete it</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end Delete confirmation modal -->
       </div>
       <!-- end col-md-12 -->
     </div>
@@ -751,19 +774,36 @@
             }
         ]
     });
+
     console.log("DataTable init");
     // Load DataTable with data format.
     var table = $("#datatables").DataTable();
+
     // Load first data.
     getData();
+
     // Delete a record
     table.on('click', '.remove', function(e) {
       $tr = $(this).closest('tr');
-      var data = table.row($tr).data();
-      table.row($tr).remove().draw();
-      deleteBooking(data.id);
-      e.preventDefault();
+      $('#deleteConfirmation').modal('show', $tr);
     });
+
+    $('#delete').on('click', function(e) {
+      var booking = table.row(e.relatedTarget).data();
+      console.log(e);
+      deleteBooking(booking.id);
+      var row = table.row(e.relatedTarget);
+      row.remove().draw();
+    });
+
+    $('#deleteConfirmation').on('show.bs.modal', function (e) {
+      console.log('on modal show');
+      var booking = table.row(e.relatedTarget).data();
+      console.log(booking);
+      $('#deleteBookingNumber').html(booking.id);
+      $('#deleteBookingName').html(booking.id + " by " + titleString[booking.mainGuest.title] + " " + booking.mainGuest.firstName + " " + booking.mainGuest.lastName);
+    });
+
     //Get detail information
     table.on('click', '.info', function() {
         $tr = $(this).closest('tr');
