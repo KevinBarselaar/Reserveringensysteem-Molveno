@@ -399,7 +399,8 @@ class Booking {
         this.guests = guestList;
         this.boardType = $("[name='boardtype-radio']:checked").val();
         this.preference = $("[name='preference-radio']:checked").val();
-    }}
+    }
+}
 
 class MainGuest {
     constructor(mainGuest) {

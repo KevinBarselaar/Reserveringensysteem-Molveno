@@ -56,13 +56,13 @@
           <li class="nav-item">
             <a class="nav-link" href="index.html">
               <i class="material-icons">view_list</i>
-              <p>Booking overview</p>
+              <p>Hotel Overview</p>
             </a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="restaurant.html">
               <i class="material-icons">restaurant_menu</i>
-              <p>Restaurant</p>
+              <p>Restaurant Overview</p>
             </a>
           </li>
         </ul>
@@ -115,21 +115,21 @@
                       <thead>
                         <tr>
                           <th>First Name</th>
-                          <th>Last name</th>
-                          <th>Dinner date & time</th>
-                          <th>Number of adults</th>
-                          <th>Number of minors</th>
+                          <th>Last Name</th>
+                          <th>Dinner Date & Time</th>
+                          <th>Number of Adults</th>
+                          <th>Number of Minors</th>
                           <th class="disabled-sorting text-right">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
                       </tbody>
                       <tfoot>
-                        <th>First Name</th>
-                        <th>Last name</th>
-                        <th>Dinner date & time</th>
-                        <th>Number of adults</th>
-                        <th>Number of minors</th>
+                        <th>Firstn Name</th>
+                        <th>Last Name</th>
+                        <th>Dinner Date & Time</th>
+                        <th>Number of Adults</th>
+                        <th>Number of Minors</th>
                         <th class="disabled-sorting text-right">Actions</th>
                       </tfoot>
                     </table>
@@ -162,7 +162,7 @@
                               </div>
                             </div>
                           </div>
-                        <h4 class="mt-3">Date and time</h4>
+                        <h4 class="mt-3">Date and Time</h4>
                         <div class="form-row">
                           <div class="col-md-6">
                             <div class="form-group">
@@ -179,14 +179,14 @@
                         <div class="form-row mt-3">
                           <div class="col-md-6">
                             <div class="form-group">
-                                <label class="bmd-label-floating"> First Name *</label>
+                                <label class="bmd-label-floating">First Name*</label>
                                 <input type="text" class="form-control" id="firstName"
                                 required="true">
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
-                                <label class="bmd-label-floating"> Last Name *</label>
+                                <label class="bmd-label-floating">Last Name*</label>
                                 <input type="text" class="form-control" id="lastName"
                                 required="true">
                             </div>
@@ -195,8 +195,8 @@
                         <div class="form-row mt-3">
                             <div class="col-md-6">
                               <div class="form-group">
-                                  <label class="bmd-label-floating"> Number of adults *</label>
-                                  <input class="form-control" type="text" name="number"
+                                  <label class="bmd-label-floating">Number of adults*</label>
+                                  <input class="form-control" type="number" name="number"
                                     number="true" required="true" id="amountAd">
                               </div>
                             </div>
@@ -204,8 +204,8 @@
                         <div class="form-row">
                           <div class="col-md-6">
                             <div class="form-group">
-                                <label class="bmd-label-floating"> Number of children *</label>
-                                <input class="form-control" type="text" name="number2"
+                                <label class="bmd-label-floating">Number of children*</label>
+                                <input class="form-control" type="number" name="number2"
                                   number="true" required="true" id="amountChild">
                             </div>
                           </div>
@@ -215,8 +215,8 @@
                         <div class="form-row mt-3">
                             <div class="col-md-6">
                               <div class="form-group">
-                                  <label class="bmd-label-floating"> Number of booster seats *</label>
-                                <input class="form-control" type="text" name="number2"
+                                  <label class="bmd-label-floating">Number of booster seats*</label>
+                                <input class="form-control" type="number" name="number2"
                                   number="true" required="true" id="booster">
                               </div>
                             </div>
@@ -224,8 +224,8 @@
                         <div class="form-row">
                             <div class="col-md-6">
                               <div class="form-group">
-                                  <label class="bmd-label-floating"> Number of child chairs *</label>
-                                <input class="form-control" type="text" name="number2"
+                                  <label class="bmd-label-floating">Number of child chairs*</label>
+                                <input class="form-control" type="number" name="number2"
                                   number="true" required="true" id="childChair">
                               </div>
                             </div>
@@ -253,7 +253,8 @@
                               <button type="submit" class="btn btn-primary ml-3"
                                 id="submitButton">Book Table</button>
                             </div>
-                          </div>
+                      </form>
+                    </div>
                         </div>
                       </div>
                     </div>
@@ -451,7 +452,7 @@
         responsive: true,
         language: {
           search: "_INPUT_",
-          searchPlaceholder: "Search table bookings",
+          searchPlaceholder: "Search",
         },
         "columnDefs": [
           { className: "text-right", "targets": [5] }
