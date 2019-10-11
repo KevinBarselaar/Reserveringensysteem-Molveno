@@ -7,8 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * This class contains information about a guest. A guest is able to make a booking in the system so that
- * he/she can stay in the hotel.
+ * This class contains information about a guest.
  */
 @EqualsAndHashCode
 @Entity(name = "guest")
@@ -33,10 +32,10 @@ public class Guest {
 
     /**
      * Constructor for the Guest class.
-     * @param title {@link Title Title} containing the title of the guest
-     * @param firstName {@link String String} containing the first name of the guest
-     * @param lastName {@link String String} containing the last name of the guest
-     * @param birthDate {@link Date Birth date} of the guest
+     * @param title         {@link Title Title} containing the title of the guest
+     * @param firstName     {@link String String} containing the first name of the guest
+     * @param lastName      {@link String String} containing the last name of the guest
+     * @param birthDate     {@link Date Birth date} of the guest
      */
     public Guest(Title title, String firstName, String lastName, Date birthDate) {
         this.title = title;

@@ -1,5 +1,8 @@
 package com.capgemini.molveno.bookingsystem.model;
 
+/**
+ * Enumerator for name titles
+ */
 public enum Title {
 
     MR("Mr."),

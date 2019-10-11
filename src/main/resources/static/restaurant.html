@@ -22,7 +22,7 @@
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Reservationsystem Molveno
+    Booking System Molveno
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
     name='viewport' />
@@ -252,7 +252,8 @@
                               <button type="submit" class="btn btn-primary ml-3"
                                 id="submitButton">Book Table</button>
                             </div>
-                          </div>
+                      </form>
+                    </div>
                         </div>
                       </div>
                     </div>
@@ -480,19 +481,15 @@
       // Load first data.
       getRestaurantData();
 
-      // Edit record
-      table.on('click', '.edit', function () {
-        $tr = $(this).closest('tr');
-        var data = table.row($tr).data();
-        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-      });
-
       // Delete a record
       table.on('click', '.remove', function (e) {
         $tr = $(this).closest('tr');
+        var data = table.row($tr).data();
         table.row($tr).remove().draw();
+        deleteBooking(data.bookingId);
         e.preventDefault();
       });
+
 
       //Get detail information
       table.on('click', '.info', function() {

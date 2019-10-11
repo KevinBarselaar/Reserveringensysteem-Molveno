@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class contains a single booking, with all the info required to link bookings to a guest.
+ * This class contains a single hotel booking, with all the info required to link an hotel booking to a guest.
  */
 @Entity(name = "booking")
 @EqualsAndHashCode
@@ -70,6 +70,17 @@ public class Booking {
         this.endBooking = end;
     }
 
+    /**
+     * Constructor for the Booking class
+     *
+     * @param rooms         List of {@link Room rooms} linked to the booking
+     * @param extraItems    {@link String String} containing any additional comments
+     * @param start         {@link Date Start date} of the booking
+     * @param end           {@link Date End date} of the booking
+     * @param mainGuest     {@link MainGuest Main guest} of the booking
+     * @param guests        List of {@link Guest guests} accompanying the main guest
+     * @param preference    {@link String String} containing {@link Room room preference}
+     */
     public Booking(List<Room> rooms, String extraItems, Date start, Date end, MainGuest mainGuest, List<Guest> guests, String preference) {
         this.rooms = rooms;
         this.extraItems = extraItems;
